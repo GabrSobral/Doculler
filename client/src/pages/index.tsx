@@ -31,13 +31,13 @@ const fakeData = [
 
 const Home: NextPage = () => {
   return (
-    <div className="flex w-full min-h-screen" style={{ background: "url(./background-image.svg)" }}>
+    <div className="flex w-full min-h-screen bg-background" style={{ backgroundImage: "url(./background-image.svg)" }}>
       <SideBar />
 
       <div className='w-full'>
         <Header />
 
-        <section className='relative w-full bg-light-primary-500 h-64 p-4'>
+        <section className='relative w-full bg-primary-500 h-64 p-4'>
           <div className='w-[90%] max-w-7xl m-auto'>
             <h1 className='text-5xl absolute top-[50%] translate-y-[-50%] text-[white] font-extralight'>
               Meu Primeiro Projeto
@@ -47,10 +47,10 @@ const Home: NextPage = () => {
 
         <main className='w-[90%] max-w-7xl m-auto mt-4'>
           <header className='flex items-center gap-6 mb-4'>
-            <strong className='text-light-text font-thin text-2xl'>
+            <strong className='text-text font-thin text-2xl'>
               Meus documentos
             </strong>
-            <button type="button" className='flex items-center gap-2 px-4 py-2 bg-light-secondary rounded text-[white] hover:brightness-90 transition-all'>
+            <button type="button" className='flex items-center gap-2 px-4 py-2 bg-secondary rounded text-[white] hover:brightness-90 transition-all'>
               <Plus size={24} color="#FFF"/>
               Novo documento
             </button>

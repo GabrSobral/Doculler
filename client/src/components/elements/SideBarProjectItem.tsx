@@ -5,7 +5,7 @@ export const SideBarProjectItem = () => {
   const [ isCollapsed, setIsCollapsed ] = useState(false);
 
   return (
-    <div className={`px-4 py-2 bg-light-background ${!isCollapsed ? "border-[#00000025]": "border-light-primary-300"} border-2 rounded transition-colors`} >
+    <div className={`px-4 py-2 bg-background ${!isCollapsed ? "border-[#00000025]": "border-primary-300"} border-2 rounded transition-colors`} >
       <span 
         className="text-[1rem] font-semibold hover:underline cursor-pointer"
         onClick={() => setIsCollapsed(state => !state)} 

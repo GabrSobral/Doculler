@@ -1,11 +1,12 @@
 import dynamic from 'next/dynamic';
-import { Dispatch, SetStateAction, useState } from 'react';
-import 'react-quill/dist/quill.snow.css';
+import { Dispatch, SetStateAction } from 'react';
 
 const QuillNoSSRWrapper = dynamic(import('react-quill'), {
   ssr: false,
   loading: () => <p>Loading ...</p>,
 });
+
+import 'react-quill/dist/quill.snow.css';
 
 const modules = {
   toolbar: [
@@ -62,8 +63,6 @@ interface Props {
 
 export const TextEditor = ({ value, setValue } : Props) => {
 
-  console.log(value)
-
   return (
     <QuillNoSSRWrapper 
       theme='snow' 
@@ -71,7 +70,8 @@ export const TextEditor = ({ value, setValue } : Props) => {
       modules={modules} 
       formats={formats}
       onChange={setValue}
-      className="rounded h-fit"
+      className="text_editor_container"
+      
     />
   );
 }

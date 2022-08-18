@@ -1,6 +1,8 @@
 import { ArrowRight, Gear, Plus, Sidebar } from "phosphor-react"; 
 import { Fragment, useState } from "react";
 
+import styles from './style.module.scss'
+
 interface Props {
 
 }
@@ -9,13 +11,13 @@ export const SideBar = ({ } : Props) => {
   const [ showSideBar, setShowSideBar ] = useState(true);
 
   return (
-    <aside className="sticky w-fit bg-primary-300 top-0 h-[100vh] p-4 shadow-md text-[white]">
+    <aside className={styles.container}>
       <Fragment>
-        <span className="flex gap-3 items-center text-2xl font-extralight mb-3">
+        <span>
           {
             showSideBar &&
             <Fragment>
-              <div className='bg-secondary h-8 w-1'/>
+              <div />
               Meus Projetos
             </Fragment>
           }
@@ -23,7 +25,6 @@ export const SideBar = ({ } : Props) => {
           <button
             title="Mostrar/Ocultar barra lateral"
             type="button" 
-            className="flex items-center justify-center rounded p-2 bg-primary-500 hover:bg-primary-600 transition-colors ml-auto"
             onClick={() => setShowSideBar(state => !state)}
           >
             <Sidebar  size={24} color="#FFF" />
@@ -33,21 +34,21 @@ export const SideBar = ({ } : Props) => {
         {
           showSideBar &&
           <Fragment>
-            <ul className="flex flex-col gap-1">
-              <li className='flex gap-3 items-center p-1 px-4 rounded hover:bg-primary-500 transition-colors cursor-pointer min-w-[15rem] max-w-[20rem]'>
+            <ul>
+              <li>
                 <ArrowRight />
                 <a href="">
                   Meu Primero Projeto
                 </a>
               </li>
 
-              <li className='flex gap-3 items-center p-1 px-4 rounded hover:bg-primary-500 transition-colors cursor-pointer min-w-[15rem] max-w-[20rem]'>
+              <li>
                 <ArrowRight />
                 Meu Segundo Projeto
               </li>
 
-              <li className="mt-2">
-                <button type="button" className="flex items-center gap-2 text-secondary hover:underline hover:underline-offset-2">
+              <li>
+                <button type="button">
                   <Plus size={20}/>
                   Novo Projeto
                 </button>
@@ -59,7 +60,6 @@ export const SideBar = ({ } : Props) => {
 
       <button 
         type='button' 
-        className="absolute bottom-4 right-4 p-1 bg-primary-500 rounded"
         onClick={() => {}}
       >
         <Gear size={32}/>

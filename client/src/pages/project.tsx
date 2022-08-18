@@ -1,10 +1,10 @@
 import type { NextPage } from "next";
 import Image from "next/image";
-import { Pencil } from "phosphor-react";
+import { ArrowLeft, ArrowRight, Pencil } from "phosphor-react";
 import { useEffect, useState } from "react";
 
 import { SideBarProjectItem } from "../components/elements/SideBarProjectItem";
-import { TextEditor } from "../components/elements/TextEditor";
+import { TextEditor } from "../components/elements/TextEditor/";
 import { Header } from "../components/layout/Header";
 
 const Project: NextPage = () => {
@@ -16,13 +16,13 @@ const Project: NextPage = () => {
   },[])
 
   return (
-    <div className="w-full min-h-screen bg-contain" style={{ background: "url(./background-image.svg)" }}>
+    <div className="w-full min-h-screen bg-contain bg-background" style={{ backgroundImage: "url(./background-image.svg)" }}>
       <Header />
       
-      <div className="w-[90%] max-w-[1360px] m-auto mt-4 flex gap-4 text-light-text">
-        <aside className="bg-light-background w-[30rem] h-8 flex flex-col gap-2 text-light-text">
+      <div className="w-[90%] max-w-[1360px] m-auto mt-4 flex gap-4 text-text">
+        <aside className="bg-background w-[30rem] h-8 flex flex-col gap-2 text-text">
           <div className="flex gap-2">
-            <div className='bg-light-primary-300 h-full w-1 group-hover:bg-light-primary-500'/>
+            <div className='bg-primary-300 h-full w-1 group-hover:bg-primary-500'/>
             <strong className="font-normal text-xl">
               Meu Primeiro Projeto
             </strong>
@@ -33,24 +33,24 @@ const Project: NextPage = () => {
           <SideBarProjectItem />
         </aside>
 
-        <main className={`w-full rounded shadow-md bg-light-background`}>
+        <main className={`w-full rounded shadow-md bg-background`}>
           <section className="p-4">
             <div className="flex gap-2 items-center justify-between">
-              <strong className="font-light text-2xl">
+              <strong className="font text-2xl">
                 Cheapy
               </strong>
 
               <button 
                 type="button"
-                className={`flex items-center justify-center rounded transition-colors px-4 py-1 font-semibold gap-3 ${isEditEnable ? "text-[#FFF] bg-light-primary-300" : "text-light-text border"}`}
+                className={`flex items-center justify-center rounded transition-colors px-4 py-1 font-light text-[1rem] gap-3 transition-colors ${isEditEnable ? "text-[#FFF] bg-primary-300 border-none" : "text-text border-background-odd bg-background"}`}
                 onClick={() => setIsEditEnable(state => !state)}
               >
-                <Pencil size={24} color={isEditEnable ? "#FFF" : "#494949"}/>
+                <Pencil size={24} color="#FFF"/>
                 Habilitar edição
               </button>
             </div>
 
-            <h1 className="font-semibold text-6xl text-light-text">
+            <h1 className="font-semibold text-6xl text-text">
               Client
             </h1>
 
@@ -66,7 +66,7 @@ const Project: NextPage = () => {
                 />
               </div>
 
-              <div className="flex gap-4 items-center text-light-text-soft">
+              <div className="flex gap-4 items-center text-text-soft">
                 <span className="bg-[#00000005] rounded-2xl px-3 py-1">
                   13 minutos de leitura
                 </span> 
@@ -86,10 +86,28 @@ const Project: NextPage = () => {
               <TextEditor value={value} setValue={setValue} /> :
               <div className={!isEditEnable ? "pl-4 pr-4 pb-4" : ""} dangerouslySetInnerHTML={{ __html: value }} />
           }
+
+          <div className="ml-auto flex gap-3 p-4 justify-end">
+            <button 
+              type="button"
+              className="px-4 py-3 w-fit text-lg font-light rounded bg-background-odd text-[white] border-2 border-primary-300 shadow cursor-pointer active:scale-95 transition-all flex items-center gap-4"
+            >
+              <ArrowLeft size={18} color="#FFF"/>
+              Anterior
+            </button>
+
+            <button 
+              type="button"
+              className="px-4 py-3 w-fit text-lg font-light rounded text-[white] bg-primary-300 shadow cursor-pointer active:scale-95 transition-all flex items-center gap-4 border-none"
+            >
+              Próximo
+              <ArrowRight size={18} color="#FFF"/>
+            </button>
+          </div>
         </main>
 
-        <aside className="bg-[blue] w-[30rem] h-8">
-
+        <aside className="min-w-[13rem]">
+          <span>Título de teste</span>
         </aside>
       </div>
     </div>
