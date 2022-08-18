@@ -16,7 +16,7 @@ const Project: NextPage = () => {
   },[])
 
   return (
-    <div className="w-full min-h-screen bg-contain bg-background" style={{ backgroundImage: "url(./background-image.svg)" }}>
+    <div className="w-full min-h-screen bg-contain bg-background bg-fixed" style={{ backgroundImage: "url(./background-image.svg)" }}>
       <Header />
       
       <div className="w-[90%] max-w-[1360px] m-auto mt-4 flex gap-4 text-text">

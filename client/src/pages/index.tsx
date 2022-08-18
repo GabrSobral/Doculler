@@ -31,7 +31,7 @@ const fakeData = [
 
 const Home: NextPage = () => {
   return (
-    <div className="flex w-full min-h-screen bg-background" style={{ backgroundImage: "url(./background-image.svg)" }}>
+    <div className="flex w-full min-h-screen bg-background bg-fixed" style={{ backgroundImage: "url(./background-image.svg)" }}>
       <SideBar />
 
       <div className='w-full'>
