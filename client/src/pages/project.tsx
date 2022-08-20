@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 
 import { SideBarProjectItem } from "../components/elements/SideBarProjectItem";
 import { TextEditor } from "../components/elements/TextEditor/";
+import { Footer } from "../components/layout/Footer";
 import { Header } from "../components/layout/Header";
 
 const Project: NextPage = () => {
@@ -19,97 +20,101 @@ const Project: NextPage = () => {
     <div className="w-full min-h-screen bg-contain bg-background bg-fixed" style={{ backgroundImage: "url(./background-image.svg)" }}>
       <Header />
       
-      <div className="w-[90%] max-w-[1360px] m-auto mt-4 flex gap-4 text-text">
-        <aside className="bg-background w-[30rem] h-8 flex flex-col gap-2 text-text">
-          <div className="flex gap-2">
-            <div className='bg-primary-300 h-full w-1 group-hover:bg-primary-500'/>
-            <strong className="font-normal text-xl">
-              Meu Primeiro Projeto
-            </strong>
-          </div>
-          
-          <SideBarProjectItem />
-          <SideBarProjectItem />
-          <SideBarProjectItem />
-        </aside>
-
-        <main className={`w-full rounded shadow-md bg-background`}>
-          <section className="p-4">
-            <div className="flex gap-2 items-center justify-between">
-              <strong className="font text-2xl">
-                Cheapy
+      <div className="min-h-screen">
+        <div className="w-[90%] max-w-[1360px] m-auto mt-4 flex gap-4 text-text">
+          <aside className="bg-background w-[30rem] h-8 flex flex-col gap-2 text-text">
+            <div className="flex gap-2">
+              <div className='bg-primary-300 h-full w-1 group-hover:bg-primary-500'/>
+              <strong className="font-normal text-xl">
+                Meu Primeiro Projeto
               </strong>
+            </div>
+            
+            <SideBarProjectItem />
+            <SideBarProjectItem />
+            <SideBarProjectItem />
+          </aside>
+
+          <main className={`w-full rounded shadow-md bg-background`}>
+            <section className="p-4">
+              <div className="flex gap-2 items-center justify-between">
+                <strong className="font text-2xl">
+                  Cheapy
+                </strong>
+
+                <button 
+                  type="button"
+                  className={`flex items-center justify-center rounded px-4 py-1 font-light text-[1rem] gap-3 transition-colors ${isEditEnable ? "text-[#FFF] bg-primary-300 border-none" : "text-text border-background-odd bg-background"}`}
+                  onClick={() => setIsEditEnable(state => !state)}
+                >
+                  <Pencil size={24} color="#FFF"/>
+                  { isEditEnable ? "Desabilitar edição" : "Habilitar edição" } 
+                </button>
+              </div>
+
+              <h1 className="font-semibold text-6xl text-text">
+                Client
+              </h1>
+
+              <footer className="flex flex-col gap-2">
+                <div className="flex items-center gap-3 ml-auto font-semibold">
+                  <span>Escrito por: Gabriel Sobral</span>
+                  <Image 
+                    src="https://github.com/GabrSobral.png" 
+                    alt="Imagem do autor do texto" 
+                    width={42}
+                    height={42}
+                    className="rounded-full shadow-md"
+                  />
+                </div>
+
+                <div className="flex gap-4 items-center text-text-soft">
+                  <span className="bg-[#00000005] rounded-2xl px-3 py-1">
+                    13 minutos de leitura
+                  </span> 
+                  <span className="bg-[#00000005] rounded-2xl px-3 py-1">
+                    Criado em: {new Date().toLocaleDateString()}
+                  </span>
+                  <span className="bg-[#00000005] rounded-2xl px-3 py-1">
+                    Atualizado em: {new Date().toLocaleDateString()}
+                  </span> 
+                </div>
+              </footer>
+            </section>
+
+            <hr className="mb-4 text-[#00000025]"/>
+            {
+              isEditEnable ?
+                <TextEditor value={value} setValue={setValue} /> :
+                <div className={!isEditEnable ? "pl-4 pr-4 pb-4" : ""} dangerouslySetInnerHTML={{ __html: value }} />
+            }
+
+            <div className="ml-auto flex gap-3 p-4 justify-end">
+              <button 
+                type="button"
+                className="px-4 py-3 w-fit text-lg font-light rounded bg-background-odd text-[white] border-2 border-primary-300 shadow cursor-pointer active:scale-95 transition-all flex items-center gap-4"
+              >
+                <ArrowLeft size={18} color="#FFF"/>
+                Anterior
+              </button>
 
               <button 
                 type="button"
-                className={`flex items-center justify-center rounded transition-colors px-4 py-1 font-light text-[1rem] gap-3 transition-colors ${isEditEnable ? "text-[#FFF] bg-primary-300 border-none" : "text-text border-background-odd bg-background"}`}
-                onClick={() => setIsEditEnable(state => !state)}
+                className="px-4 py-3 w-fit text-lg font-light rounded text-[white] bg-primary-300 shadow cursor-pointer active:scale-95 transition-all flex items-center gap-4 border-none"
               >
-                <Pencil size={24} color="#FFF"/>
-                Habilitar edição
+                Próximo
+                <ArrowRight size={18} color="#FFF"/>
               </button>
             </div>
+          </main>
 
-            <h1 className="font-semibold text-6xl text-text">
-              Client
-            </h1>
-
-            <footer className="flex flex-col gap-2">
-              <div className="flex items-center gap-3 ml-auto font-semibold">
-                <span>Escrito por: Gabriel Sobral</span>
-                <Image 
-                  src="https://github.com/GabrSobral.png" 
-                  alt="Imagem do autor do texto" 
-                  width={42}
-                  height={42}
-                  className="rounded-full shadow-md"
-                />
-              </div>
-
-              <div className="flex gap-4 items-center text-text-soft">
-                <span className="bg-[#00000005] rounded-2xl px-3 py-1">
-                  13 minutos de leitura
-                </span> 
-                <span className="bg-[#00000005] rounded-2xl px-3 py-1">
-                  Criado em: {new Date().toLocaleDateString()}
-                </span>
-                <span className="bg-[#00000005] rounded-2xl px-3 py-1">
-                  Atualizado em: {new Date().toLocaleDateString()}
-                </span> 
-              </div>
-            </footer>
-          </section>
-
-          <hr className="mb-4 text-[#00000025]"/>
-          {
-            isEditEnable ?
-              <TextEditor value={value} setValue={setValue} /> :
-              <div className={!isEditEnable ? "pl-4 pr-4 pb-4" : ""} dangerouslySetInnerHTML={{ __html: value }} />
-          }
-
-          <div className="ml-auto flex gap-3 p-4 justify-end">
-            <button 
-              type="button"
-              className="px-4 py-3 w-fit text-lg font-light rounded bg-background-odd text-[white] border-2 border-primary-300 shadow cursor-pointer active:scale-95 transition-all flex items-center gap-4"
-            >
-              <ArrowLeft size={18} color="#FFF"/>
-              Anterior
-            </button>
-
-            <button 
-              type="button"
-              className="px-4 py-3 w-fit text-lg font-light rounded text-[white] bg-primary-300 shadow cursor-pointer active:scale-95 transition-all flex items-center gap-4 border-none"
-            >
-              Próximo
-              <ArrowRight size={18} color="#FFF"/>
-            </button>
-          </div>
-        </main>
-
-        <aside className="min-w-[13rem]">
-          <span>Título de teste</span>
-        </aside>
+          <aside className="min-w-[13rem]">
+            <span>Título de teste</span>
+          </aside>
+        </div>
       </div>
+
+      <Footer />
     </div>
   )
 }

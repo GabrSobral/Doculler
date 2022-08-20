@@ -4,6 +4,8 @@ import { Plus } from 'phosphor-react'
 
 import { ProjectItem } from '../components/elements/ProjectItem'
 import { Header } from '../components/layout/Header'
+import { Footer } from '../components/layout/Footer'
+import { CreateDocumentModal } from '../components/modules/CreateDocumentModal'
 
 const fakeData = [
   {
@@ -34,34 +36,39 @@ const Home: NextPage = () => {
     <div className="flex w-full min-h-screen bg-background bg-fixed" style={{ backgroundImage: "url(./background-image.svg)" }}>
       <SideBar />
 
+      <CreateDocumentModal />
+
       <div className='w-full'>
         <Header />
 
-        <section className='relative w-full bg-primary-500 h-64 p-4'>
-          <div className='w-[90%] max-w-7xl m-auto'>
-            <h1 className='text-5xl absolute top-[50%] translate-y-[-50%] text-[white] font-extralight'>
-              Meu Primeiro Projeto
-            </h1>
-          </div>
-        </section>
+        <div className='min-h-screen'>
+          <section className='relative w-full bg-primary-500 h-64 p-4'>
+            <div className='w-[90%] max-w-7xl m-auto'>
+              <h1 className='text-5xl absolute top-[50%] translate-y-[-50%] text-[white] font-extralight'>
+                Meu Primeiro Projeto
+              </h1>
+            </div>
+          </section>
 
-        <main className='w-[90%] max-w-7xl m-auto mt-4'>
-          <header className='flex items-center gap-6 mb-4'>
-            <strong className='text-text font-thin text-2xl'>
-              Meus documentos
-            </strong>
-            <button type="button" className='flex items-center gap-2 px-4 py-2 bg-secondary rounded text-[white] hover:brightness-90 transition-all'>
-              <Plus size={24} color="#FFF"/>
-              Novo documento
-            </button>
-          </header>
+          <main className='w-[90%] max-w-7xl m-auto mt-4'>
+            <header className='flex items-center gap-6 mb-4'>
+              <strong className='text-text font-thin text-2xl'>
+                Meus documentos
+              </strong>
 
-          <ul className='grid gap-3 lg:grid-cols-3 md:grid-cols-2 grid-cols-1'>
-            {fakeData.map(item => 
-              <ProjectItem key={item.id} item={item}/>
-            )}
-          </ul>
-        </main>        
+              <button type="button" className='flex items-center gap-2 px-4 py-2 bg-secondary rounded text-[white] hover:brightness-90 transition-all'>
+                <Plus size={24} color="#FFF"/>
+                Novo documento
+              </button>
+            </header>
+
+            <ul className='grid gap-3 lg:grid-cols-3 md:grid-cols-2 grid-cols-1'>
+              { fakeData.map(item => <ProjectItem key={item.id} item={item} /> ) }
+            </ul>
+          </main>
+        </div>
+
+        <Footer /> 
       </div>
     </div>
   )
