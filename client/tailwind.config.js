@@ -23,7 +23,8 @@ module.exports = {
       },
       'background': "#1C2128",
       'background-odd': "#1a1e24", 
-      'secondary': "#57CF2D"
+      'secondary': "#56ba63",
+      "warning": "#bf3f3f"
     },
     extend: {
       backgroundImage: {

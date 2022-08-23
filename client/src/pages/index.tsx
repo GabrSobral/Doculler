@@ -6,6 +6,7 @@ import { ProjectItem } from '../components/elements/ProjectItem'
 import { Header } from '../components/layout/Header'
 import { Footer } from '../components/layout/Footer'
 import { CreateDocumentModal } from '../components/modules/CreateDocumentModal'
+import { useState } from 'react'
 
 const fakeData = [
   {
@@ -13,30 +14,42 @@ const fakeData = [
     title: "Cheapy",
     description: "Eccomerce desenvolvido para treinar a linguagem C#, e NextJs",
     createdAt: new Date(),
-    updatedAt: new Date()
+    updatedAt: new Date(),
+    tags: [
+      { id: 1, name: "Javascript", color: "#E0C050" },
+      { id: 2, name: "API", color: "#43853D" },
+      { id: 3, name: "ReactJS", color: "#007ACC" }
+    ]
   },
   {
     id: 2,
     title: "FeedGet",
     description: "Projeto desenvolvido durante o NLW Return da RocketSeat, que visa mostrar uma área de contato e relato de bugs.",
     createdAt: new Date(),
-    updatedAt: new Date()
+    updatedAt: new Date(),
+    tags: []
   },
   {
     id: 3,
     title: "WhatsApp Clone",
     description: "Clone do WhatsApp, para treinar comunicação WebSocket, junto a uma API NodeJS, um banco MongoDB, e uma interface em ReactJS",
     createdAt: new Date(),
-    updatedAt: new Date()
+    updatedAt: new Date(),
+    tags: []
   }
 ]
 
 const Home: NextPage = () => {
+  const [ isCreateDocumentModalOpen, setIsCreateDocumentModalOpen ] = useState(false);
+  
   return (
     <div className="flex w-full min-h-screen bg-background bg-fixed" style={{ backgroundImage: "url(./background-image.svg)" }}>
       <SideBar />
 
-      <CreateDocumentModal />
+      {
+        isCreateDocumentModalOpen &&
+        <CreateDocumentModal closeModal={() => setIsCreateDocumentModalOpen(false)}/>
+      }
 
       <div className='w-full'>
         <Header />
@@ -56,7 +69,11 @@ const Home: NextPage = () => {
                 Meus documentos
               </strong>
 
-              <button type="button" className='flex items-center gap-2 px-4 py-2 bg-secondary rounded text-[white] hover:brightness-90 transition-all'>
+              <button 
+                type="button" 
+                className='flex items-center gap-2 px-4 py-2 bg-secondary rounded text-[white] hover:brightness-90 transition-all'
+                onClick={() => setIsCreateDocumentModalOpen(true)}
+              >
                 <Plus size={24} color="#FFF"/>
                 Novo documento
               </button>

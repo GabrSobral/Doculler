@@ -11,6 +11,8 @@
 }
 p, a, span, button {
   font-size: 1rem;
+  border: none;
+  @apply text-text
 }
 
 a {

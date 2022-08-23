@@ -2,8 +2,7 @@ import dynamic from 'next/dynamic';
 import { Dispatch, SetStateAction } from 'react';
 
 const QuillNoSSRWrapper = dynamic(import('react-quill'), {
-  ssr: false,
-  loading: () => <p>Loading ...</p>,
+  ssr: false
 });
 
 import 'react-quill/dist/quill.snow.css';
