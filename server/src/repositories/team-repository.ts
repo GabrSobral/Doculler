@@ -2,6 +2,7 @@ import { Team } from "@prisma/client";
 
 export interface TeamCreateData {
   name: string;
+  description: string;
 }
 
 export interface TeamRepository {
