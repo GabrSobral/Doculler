@@ -1,6 +1,6 @@
 import { TeamRepository } from "src/repositories/team-repository";
 
-interface CreateTeamRequest {
+export interface CreateTeamRequest {
   name: string;
   description: string;
 }
