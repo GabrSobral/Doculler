@@ -7,6 +7,11 @@
       "dynamicImport": true
     },
     "target": "es2020",
+    "keepClassNames": true,
+    "transform": {
+      "legacyDecorator": true,
+      "decoratorMetadara": true
+    },
     "paths": {
       "@routes/*": ["./src/routes/*"],
       "@middlewares/*": ["./src/middlewares/*"]
@@ -14,6 +19,7 @@
     "baseUrl": "."
   },
   "module": {
-    "type": "commonjs"
+    "type": "es6",
+    "noInterop": false
   }
 }
