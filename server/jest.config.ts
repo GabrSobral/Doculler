@@ -188,7 +188,7 @@ export default {
           "keepClassNames": true,
           "transform": {
             "legacyDecorator": true,
-            "decoratorMetadara": true
+            "decoratorMetadata": true
           },
           "paths": {
             "@routes/*": ["./src/routes/*"],

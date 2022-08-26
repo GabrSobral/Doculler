@@ -1,17 +1,27 @@
+import { UserRegister } from 'src/application/repositories/user-repository';
 import { User } from '../../src/domain/entities/User'
 
 export class InMemoryUserRepository {
   public items: User[] = []
 
   async findByEmail(user_email: string ): Promise<User | null> {
-    if(!user_email)
-      throw new Error("No email provided");
-
     const user = this.items.find(user => user.email === user_email);
 
     if(!user)
       return null;
 
     return user;
+  }
+
+  async register( data: UserRegister ): Promise<User> {
+    const newUser = User.create({
+      name: data.name,
+      email: data.email,
+      password: data.password,
+    });
+
+    this.items.push(newUser);
+
+    return newUser;
   }
 }
