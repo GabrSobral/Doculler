@@ -1,18 +1,23 @@
 import bcrypt from 'bcrypt';
+import { JsonWebToken } from 'src/adapters/json-web-token/json-web-token-jwt-adapter';
 
 import { UserRepository } from "src/application/repositories/user-repository";
+import { User } from 'src/domain/entities/User';
 
 interface UserLoginRequest {
   email: string;
   password: string;
 }
 
+type Result = User & { token: string }
+
 export class UserLoginService {
   constructor(
     private userRepository: UserRepository,
+    private jsonWebTokenHandler: JsonWebToken,
   ) {}
 
-  async execute(request: UserLoginRequest ) {
+  async execute(request: UserLoginRequest ): Promise<Result> {
     const { email, password } = request;
 
     if(!email || !password)
@@ -28,6 +33,11 @@ export class UserLoginService {
     if(!isCorrectPassword)
       throw new Error("Email/Password invalid.");
 
-    return user;
+    const token = this.jsonWebTokenHandler.sign({ 
+      email: user.email 
+    }, 60 * 60 // 1 hour
+  )
+
+    return { ...user, token } as Result;
   }
 }

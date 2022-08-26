@@ -1,7 +1,8 @@
 import bcrypt from "bcrypt";
 
-import { UserRepository } from "src/application/repositories/user-repository";
-import { User } from "src/domain/entities/User";
+import { UserRepository } from "../../repositories/user-repository";
+import { User } from "../../../domain/entities/User";
+import { JsonWebToken } from "src/adapters/json-web-token/json-web-token-jwt-adapter";
 
 interface UserRegisterRequest {
   name: string;
@@ -9,12 +10,15 @@ interface UserRegisterRequest {
   password: string;
 }
 
+type Result = User & { token: string }
+
 export class UserRegisterService {
   constructor(
     private userRepository: UserRepository,
+    private jsonWebTokenHandler: JsonWebToken,
   ) {}
 
-  async execute(request: UserRegisterRequest) : Promise<any> {
+  async execute(request: UserRegisterRequest) : Promise<Result> {
     const {
       email,
       name,
@@ -42,6 +46,11 @@ export class UserRegisterService {
 
     await this.userRepository.register(newUser);
 
-    return newUser;
+    const token = this.jsonWebTokenHandler.sign({ 
+        email: newUser.email 
+      }, 60 * 60 // 1 hour
+    )
+
+    return { ...newUser, token } as Result;
   }
 }
