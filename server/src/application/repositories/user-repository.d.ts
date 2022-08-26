@@ -6,13 +6,7 @@ export interface UserRegister {
   password: string;
 }
 
-export interface UserLogin {
-  email: string;
-  password: string;
-}
-
 export interface UserRepository {
   register: ( data: UserRegister ) => Promise<User>;
-  login: ( data: UserLogin ) => Promise<User>;
   findByEmail: ( user_email: string ) => Promise<User | null>
 }
