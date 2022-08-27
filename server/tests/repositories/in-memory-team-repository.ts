@@ -24,4 +24,7 @@ export class InMemoryTeamRepository {
     return team;
   }
 
+  async deleteById(team_id: string): Promise<void> {
+    this.items = this.items.filter(item => item.id  !== team_id);
+  }
 }
