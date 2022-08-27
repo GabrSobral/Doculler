@@ -4,7 +4,7 @@ interface TeamProps {
   name: string;
   description: string;
   created_at?: Date;
-  updated_at: Date;
+  updated_at?: Date;
 }
 
 export class Team extends Entity<TeamProps> {

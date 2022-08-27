@@ -3,7 +3,7 @@ import { Entity } from "../core/Entity";
 interface TeamMemberProps {
   team_id: string;
   user_id: string;
-  joined_at: Date;
+  joined_at?: Date;
 }
 
 export class TeamMember extends Entity<TeamMemberProps> {
