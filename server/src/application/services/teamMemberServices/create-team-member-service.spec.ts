@@ -1,9 +1,11 @@
 import { Team } from '../../../../src/domain/entities/Team';
 import { User } from '../../../../src/domain/entities/User';
+
 import { InMemoryTeamRepository } from '../../../../tests/repositories/in-memory-team-repository';
 import { InMemoryTeamMemberRepository } from '../../../../tests/repositories/in-memory-team-member-repository';
-import { CreateTeamMember } from './create-team-member-service';
 import { InMemoryUserRepository } from '../../../../tests/repositories/in-memory-user-repository';
+
+import { CreateTeamMember } from './create-team-member-service';
 
 describe("create-team-member", () => {
   it("should be able to create a new Team Member", async () => {

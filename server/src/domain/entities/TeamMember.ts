@@ -11,9 +11,6 @@ export class TeamMember extends Entity<TeamMemberProps> {
     super(props, id)
   }
 
-  get id() {
-    return this._id 
-  }
   get team_id() {
     return this.props.team_id 
   }

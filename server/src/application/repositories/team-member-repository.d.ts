@@ -5,6 +5,12 @@ export interface TeamMemberDataAdd {
   user_id: string;
 }
 
+export interface DeleteByIdProps {
+  user_id: string;
+  team_id: string;
+}
+
 export interface TeamMemberRepository {
   add: ( data: TeamMemberDataAdd ) => Promise<TeamMember>;
+  deleteById: ( data: DeleteByIdProps ) => Promise<void>;
 }

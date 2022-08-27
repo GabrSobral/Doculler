@@ -21,11 +21,6 @@
     "emitDecoratorMetadata": true,
     "moduleResolution": "Node",
     "skipLibCheck": true,
-    "paths": {
-      "@functions/*": [
-        "./src/functions/*"
-      ]
-    }
   },
   "include": [
     "src/**/*"
