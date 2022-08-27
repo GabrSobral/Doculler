@@ -7,5 +7,5 @@ export interface TeamCreateData {
 
 export interface TeamRepository {
   create: ( data: TeamCreateData ) => Promise<Team>;
-  getMyTeams: ( member_id: string ) => Promise<Team[]>;
+  findById: (team_id: string) => Promise<Team | null>;
 }

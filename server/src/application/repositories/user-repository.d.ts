@@ -9,4 +9,5 @@ export interface UserRegister {
 export interface UserRepository {
   register: ( data: UserRegister ) => Promise<User>;
   findByEmail: ( user_email: string ) => Promise<User | null>
+  findById: (team_id: string) => Promise<User | null>;
 }
