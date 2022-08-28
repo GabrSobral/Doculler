@@ -3,7 +3,7 @@
 <html lang="en">
 
 <head>
-    <title>Code coverage report for tests/repositories/in-memory-team-member-repository.ts</title>
+    <title>Code coverage report for tests/repositories/in-memory-project-repository.ts</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="../../prettify.css" />
     <link rel="stylesheet" href="../../base.css" />
@@ -19,34 +19,34 @@
 <body>
 <div class='wrapper'>
     <div class='pad1'>
-        <h1><a href="../../index.html">All files</a> / <a href="index.html">tests/repositories</a> in-memory-team-member-repository.ts</h1>
+        <h1><a href="../../index.html">All files</a> / <a href="index.html">tests/repositories</a> in-memory-project-repository.ts</h1>
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">86.36% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>21/21</span>
+                <span class='fraction'>19/22</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>4/4</span>
+                <span class='fraction'>2/2</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">66.66% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>3/3</span>
+                <span class='fraction'>2/3</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">86.36% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>21/21</span>
+                <span class='fraction'>19/22</span>
             </div>
         
             
@@ -83,46 +83,49 @@
 <a name='L18'></a><a href='#L18'>18</a>
 <a name='L19'></a><a href='#L19'>19</a>
 <a name='L20'></a><a href='#L20'>20</a>
-<a name='L21'></a><a href='#L21'>21</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<a name='L21'></a><a href='#L21'>21</a>
+<a name='L22'></a><a href='#L22'>22</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span></td><td class="text"><pre class="prettyprint lang-js">import { DeleteByIdProps, TeamMemberDataAdd } from '../../src/application/repositories/team-member-repository';
-import { TeamMember } from "../../src/domain/entities/TeamMember";
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span></td><td class="text"><pre class="prettyprint lang-js">import { ProjectCreateData } from '../../src/application/repositories/project-repository';
+import { Project } from '../../src/domain/entities/Project'
 &nbsp;
-export class InMemoryTeamMemberRepository {
-  public items: TeamMember[] = []
+export class InMemoryProjectRepository {
+  public items: Project[] = []
 &nbsp;
-  async add( data: TeamMemberDataAdd ): Promise&lt;TeamMember&gt; {
-    const newTeamMember = TeamMember.create({
-      team_id: data.team_id,
-      user_id: data.user_id
+  async create(data: ProjectCreateData): Promise&lt;Project&gt; {
+    const { description, name, team_id } = data;
+&nbsp;
+    const project = Project.create({
+      name,
+      description,
+      team_id
     });
 &nbsp;
-    this.items.push(newTeamMember);
-&nbsp;
-    return newTeamMember;
+    return project;
   }
-&nbsp;
-  async deleteById( data: DeleteByIdProps ): Promise&lt;void&gt; {
-    this.items = this.items.filter(item =&gt; item.team_id === data.team_id &amp;&amp; item.user_id === data.team_member_id )
-  }
+<span class="fstat-no" title="function not covered" >  async getProjectsFromTeam(): Promise&lt;Project[]&gt; {</span>
+<span class="cstat-no" title="statement not covered" ></span>
+<span class="cstat-no" title="statement not covered" >    return [];</span>
+<span class="cstat-no" title="statement not covered" >  }</span>
 }</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->

@@ -5,7 +5,7 @@ interface ProjectProps {
   description: string;
   team_id: string;
   created_at?: Date;
-  updated_at: Date;
+  updated_at?: Date;
 }
 
 export class Project extends Entity<ProjectProps> {
