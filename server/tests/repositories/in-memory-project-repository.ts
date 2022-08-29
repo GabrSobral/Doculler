@@ -15,8 +15,9 @@ export class InMemoryProjectRepository {
 
     return project;
   }
-  async getProjectsFromTeam(): Promise<Project[]> {
+  async getProjectsFromTeam(team_id: string): Promise<Project[]> {
+    const projects = this.items.filter(item => item.team_id === team_id);
 
-    return [];
+    return projects;
   }
 }

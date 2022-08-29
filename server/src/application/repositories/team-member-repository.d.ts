@@ -1,16 +1,12 @@
 import { TeamMember } from "src/domain/entities/TeamMember";
 
-export interface TeamMemberDataAdd {
+export interface TeamMemberIndentifierProps {
   team_id: string;
   user_id: string;
-}
-
-export interface DeleteByIdProps {
-  user_id: string;
-  team_id: string;
 }
 
 export interface TeamMemberRepository {
-  add: ( data: TeamMemberDataAdd ) => Promise<TeamMember>;
-  deleteById: ( data: DeleteByIdProps ) => Promise<void>;
+  add: ( data: TeamMemberIndentifierProps ) => Promise<TeamMember>;
+  deleteById: ( data: TeamMemberIndentifierProps ) => Promise<void>;
+  getById: ( data: TeamMemberIndentifierProps) => Promise<TeamMember | null>
 }

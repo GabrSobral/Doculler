@@ -6,12 +6,7 @@ export interface ProjectCreateData {
   team_id: string;
 }
 
-export interface ProjectGetProjectsFromTeam {
-  team_id: string;
-  member_id: string;
-}
-
 export interface ProjectRepository {
   create: ( data: ProjectCreateData ) => Promise<Project>;
-  getProjectsFromTeam: ( data: ProjectGetProjectsFromTeam ) => Promise<Project[]>;
+  getProjectsFromTeam: ( team_id: string ) => Promise<Project[]>;
 }

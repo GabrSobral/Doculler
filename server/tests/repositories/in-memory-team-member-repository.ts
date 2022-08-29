@@ -1,10 +1,10 @@
-import { DeleteByIdProps, TeamMemberDataAdd } from '../../src/application/repositories/team-member-repository';
+import { TeamMemberIndentifierProps } from '../../src/application/repositories/team-member-repository';
 import { TeamMember } from "../../src/domain/entities/TeamMember";
 
 export class InMemoryTeamMemberRepository {
   public items: TeamMember[] = []
 
-  async add( data: TeamMemberDataAdd ): Promise<TeamMember> {
+  async add( data: TeamMemberIndentifierProps ): Promise<TeamMember> {
     const newTeamMember = TeamMember.create({
       team_id: data.team_id,
       user_id: data.user_id
@@ -15,7 +15,16 @@ export class InMemoryTeamMemberRepository {
     return newTeamMember;
   }
 
-  async deleteById( data: DeleteByIdProps ): Promise<void> {
-    this.items = this.items.filter(item => item.team_id === data.team_id && item.user_id === data.team_member_id )
+  async deleteById( data: TeamMemberIndentifierProps ): Promise<void> {
+    this.items = this.items.filter(item => item.team_id === data.team_id && item.user_id === data.user_id )
+  }
+
+  async getById( data: TeamMemberIndentifierProps ) {
+    const teamMember = this.items.find(item => item.team_id === data.team_id && item.user_id === data.user_id);
+
+    if(!teamMember)
+      return null;
+
+    return teamMember;
   }
 }
