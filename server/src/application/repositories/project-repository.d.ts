@@ -9,4 +9,5 @@ export interface ProjectCreateData {
 export interface ProjectRepository {
   create: ( data: ProjectCreateData ) => Promise<Project>;
   getProjectsFromTeam: ( team_id: string ) => Promise<Project[]>;
+  getById: ( project_id: string) => Project<Project | null>
 }

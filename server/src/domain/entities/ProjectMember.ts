@@ -4,7 +4,7 @@ interface ProjectMemberProps {
   project_id: string;
   team_member_id: string;
   team_id: string;
-  joined_at: Date;
+  joined_at?: Date;
 }
 
 export class ProjectMember extends Entity<ProjectMemberProps> {

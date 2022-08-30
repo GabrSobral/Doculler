@@ -1,0 +1,55 @@
+import { ProjectRepository } from "../../../../src/application/repositories/project-repository";
+import { ProjectMemberRepository } from "../../../../src/application/repositories/project-member-repository";
+import { TeamMemberRepository } from "../../../../src/application/repositories/team-member-repository";
+import { ProjectMember } from "../../../../src/domain/entities/ProjectMember";
+
+export interface CreateProjectMemberServiceProps {
+  project_id: string;
+  team_member_id: string;
+  team_id: string;
+}
+
+export class CreateProjectMemberService {
+  constructor(
+    private projectRepository: ProjectRepository,
+    private projectMemberRepository: ProjectMemberRepository,
+    private teamMemberRepository: TeamMemberRepository,
+  ) {}
+  
+  async execute(request: CreateProjectMemberServiceProps) {
+    const { project_id, team_id, team_member_id } = request;
+
+    if(!project_id)
+      throw new Error("No 'project_id' was provided.");
+
+    if(!team_id)
+      throw new Error("No 'team_id' was provided.");
+
+    if(!team_member_id)
+      throw new Error("No 'team_member_id' was provided.");
+
+    const project = await this.projectRepository.getById(project_id);
+
+    if(!project)
+      throw new Error("No project was found with this 'project_id'.");
+      
+    if(team_id !== project.team_id)
+      throw new Error("Invalid 'team_id'.");
+
+    const teamMember = await this.teamMemberRepository.getById({
+      team_id: team_id,
+      user_id: team_member_id
+    });
+
+    if(!teamMember)
+      throw new Error("User do not belongs this team.");
+
+    const projectMember = ProjectMember.create({
+      team_id,
+      project_id,
+      team_member_id
+    });
+
+    await this.projectMemberRepository.add(projectMember);
+  }
+}

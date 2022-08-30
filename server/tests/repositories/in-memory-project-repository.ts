@@ -20,4 +20,10 @@ export class InMemoryProjectRepository {
 
     return projects;
   }
+
+  async getById(project_id: string) {
+    const project = this.items.find(item => item.id === project_id);
+
+    return project;
+  }
 }
