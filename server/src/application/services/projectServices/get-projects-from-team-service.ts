@@ -10,8 +10,8 @@ export interface GetProjectsFromTeamRequest {
 
 export class GetProjectsFromTeam {
   constructor(
-    private projectRepository: ProjectRepository,
-    private teamMemberRepository: TeamMemberRepository
+    private readonly projectRepository: ProjectRepository,
+    private readonly teamMemberRepository: TeamMemberRepository
   ) {}
 
   async execute(request: GetProjectsFromTeamRequest): Promise<Project[]> {

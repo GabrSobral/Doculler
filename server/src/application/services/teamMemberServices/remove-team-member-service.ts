@@ -8,8 +8,8 @@ export interface RemoveTeamMemberRequest {
 
 export class RemoveTeamMemberService {
   constructor(
-    private teamMemberRepository: TeamMemberRepository,
-    private teamRepository: TeamRepository,
+    private readonly teamMemberRepository: TeamMemberRepository,
+    private readonly teamRepository: TeamRepository,
   ) {}
   
   async execute(request: RemoveTeamMemberRequest) {

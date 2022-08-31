@@ -10,8 +10,8 @@ export interface CreateProjectRequest {
 
 export class CreateProjectService {
   constructor(
-    private projectRepository: ProjectRepository,
-    private teamRepository: TeamRepository
+    private readonly projectRepository: ProjectRepository,
+    private readonly teamRepository: TeamRepository
   ) {}
 
   async execute(request: CreateProjectRequest): Promise<Project> {

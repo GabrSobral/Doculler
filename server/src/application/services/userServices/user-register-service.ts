@@ -14,8 +14,8 @@ type Result = User & { token: string }
 
 export class UserRegisterService {
   constructor(
-    private userRepository: UserRepository,
-    private jsonWebTokenHandler: JsonWebToken,
+    private readonly userRepository: UserRepository,
+    private readonly jsonWebTokenHandler: JsonWebToken,
   ) {}
 
   async execute(request: UserRegisterRequest) : Promise<Result> {

@@ -10,9 +10,9 @@ interface CreateTeamMemberRequest {
 
 export class CreateTeamMember {
   constructor(
-    private teamMemberRepository: TeamMemberRepository,
-    private teamRepository: TeamRepository,
-    private userRepository: UserRepository,
+    private readonly teamMemberRepository: TeamMemberRepository,
+    private readonly teamRepository: TeamRepository,
+    private readonly userRepository: UserRepository,
   ) {}
 
   async execute(request: CreateTeamMemberRequest): Promise<TeamMember> {

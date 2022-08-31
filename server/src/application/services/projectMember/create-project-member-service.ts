@@ -5,7 +5,7 @@ import { ProjectMember } from "../../../../src/domain/entities/ProjectMember";
 
 export interface CreateProjectMemberServiceProps {
   project_id: string;
-  team_member_id: string;
+  user_id: string;
   team_id: string;
 }
 
@@ -17,7 +17,7 @@ export class CreateProjectMemberService {
   ) {}
   
   async execute(request: CreateProjectMemberServiceProps) {
-    const { project_id, team_id, team_member_id } = request;
+    const { project_id, team_id, user_id } = request;
 
     if(!project_id)
       throw new Error("No 'project_id' was provided.");
@@ -25,8 +25,8 @@ export class CreateProjectMemberService {
     if(!team_id)
       throw new Error("No 'team_id' was provided.");
 
-    if(!team_member_id)
-      throw new Error("No 'team_member_id' was provided.");
+    if(!user_id)
+      throw new Error("No 'user_id' was provided.");
 
     const project = await this.projectRepository.getById(project_id);
 
@@ -38,7 +38,7 @@ export class CreateProjectMemberService {
 
     const teamMember = await this.teamMemberRepository.getById({
       team_id: team_id,
-      user_id: team_member_id
+      user_id: user_id
     });
 
     if(!teamMember)
@@ -47,7 +47,7 @@ export class CreateProjectMemberService {
     const projectMember = ProjectMember.create({
       team_id,
       project_id,
-      team_member_id
+      user_id
     });
 
     await this.projectMemberRepository.add(projectMember);

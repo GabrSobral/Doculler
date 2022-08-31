@@ -127,6 +127,80 @@ BRF:14
 BRH:14
 end_of_record
 TN:
+SF:src/application/services/projectMember/remove-project-member-service.ts
+FN:12,get
+FN:19,execute
+FN:13,RemoveProjectMemberService
+FNF:3
+FNH:3
+FNDA:1,get
+FNDA:6,execute
+FNDA:1,RemoveProjectMemberService
+DA:1,1
+DA:2,1
+DA:3,1
+DA:4,1
+DA:5,1
+DA:6,1
+DA:7,1
+DA:8,1
+DA:9,1
+DA:10,1
+DA:11,1
+DA:12,1
+DA:13,1
+DA:14,1
+DA:15,1
+DA:16,1
+DA:17,1
+DA:18,1
+DA:19,1
+DA:20,6
+DA:21,6
+DA:22,6
+DA:23,6
+DA:24,5
+DA:25,5
+DA:26,6
+DA:27,4
+DA:28,4
+DA:29,6
+DA:30,3
+DA:31,3
+DA:32,3
+DA:33,3
+DA:34,6
+DA:35,2
+DA:36,2
+DA:37,2
+DA:38,2
+DA:39,6
+DA:40,1
+DA:41,1
+DA:42,1
+DA:43,1
+DA:44,1
+DA:45,1
+DA:46,1
+DA:47,1
+LF:47
+LH:47
+BRDA:12,0,0,1
+BRDA:19,1,0,6
+BRDA:23,2,0,1
+BRDA:24,3,0,5
+BRDA:26,4,0,1
+BRDA:27,5,0,4
+BRDA:29,6,0,1
+BRDA:30,7,0,3
+BRDA:34,8,0,1
+BRDA:35,9,0,2
+BRDA:39,10,0,1
+BRDA:13,11,0,1
+BRF:12
+BRH:12
+end_of_record
+TN:
 SF:src/application/services/projectServices/create-project-service.ts
 FN:11,get
 FN:17,execute
@@ -611,11 +685,11 @@ end_of_record
 TN:
 SF:src/domain/core/Entity.ts
 FN:3,get
-FN:7,Entity
+FN:9,Entity
 FNF:2
 FNH:2
-FNDA:21,get
-FNDA:63,Entity
+FNDA:26,get
+FNDA:68,Entity
 DA:1,1
 DA:2,1
 DA:3,1
@@ -623,314 +697,43 @@ DA:4,1
 DA:5,1
 DA:6,1
 DA:7,1
-DA:8,63
-DA:9,63
-DA:10,63
-DA:11,1
-LF:11
-LH:11
-BRDA:3,0,0,21
-BRDA:7,1,0,63
+DA:8,1
+DA:9,1
+DA:10,68
+DA:11,68
+DA:12,68
+DA:13,68
+DA:14,68
+DA:15,1
+LF:15
+LH:15
+BRDA:3,0,0,26
+BRDA:9,1,0,68
 BRF:2
 BRH:2
 end_of_record
 TN:
 SF:src/domain/entities/Project.ts
 FN:11,get
-FN:16,get id
-FN:19,get name
-FN:22,get description
-FN:25,get team_id
-FN:28,get created_at
-FN:31,get updated_at
-FN:35,create
+FN:17,get id
+FN:20,get name
+FN:23,get description
+FN:26,get team_id
+FN:29,get created_at
+FN:32,get updated_at
+FN:36,create
 FN:12,Project
 FNF:9
 FNH:7
-FNDA:14,get
-FNDA:11,get id
+FNDA:15,get
+FNDA:19,get id
 FNDA:6,get name
 FNDA:6,get description
 FNDA:19,get team_id
 FNDA:0,get created_at
 FNDA:0,get updated_at
-FNDA:14,create
-FNDA:14,Project
-DA:1,1
-DA:2,1
-DA:3,1
-DA:4,1
-DA:5,1
-DA:6,1
-DA:7,1
-DA:8,1
-DA:9,1
-DA:10,1
-DA:11,1
-DA:12,1
-DA:13,14
-DA:14,14
-DA:15,1
-DA:16,1
-DA:17,11
-DA:18,11
-DA:19,1
-DA:20,6
-DA:21,6
-DA:22,1
-DA:23,6
-DA:24,6
-DA:25,1
-DA:26,19
-DA:27,19
-DA:28,1
-DA:29,0
-DA:30,0
-DA:31,1
-DA:32,0
-DA:33,0
-DA:34,1
-DA:35,1
-DA:36,14
-DA:37,14
-DA:38,14
-DA:39,14
-DA:40,14
-DA:41,14
-DA:42,14
-DA:43,14
-DA:44,1
-LF:44
-LH:40
-BRDA:11,0,0,14
-BRDA:16,1,0,11
-BRDA:19,2,0,6
-BRDA:22,3,0,6
-BRDA:25,4,0,19
-BRDA:35,5,0,14
-BRDA:12,6,0,14
-BRF:7
-BRH:7
-end_of_record
-TN:
-SF:src/domain/entities/ProjectMember.ts
-FN:10,get
-FN:15,get id
-FN:18,get project_id
-FN:21,get team_member_id
-FN:24,get team_id
-FN:27,get joined_at
-FN:31,create
-FN:11,ProjectMember
-FNF:8
-FNH:6
-FNDA:9,get
-FNDA:0,get id
-FNDA:8,get project_id
-FNDA:8,get team_member_id
-FNDA:8,get team_id
-FNDA:0,get joined_at
-FNDA:9,create
-FNDA:9,ProjectMember
-DA:1,1
-DA:2,1
-DA:3,1
-DA:4,1
-DA:5,1
-DA:6,1
-DA:7,1
-DA:8,1
-DA:9,1
-DA:10,1
-DA:11,1
-DA:12,9
-DA:13,9
-DA:14,1
-DA:15,1
-DA:16,0
-DA:17,0
-DA:18,1
-DA:19,8
-DA:20,8
-DA:21,1
-DA:22,8
-DA:23,8
-DA:24,1
-DA:25,8
-DA:26,8
-DA:27,1
-DA:28,0
-DA:29,0
-DA:30,1
-DA:31,1
-DA:32,9
-DA:33,9
-DA:34,9
-DA:35,9
-DA:36,9
-DA:37,9
-DA:38,9
-DA:39,1
-LF:39
-LH:35
-BRDA:10,0,0,9
-BRDA:18,1,0,8
-BRDA:21,2,0,8
-BRDA:24,3,0,8
-BRDA:31,4,0,9
-BRDA:11,5,0,9
-BRF:6
-BRH:6
-end_of_record
-TN:
-SF:src/domain/entities/Team.ts
-FN:10,get
-FN:15,get id
-FN:18,get name
-FN:21,get description
-FN:24,get created_at
-FN:27,get updated_at
-FN:31,create
-FN:11,Team
-FNF:8
-FNH:4
-FNDA:16,get
-FNDA:35,get id
-FNDA:0,get name
-FNDA:0,get description
-FNDA:0,get created_at
-FNDA:0,get updated_at
-FNDA:16,create
-FNDA:16,Team
-DA:1,1
-DA:2,1
-DA:3,1
-DA:4,1
-DA:5,1
-DA:6,1
-DA:7,1
-DA:8,1
-DA:9,1
-DA:10,1
-DA:11,1
-DA:12,16
-DA:13,16
-DA:14,1
-DA:15,1
-DA:16,35
-DA:17,35
-DA:18,1
-DA:19,0
-DA:20,0
-DA:21,1
-DA:22,0
-DA:23,0
-DA:24,1
-DA:25,0
-DA:26,0
-DA:27,1
-DA:28,0
-DA:29,0
-DA:30,1
-DA:31,1
-DA:32,16
-DA:33,16
-DA:34,16
-DA:35,16
-DA:36,16
-DA:37,16
-DA:38,16
-DA:39,16
-DA:40,1
-LF:40
-LH:32
-BRDA:10,0,0,16
-BRDA:15,1,0,35
-BRDA:31,2,0,16
-BRDA:11,3,0,16
-BRF:4
-BRH:4
-end_of_record
-TN:
-SF:src/domain/entities/TeamMember.ts
-FN:9,get
-FN:14,get team_id
-FN:17,get user_id
-FN:20,get joined_at
-FN:24,create
-FN:10,TeamMember
-FNF:6
-FNH:5
-FNDA:9,get
-FNDA:17,get team_id
-FNDA:21,get user_id
-FNDA:0,get joined_at
-FNDA:9,create
-FNDA:9,TeamMember
-DA:1,1
-DA:2,1
-DA:3,1
-DA:4,1
-DA:5,1
-DA:6,1
-DA:7,1
-DA:8,1
-DA:9,1
-DA:10,1
-DA:11,9
-DA:12,9
-DA:13,1
-DA:14,1
-DA:15,17
-DA:16,17
-DA:17,1
-DA:18,21
-DA:19,21
-DA:20,1
-DA:21,0
-DA:22,0
-DA:23,1
-DA:24,1
-DA:25,9
-DA:26,9
-DA:27,9
-DA:28,9
-DA:29,9
-DA:30,9
-DA:31,9
-DA:32,1
-LF:32
-LH:30
-BRDA:9,0,0,9
-BRDA:14,1,0,17
-BRDA:17,2,0,21
-BRDA:24,3,0,9
-BRDA:10,4,0,9
-BRF:5
-BRH:5
-end_of_record
-TN:
-SF:src/domain/entities/User.ts
-FN:11,get
-FN:16,get id
-FN:19,get name
-FN:22,get email
-FN:25,get password
-FN:28,get created_at
-FN:31,get updated_at
-FN:35,create
-FN:12,User
-FNF:9
-FNH:7
-FNDA:15,get
-FNDA:10,get id
-FNDA:3,get name
-FNDA:14,get email
-FNDA:6,get password
-FNDA:0,get created_at
-FNDA:0,get updated_at
 FNDA:15,create
-FNDA:15,User
+FNDA:15,Project
 DA:1,1
 DA:2,1
 DA:3,1
@@ -945,56 +748,65 @@ DA:11,1
 DA:12,1
 DA:13,15
 DA:14,15
-DA:15,1
+DA:15,15
 DA:16,1
-DA:17,10
-DA:18,10
-DA:19,1
-DA:20,3
-DA:21,3
-DA:22,1
-DA:23,14
-DA:24,14
-DA:25,1
-DA:26,6
-DA:27,6
-DA:28,1
-DA:29,0
+DA:17,1
+DA:18,19
+DA:19,19
+DA:20,1
+DA:21,6
+DA:22,6
+DA:23,1
+DA:24,6
+DA:25,6
+DA:26,1
+DA:27,19
+DA:28,19
+DA:29,1
 DA:30,0
-DA:31,1
-DA:32,0
+DA:31,0
+DA:32,1
 DA:33,0
-DA:34,1
+DA:34,0
 DA:35,1
-DA:36,15
+DA:36,1
 DA:37,15
 DA:38,15
 DA:39,15
 DA:40,15
-DA:41,15
-DA:42,15
-DA:43,15
-DA:44,1
-LF:44
-LH:40
+DA:41,1
+LF:41
+LH:37
 BRDA:11,0,0,15
-BRDA:16,1,0,10
-BRDA:19,2,0,3
-BRDA:22,3,0,14
-BRDA:25,4,0,6
-BRDA:35,5,0,15
+BRDA:17,1,0,19
+BRDA:20,2,0,6
+BRDA:23,3,0,6
+BRDA:26,4,0,19
+BRDA:36,5,0,15
 BRDA:12,6,0,15
 BRF:7
 BRH:7
 end_of_record
 TN:
-SF:tests/repositories/in-memory-project-member-repository.ts
-FN:3,get
-FN:6,add
-FNF:2
-FNH:2
-FNDA:8,get
-FNDA:1,add
+SF:src/domain/entities/ProjectMember.ts
+FN:10,get
+FN:16,get id
+FN:19,get project_id
+FN:22,get user_id
+FN:25,get team_id
+FN:28,get joined_at
+FN:32,create
+FN:11,ProjectMember
+FNF:8
+FNH:6
+FNDA:10,get
+FNDA:0,get id
+FNDA:9,get project_id
+FNDA:8,get user_id
+FNDA:8,get team_id
+FNDA:0,get joined_at
+FNDA:10,create
+FNDA:10,ProjectMember
 DA:1,1
 DA:2,1
 DA:3,1
@@ -1004,12 +816,277 @@ DA:6,1
 DA:7,1
 DA:8,1
 DA:9,1
-LF:9
-LH:9
-BRDA:3,0,0,8
-BRDA:6,1,0,1
-BRF:2
-BRH:2
+DA:10,1
+DA:11,1
+DA:12,10
+DA:13,10
+DA:14,10
+DA:15,1
+DA:16,1
+DA:17,0
+DA:18,0
+DA:19,1
+DA:20,9
+DA:21,9
+DA:22,1
+DA:23,8
+DA:24,8
+DA:25,1
+DA:26,8
+DA:27,8
+DA:28,1
+DA:29,0
+DA:30,0
+DA:31,1
+DA:32,1
+DA:33,10
+DA:34,10
+DA:35,10
+DA:36,10
+DA:37,1
+LF:37
+LH:33
+BRDA:10,0,0,10
+BRDA:19,1,0,9
+BRDA:22,2,0,8
+BRDA:25,3,0,8
+BRDA:32,4,0,10
+BRDA:11,5,0,10
+BRF:6
+BRH:6
+end_of_record
+TN:
+SF:src/domain/entities/Team.ts
+FN:8,get
+FN:14,get id
+FN:17,get name
+FN:20,get description
+FN:23,get created_at
+FN:26,get updated_at
+FN:30,create
+FN:9,Team
+FNF:8
+FNH:4
+FNDA:17,get
+FNDA:46,get id
+FNDA:0,get name
+FNDA:0,get description
+FNDA:0,get created_at
+FNDA:0,get updated_at
+FNDA:17,create
+FNDA:17,Team
+DA:1,1
+DA:2,1
+DA:3,1
+DA:4,1
+DA:5,1
+DA:6,1
+DA:7,1
+DA:8,1
+DA:9,1
+DA:10,17
+DA:11,17
+DA:12,17
+DA:13,1
+DA:14,1
+DA:15,46
+DA:16,46
+DA:17,1
+DA:18,0
+DA:19,0
+DA:20,1
+DA:21,0
+DA:22,0
+DA:23,1
+DA:24,0
+DA:25,0
+DA:26,1
+DA:27,0
+DA:28,0
+DA:29,1
+DA:30,1
+DA:31,17
+DA:32,17
+DA:33,17
+DA:34,17
+DA:35,1
+LF:35
+LH:27
+BRDA:8,0,0,17
+BRDA:14,1,0,46
+BRDA:30,2,0,17
+BRDA:9,3,0,17
+BRF:4
+BRH:4
+end_of_record
+TN:
+SF:src/domain/entities/TeamMember.ts
+FN:8,get
+FN:14,get team_id
+FN:17,get user_id
+FN:20,get joined_at
+FN:24,create
+FN:9,TeamMember
+FNF:6
+FNH:5
+FNDA:10,get
+FNDA:17,get team_id
+FNDA:22,get user_id
+FNDA:0,get joined_at
+FNDA:10,create
+FNDA:10,TeamMember
+DA:1,1
+DA:2,1
+DA:3,1
+DA:4,1
+DA:5,1
+DA:6,1
+DA:7,1
+DA:8,1
+DA:9,1
+DA:10,10
+DA:11,10
+DA:12,10
+DA:13,1
+DA:14,1
+DA:15,17
+DA:16,17
+DA:17,1
+DA:18,22
+DA:19,22
+DA:20,1
+DA:21,0
+DA:22,0
+DA:23,1
+DA:24,1
+DA:25,10
+DA:26,10
+DA:27,10
+DA:28,10
+DA:29,1
+LF:29
+LH:27
+BRDA:8,0,0,10
+BRDA:14,1,0,17
+BRDA:17,2,0,22
+BRDA:24,3,0,10
+BRDA:9,4,0,10
+BRF:5
+BRH:5
+end_of_record
+TN:
+SF:src/domain/entities/User.ts
+FN:9,get
+FN:15,get id
+FN:18,get name
+FN:21,get email
+FN:24,get password
+FN:27,get created_at
+FN:30,get updated_at
+FN:34,create
+FN:10,User
+FNF:9
+FNH:7
+FNDA:16,get
+FNDA:16,get id
+FNDA:3,get name
+FNDA:14,get email
+FNDA:6,get password
+FNDA:0,get created_at
+FNDA:0,get updated_at
+FNDA:16,create
+FNDA:16,User
+DA:1,1
+DA:2,1
+DA:3,1
+DA:4,1
+DA:5,1
+DA:6,1
+DA:7,1
+DA:8,1
+DA:9,1
+DA:10,1
+DA:11,16
+DA:12,16
+DA:13,16
+DA:14,1
+DA:15,1
+DA:16,16
+DA:17,16
+DA:18,1
+DA:19,3
+DA:20,3
+DA:21,1
+DA:22,14
+DA:23,14
+DA:24,1
+DA:25,6
+DA:26,6
+DA:27,1
+DA:28,0
+DA:29,0
+DA:30,1
+DA:31,0
+DA:32,0
+DA:33,1
+DA:34,1
+DA:35,16
+DA:36,16
+DA:37,16
+DA:38,16
+DA:39,1
+LF:39
+LH:35
+BRDA:9,0,0,16
+BRDA:15,1,0,16
+BRDA:18,2,0,3
+BRDA:21,3,0,14
+BRDA:24,4,0,6
+BRDA:34,5,0,16
+BRDA:10,6,0,16
+BRF:7
+BRH:7
+end_of_record
+TN:
+SF:tests/repositories/in-memory-project-member-repository.ts
+FN:4,get
+FN:7,add
+FN:11,delete
+FNF:3
+FNH:3
+FNDA:9,get
+FNDA:1,add
+FNDA:1,delete
+DA:1,1
+DA:2,1
+DA:3,1
+DA:4,1
+DA:5,1
+DA:6,1
+DA:7,1
+DA:8,1
+DA:9,1
+DA:10,1
+DA:11,1
+DA:12,1
+DA:13,1
+DA:14,1
+DA:15,1
+DA:16,1
+DA:17,1
+DA:18,1
+DA:19,1
+DA:20,1
+LF:20
+LH:20
+BRDA:4,0,0,9
+BRDA:7,1,0,1
+BRDA:11,2,0,1
+BRDA:14,3,0,1
+BRDA:15,4,0,0
+BRDA:16,5,0,0
+BRF:6
+BRH:4
 end_of_record
 TN:
 SF:tests/repositories/in-memory-project-repository.ts
@@ -1019,10 +1096,10 @@ FN:18,getProjectsFromTeam
 FN:24,getById
 FNF:4
 FNH:4
-FNDA:7,get
+FNDA:8,get
 FNDA:2,create
 FNDA:2,getProjectsFromTeam
-FNDA:4,getById
+FNDA:6,getById
 DA:1,1
 DA:2,1
 DA:3,1
@@ -1047,19 +1124,19 @@ DA:21,2
 DA:22,2
 DA:23,1
 DA:24,1
-DA:25,4
-DA:26,4
-DA:27,4
-DA:28,4
+DA:25,6
+DA:26,6
+DA:27,6
+DA:28,6
 DA:29,1
 LF:29
 LH:29
-BRDA:4,0,0,7
+BRDA:4,0,0,8
 BRDA:7,1,0,2
 BRDA:18,2,0,2
 BRDA:19,3,0,10
-BRDA:24,4,0,4
-BRDA:25,5,0,4
+BRDA:24,4,0,6
+BRDA:25,5,0,6
 BRF:6
 BRH:6
 end_of_record
@@ -1071,7 +1148,7 @@ FN:18,deleteById
 FN:22,getById
 FNF:4
 FNH:4
-FNDA:11,get
+FNDA:12,get
 FNDA:1,add
 FNDA:1,deleteById
 FNDA:5,getById
@@ -1107,7 +1184,7 @@ DA:29,3
 DA:30,1
 LF:30
 LH:30
-BRDA:4,0,0,11
+BRDA:4,0,0,12
 BRDA:7,1,0,1
 BRDA:18,2,0,1
 BRDA:19,3,0,1
@@ -1128,9 +1205,9 @@ FN:18,findById
 FN:27,deleteById
 FNF:4
 FNH:4
-FNDA:19,get
+FNDA:20,get
 FNDA:1,create
-FNDA:8,findById
+FNDA:11,findById
 FNDA:1,deleteById
 DA:1,1
 DA:2,1
@@ -1150,13 +1227,13 @@ DA:15,1
 DA:16,1
 DA:17,1
 DA:18,1
-DA:19,8
-DA:20,8
-DA:21,8
-DA:22,8
-DA:23,5
-DA:24,5
-DA:25,5
+DA:19,11
+DA:20,11
+DA:21,11
+DA:22,11
+DA:23,7
+DA:24,7
+DA:25,7
 DA:26,1
 DA:27,1
 DA:28,1
@@ -1164,13 +1241,13 @@ DA:29,1
 DA:30,1
 LF:30
 LH:30
-BRDA:4,0,0,19
+BRDA:4,0,0,20
 BRDA:7,1,0,1
-BRDA:18,2,0,8
-BRDA:22,3,0,7
-BRDA:22,4,0,3
-BRDA:23,5,0,5
-BRDA:19,6,0,7
+BRDA:18,2,0,11
+BRDA:22,3,0,10
+BRDA:22,4,0,4
+BRDA:23,5,0,7
+BRDA:19,6,0,10
 BRDA:27,7,0,1
 BRDA:28,8,0,1
 BRF:9

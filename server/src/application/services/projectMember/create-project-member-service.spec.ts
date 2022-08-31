@@ -45,7 +45,7 @@ describe("create-project-member-service", () => {
     const projectMember = ProjectMember.create({
       project_id: project.id,
       team_id: team.id,
-      team_member_id: teamMember.user_id,
+      user_id: teamMember.user_id,
     });
 
     inMemoryProjectMemberRepository.items.push(projectMember);
@@ -66,7 +66,7 @@ describe("create-project-member-service", () => {
     const projectMember = ProjectMember.create({
       project_id: "",
       team_id: team.id,
-      team_member_id: teamMember.user_id,
+      user_id: teamMember.user_id,
     });
 
     inMemoryProjectMemberRepository.items.push(projectMember);
@@ -87,7 +87,7 @@ describe("create-project-member-service", () => {
     const projectMember = ProjectMember.create({
       project_id: project.id,
       team_id: "",
-      team_member_id: teamMember.user_id,
+      user_id: teamMember.user_id,
     });
 
     inMemoryProjectMemberRepository.items.push(projectMember);
@@ -108,7 +108,7 @@ describe("create-project-member-service", () => {
     const projectMember = ProjectMember.create({
       project_id: project.id,
       team_id: team.id,
-      team_member_id: "",
+      user_id: "",
     });
 
     inMemoryProjectMemberRepository.items.push(projectMember);
@@ -129,7 +129,7 @@ describe("create-project-member-service", () => {
     const projectMember = ProjectMember.create({
       project_id: project.id,
       team_id: team.id,
-      team_member_id: "",
+      user_id: "",
     });
 
     inMemoryProjectMemberRepository.items.push(projectMember);
@@ -150,7 +150,7 @@ describe("create-project-member-service", () => {
     const projectMember = ProjectMember.create({
       project_id: project.id + "123Test",
       team_id: team.id,
-      team_member_id: teamMember.user_id,
+      user_id: teamMember.user_id,
     });
 
     inMemoryProjectMemberRepository.items.push(projectMember);
@@ -171,7 +171,7 @@ describe("create-project-member-service", () => {
     const projectMember = ProjectMember.create({
       project_id: project.id,
       team_id: team.id + "123Test",
-      team_member_id: teamMember.user_id,
+      user_id: teamMember.user_id,
     });
 
     inMemoryProjectMemberRepository.items.push(projectMember);
@@ -192,7 +192,7 @@ describe("create-project-member-service", () => {
     const projectMember = ProjectMember.create({
       project_id: project.id,
       team_id: team.id,
-      team_member_id: teamMember.user_id + "123Test",
+      user_id: teamMember.user_id + "123Test",
     });
 
     inMemoryProjectMemberRepository.items.push(projectMember);
