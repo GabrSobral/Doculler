@@ -1,7 +1,7 @@
-import { ProjectRepository } from "../../../../src/application/repositories/project-repository";
-import { ProjectMemberRepository } from "../../../../src/application/repositories/project-member-repository";
-import { TeamMemberRepository } from "../../../../src/application/repositories/team-member-repository";
-import { ProjectMember } from "../../../../src/domain/entities/ProjectMember";
+import { ProjectRepository } from "../../repositories/project-repository";
+import { ProjectMemberRepository } from "../../repositories/project-member-repository";
+import { TeamMemberRepository } from "../../repositories/team-member-repository";
+import { ProjectMember } from "../../../domain/entities/ProjectMember";
 
 export interface CreateProjectMemberServiceProps {
   project_id: string;

@@ -1,7 +1,7 @@
-import { Project } from "../../../../src/domain/entities/Project";
+import { Project } from "../../../domain/entities/Project";
 
-import { ProjectRepository } from "../../../../src/application/repositories/project-repository";
-import { TeamMemberRepository } from "../../../../src/application/repositories/team-member-repository";
+import { ProjectRepository } from "../../repositories/project-repository";
+import { TeamMemberRepository } from "../../repositories/team-member-repository";
 
 export interface GetProjectsFromTeamRequest {
   team_id: string;

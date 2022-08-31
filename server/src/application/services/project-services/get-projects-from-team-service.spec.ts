@@ -1,7 +1,7 @@
-import { TeamMember } from "../../../../src/domain/entities/TeamMember";
-import { Team } from "../../../../src/domain/entities/Team";
-import { User } from "../../../../src/domain/entities/User";
-import { Project } from "../../../../src/domain/entities/Project";
+import { TeamMember } from "../../../domain/entities/TeamMember";
+import { Team } from "../../../domain/entities/Team";
+import { User } from "../../../domain/entities/User";
+import { Project } from "../../../domain/entities/Project";
 
 import { InMemoryProjectRepository } from "../../../../tests/repositories/in-memory-project-repository";
 import { InMemoryTeamMemberRepository } from "../../../../tests/repositories/in-memory-team-member-repository";

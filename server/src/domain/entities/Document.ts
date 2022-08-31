@@ -4,8 +4,6 @@ interface DocumentProps {
   name: string;
   team_id: string;
   project_id: string;
-  created_at: string;
-  updated_at: string;
 }
 
 export class Document extends Entity<DocumentProps> {

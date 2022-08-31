@@ -1,4 +1,4 @@
-import { Team } from "../../../../src/domain/entities/Team";
+import { Team } from "../../../domain/entities/Team";
 import { InMemoryTeamRepository } from "../../../../tests/repositories/in-memory-team-repository"
 import { DeleteTeamService } from "./delete-team-service";
 

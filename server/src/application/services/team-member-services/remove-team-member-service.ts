@@ -1,5 +1,5 @@
-import { TeamRepository } from "../../../../src/application/repositories/team-repository";
-import { TeamMemberRepository } from "../../../../src/application/repositories/team-member-repository";
+import { TeamRepository } from "../../repositories/team-repository";
+import { TeamMemberRepository } from "../../repositories/team-member-repository";
 
 export interface RemoveTeamMemberRequest {
   user_id: string;

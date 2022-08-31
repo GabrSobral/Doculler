@@ -1,6 +1,6 @@
-import { ProjectRepository } from "../../../../src/application/repositories/project-repository";
-import { ProjectMemberRepository } from "../../../../src/application/repositories/project-member-repository";
-import { TeamRepository } from "../../../../src/application/repositories/team-repository";
+import { ProjectRepository } from "../../repositories/project-repository";
+import { ProjectMemberRepository } from "../../repositories/project-member-repository";
+import { TeamRepository } from "../../repositories/team-repository";
 import { ProjectMember } from "src/domain/entities/ProjectMember";
 
 interface RemoveProjectMemberServiceProps {

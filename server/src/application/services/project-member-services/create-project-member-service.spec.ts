@@ -1,8 +1,8 @@
-import { ProjectMember } from "../../../../src/domain/entities/ProjectMember";
-import { Project } from "../../../../src/domain/entities/Project";
-import { Team } from "../../../../src/domain/entities/Team";
-import { TeamMember } from "../../../../src/domain/entities/TeamMember";
-import { User } from "../../../../src/domain/entities/User";
+import { ProjectMember } from "../../../domain/entities/ProjectMember";
+import { Project } from "../../../domain/entities/Project";
+import { Team } from "../../../domain/entities/Team";
+import { TeamMember } from "../../../domain/entities/TeamMember";
+import { User } from "../../../domain/entities/User";
 
 import { InMemoryProjectRepository } from "../../../../tests/repositories/in-memory-project-repository";
 import { InMemoryProjectMemberRepository } from "../../../../tests/repositories/in-memory-project-member-repository";

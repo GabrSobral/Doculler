@@ -1,6 +1,6 @@
 import { InMemoryTeamRepository } from '../../../../tests/repositories/in-memory-team-repository';
-import { Project } from '../../../../src/domain/entities/Project';
-import { Team } from '../../../../src/domain/entities/Team';
+import { Project } from '../../../domain/entities/Project';
+import { Team } from '../../../domain/entities/Team';
 import { InMemoryProjectRepository } from '../../../../tests/repositories/in-memory-project-repository';
 import { CreateProjectService } from './create-project-service';
 

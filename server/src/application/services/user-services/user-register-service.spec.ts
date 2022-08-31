@@ -1,4 +1,4 @@
-import { JsonWebToken } from "../../../../src/adapters/json-web-token/json-web-token-jwt-adapter";
+import { JsonWebToken } from "../../../adapters/json-web-token/json-web-token-jwt-adapter";
 import { InMemoryUserRepository } from "../../../../tests/repositories/in-memory-user-repository"
 import { UserRegisterService } from "./user-register-service";
 

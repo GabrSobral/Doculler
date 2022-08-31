@@ -1,4 +1,4 @@
-import { TeamRepository } from "../../../../src/application/repositories/team-repository";
+import { TeamRepository } from "../../repositories/team-repository";
 
 export class DeleteTeamService {
   constructor (

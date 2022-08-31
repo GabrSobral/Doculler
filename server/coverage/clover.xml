@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1661910327169" clover="3.2.0">
-  <project timestamp="1661910327169" name="All files">
+<coverage generated="1661910828087" clover="3.2.0">
+  <project timestamp="1661910828087" name="All files">
     <metrics statements="767" coveredstatements="745" conditionals="164" coveredconditionals="162" methods="94" coveredmethods="83" elements="1025" coveredelements="990" complexity="0" loc="767" ncloc="767" packages="9" files="22" classes="22"/>
     <package name="src.adapters.json-web-token">
       <metrics statements="26" coveredstatements="26" conditionals="3" coveredconditionals="3" methods="3" coveredmethods="3"/>

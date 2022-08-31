@@ -1,9 +1,9 @@
 import { InMemoryTeamRepository } from "../../../../tests/repositories/in-memory-team-repository";
 import { InMemoryTeamMemberRepository } from "../../../../tests/repositories/in-memory-team-member-repository";
 
-import { User } from "../../../../src/domain/entities/User";
-import { Team } from "../../../../src/domain/entities/Team";
-import { TeamMember } from "../../../../src/domain/entities/TeamMember";
+import { User } from "../../../domain/entities/User";
+import { Team } from "../../../domain/entities/Team";
+import { TeamMember } from "../../../domain/entities/TeamMember";
 
 import { RemoveTeamMemberService } from "./remove-team-member-service";
 

@@ -1,6 +1,6 @@
-import { Project } from "../../../../src/domain/entities/Project";
-import { ProjectRepository } from "../../../../src/application/repositories/project-repository";
-import { TeamRepository } from "../../../../src/application/repositories/team-repository";
+import { Project } from "../../../domain/entities/Project";
+import { ProjectRepository } from "../../repositories/project-repository";
+import { TeamRepository } from "../../repositories/team-repository";
 
 export interface CreateProjectRequest {
   name: string;

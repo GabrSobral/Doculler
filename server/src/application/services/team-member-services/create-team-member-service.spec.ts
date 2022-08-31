@@ -1,5 +1,5 @@
-import { Team } from '../../../../src/domain/entities/Team';
-import { User } from '../../../../src/domain/entities/User';
+import { Team } from '../../../domain/entities/Team';
+import { User } from '../../../domain/entities/User';
 
 import { InMemoryTeamRepository } from '../../../../tests/repositories/in-memory-team-repository';
 import { InMemoryTeamMemberRepository } from '../../../../tests/repositories/in-memory-team-member-repository';

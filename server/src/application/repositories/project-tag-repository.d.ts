@@ -8,4 +8,5 @@ export interface ProjectTagAddData {
 
 export interface ProjectTagRepository {
   add: ( data: ProjectTagAddData ) => Promise<ProjectTag>;
+  remove: ( tag_id: string) => Promise<void>;
 }

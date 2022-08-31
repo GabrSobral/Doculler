@@ -1,7 +1,7 @@
-import { TeamRepository } from "../../../../src/application/repositories/team-repository";
-import { UserRepository } from "../../../../src/application/repositories/user-repository";
-import { TeamMember } from "../../../../src/domain/entities/TeamMember";
-import { TeamMemberRepository } from "../../../../src/application/repositories/team-member-repository";
+import { TeamRepository } from "../../repositories/team-repository";
+import { UserRepository } from "../../repositories/user-repository";
+import { TeamMember } from "../../../domain/entities/TeamMember";
+import { TeamMemberRepository } from "../../repositories/team-member-repository";
 
 interface CreateTeamMemberRequest {
   team_id: string;

@@ -1,7 +1,7 @@
 import { UserLoginService } from "./user-login-service"
 import { InMemoryUserRepository } from '../../../../tests/repositories/in-memory-user-repository';
 import { UserRegisterService } from "./user-register-service";
-import { JsonWebToken } from "../../../../src/adapters/json-web-token/json-web-token-jwt-adapter";
+import { JsonWebToken } from "../../../adapters/json-web-token/json-web-token-jwt-adapter";
 
 describe("user-login-service", () => {
   const inMemoryUserRepository = new InMemoryUserRepository();
