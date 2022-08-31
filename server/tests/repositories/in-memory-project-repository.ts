@@ -1,7 +1,7 @@
-import { ProjectCreateData } from '../../src/application/repositories/project-repository';
+import { ProjectCreateData, ProjectRepository } from '../../src/application/repositories/project-repository';
 import { Project } from '../../src/domain/entities/Project'
 
-export class InMemoryProjectRepository {
+export class InMemoryProjectRepository implements ProjectRepository {
   public items: Project[] = []
 
   async create(data: ProjectCreateData): Promise<Project> {

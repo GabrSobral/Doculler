@@ -1,7 +1,7 @@
-import { TeamMemberIndentifierProps } from '../../src/application/repositories/team-member-repository';
+import { TeamMemberIndentifierProps, TeamMemberRepository } from '../../src/application/repositories/team-member-repository';
 import { TeamMember } from "../../src/domain/entities/TeamMember";
 
-export class InMemoryTeamMemberRepository {
+export class InMemoryTeamMemberRepository implements TeamMemberRepository {
   public items: TeamMember[] = []
 
   async add( data: TeamMemberIndentifierProps ): Promise<TeamMember> {

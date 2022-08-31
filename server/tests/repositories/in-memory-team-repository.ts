@@ -1,7 +1,7 @@
-import { TeamCreateData } from '../../src/application/repositories/team-repository';
+import { TeamCreateData, TeamRepository } from '../../src/application/repositories/team-repository';
 import { Team } from "../../src/domain/entities/Team";
 
-export class InMemoryTeamRepository {
+export class InMemoryTeamRepository implements TeamRepository {
   public items: Team[] = []
 
   async create( data: TeamCreateData ): Promise<Team> {
