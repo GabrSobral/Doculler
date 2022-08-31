@@ -1,6 +1,6 @@
-import { ProjectRepository } from "src/application/repositories/project-repository";
-import { ProjectTagRepository } from "src/application/repositories/project-tag-repository";
-import { ProjectTag } from "src/domain/entities/ProjectTag";
+import { ProjectRepository } from "../../../../src/application/repositories/project-repository";
+import { ProjectTagRepository } from "../../../../src/application/repositories/project-tag-repository";
+import { ProjectTag } from "../../../../src/domain/entities/ProjectTag";
 
 export interface CreateProjectTagProps {
   name: string;

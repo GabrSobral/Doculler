@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1661910828087" clover="3.2.0">
-  <project timestamp="1661910828087" name="All files">
-    <metrics statements="767" coveredstatements="745" conditionals="164" coveredconditionals="162" methods="94" coveredmethods="83" elements="1025" coveredelements="990" complexity="0" loc="767" ncloc="767" packages="9" files="22" classes="22"/>
+<coverage generated="1661957724765" clover="3.2.0">
+  <project timestamp="1661957724765" name="All files">
+    <metrics statements="864" coveredstatements="834" conditionals="179" coveredconditionals="173" methods="109" coveredmethods="94" elements="1152" coveredelements="1101" complexity="0" loc="864" ncloc="864" packages="10" files="25" classes="25"/>
     <package name="src.adapters.json-web-token">
       <metrics statements="26" coveredstatements="26" conditionals="3" coveredconditionals="3" methods="3" coveredmethods="3"/>
-      <file name="json-web-token-jwt-adapter.ts" path="/home/sobral/www/Doculler/server/src/adapters/json-web-token/json-web-token-jwt-adapter.ts">
+      <file name="json-web-token-jwt-adapter.ts" path="/workspace/Doculler/server/src/adapters/json-web-token/json-web-token-jwt-adapter.ts">
         <metrics statements="26" coveredstatements="26" conditionals="3" coveredconditionals="3" methods="3" coveredmethods="3"/>
         <line num="1" count="1" type="stmt"/>
         <line num="2" count="1" type="stmt"/>
@@ -34,9 +34,9 @@
         <line num="26" count="1" type="stmt"/>
       </file>
     </package>
-    <package name="src.application.services.projectMember">
+    <package name="src.application.services.project-member-services">
       <metrics statements="102" coveredstatements="102" conditionals="26" coveredconditionals="26" methods="6" coveredmethods="6"/>
-      <file name="create-project-member-service.ts" path="/home/sobral/www/Doculler/server/src/application/services/projectMember/create-project-member-service.ts">
+      <file name="create-project-member-service.ts" path="/workspace/Doculler/server/src/application/services/project-member-services/create-project-member-service.ts">
         <metrics statements="55" coveredstatements="55" conditionals="14" coveredconditionals="14" methods="3" coveredmethods="3"/>
         <line num="1" count="1" type="stmt"/>
         <line num="2" count="1" type="stmt"/>
@@ -94,7 +94,7 @@
         <line num="54" count="1" type="stmt"/>
         <line num="55" count="1" type="stmt"/>
       </file>
-      <file name="remove-project-member-service.ts" path="/home/sobral/www/Doculler/server/src/application/services/projectMember/remove-project-member-service.ts">
+      <file name="remove-project-member-service.ts" path="/workspace/Doculler/server/src/application/services/project-member-services/remove-project-member-service.ts">
         <metrics statements="47" coveredstatements="47" conditionals="12" coveredconditionals="12" methods="3" coveredmethods="3"/>
         <line num="1" count="1" type="stmt"/>
         <line num="2" count="1" type="stmt"/>
@@ -145,9 +145,9 @@
         <line num="47" count="1" type="stmt"/>
       </file>
     </package>
-    <package name="src.application.services.projectServices">
+    <package name="src.application.services.project-services">
       <metrics statements="79" coveredstatements="79" conditionals="20" coveredconditionals="20" methods="6" coveredmethods="6"/>
-      <file name="create-project-service.ts" path="/home/sobral/www/Doculler/server/src/application/services/projectServices/create-project-service.ts">
+      <file name="create-project-service.ts" path="/workspace/Doculler/server/src/application/services/project-services/create-project-service.ts">
         <metrics statements="41" coveredstatements="41" conditionals="11" coveredconditionals="11" methods="3" coveredmethods="3"/>
         <line num="1" count="1" type="stmt"/>
         <line num="2" count="1" type="stmt"/>
@@ -191,7 +191,7 @@
         <line num="40" count="2" type="stmt"/>
         <line num="41" count="1" type="stmt"/>
       </file>
-      <file name="get-projects-from-team-service.ts" path="/home/sobral/www/Doculler/server/src/application/services/projectServices/get-projects-from-team-service.ts">
+      <file name="get-projects-from-team-service.ts" path="/workspace/Doculler/server/src/application/services/project-services/get-projects-from-team-service.ts">
         <metrics statements="38" coveredstatements="38" conditionals="9" coveredconditionals="9" methods="3" coveredmethods="3"/>
         <line num="1" count="1" type="stmt"/>
         <line num="2" count="1" type="stmt"/>
@@ -233,9 +233,59 @@
         <line num="38" count="1" type="stmt"/>
       </file>
     </package>
-    <package name="src.application.services.teamMemberServices">
+    <package name="src.application.services.project-tag-services">
+      <metrics statements="44" coveredstatements="44" conditionals="7" coveredconditionals="3" methods="3" coveredmethods="3"/>
+      <file name="create-project-tag-service.ts" path="/workspace/Doculler/server/src/application/services/project-tag-services/create-project-tag-service.ts">
+        <metrics statements="44" coveredstatements="44" conditionals="7" coveredconditionals="3" methods="3" coveredmethods="3"/>
+        <line num="1" count="1" type="stmt"/>
+        <line num="2" count="1" type="stmt"/>
+        <line num="3" count="1" type="stmt"/>
+        <line num="4" count="1" type="stmt"/>
+        <line num="5" count="1" type="stmt"/>
+        <line num="6" count="1" type="stmt"/>
+        <line num="7" count="1" type="stmt"/>
+        <line num="8" count="1" type="stmt"/>
+        <line num="9" count="1" type="stmt"/>
+        <line num="10" count="1" type="stmt"/>
+        <line num="11" count="1" type="cond" truecount="1" falsecount="0"/>
+        <line num="12" count="1" type="cond" truecount="1" falsecount="0"/>
+        <line num="13" count="1" type="stmt"/>
+        <line num="14" count="1" type="stmt"/>
+        <line num="15" count="1" type="stmt"/>
+        <line num="16" count="1" type="stmt"/>
+        <line num="17" count="1" type="cond" truecount="1" falsecount="0"/>
+        <line num="18" count="1" type="stmt"/>
+        <line num="19" count="1" type="stmt"/>
+        <line num="20" count="1" type="stmt"/>
+        <line num="21" count="1" type="cond" truecount="0" falsecount="1"/>
+        <line num="22" count="1" type="stmt"/>
+        <line num="23" count="1" type="stmt"/>
+        <line num="24" count="1" type="cond" truecount="0" falsecount="1"/>
+        <line num="25" count="1" type="stmt"/>
+        <line num="26" count="1" type="stmt"/>
+        <line num="27" count="1" type="cond" truecount="0" falsecount="1"/>
+        <line num="28" count="1" type="stmt"/>
+        <line num="29" count="1" type="stmt"/>
+        <line num="30" count="1" type="stmt"/>
+        <line num="31" count="1" type="stmt"/>
+        <line num="32" count="1" type="cond" truecount="0" falsecount="1"/>
+        <line num="33" count="1" type="stmt"/>
+        <line num="34" count="1" type="stmt"/>
+        <line num="35" count="1" type="stmt"/>
+        <line num="36" count="1" type="stmt"/>
+        <line num="37" count="1" type="stmt"/>
+        <line num="38" count="1" type="stmt"/>
+        <line num="39" count="1" type="stmt"/>
+        <line num="40" count="1" type="stmt"/>
+        <line num="41" count="1" type="stmt"/>
+        <line num="42" count="1" type="stmt"/>
+        <line num="43" count="1" type="stmt"/>
+        <line num="44" count="1" type="stmt"/>
+      </file>
+    </package>
+    <package name="src.application.services.team-member-services">
       <metrics statements="80" coveredstatements="80" conditionals="18" coveredconditionals="18" methods="6" coveredmethods="6"/>
-      <file name="create-team-member-service.ts" path="/home/sobral/www/Doculler/server/src/application/services/teamMemberServices/create-team-member-service.ts">
+      <file name="create-team-member-service.ts" path="/workspace/Doculler/server/src/application/services/team-member-services/create-team-member-service.ts">
         <metrics statements="46" coveredstatements="46" conditionals="10" coveredconditionals="10" methods="3" coveredmethods="3"/>
         <line num="1" count="1" type="stmt"/>
         <line num="2" count="1" type="stmt"/>
@@ -284,7 +334,7 @@
         <line num="45" count="1" type="stmt"/>
         <line num="46" count="1" type="stmt"/>
       </file>
-      <file name="remove-team-member-service.ts" path="/home/sobral/www/Doculler/server/src/application/services/teamMemberServices/remove-team-member-service.ts">
+      <file name="remove-team-member-service.ts" path="/workspace/Doculler/server/src/application/services/team-member-services/remove-team-member-service.ts">
         <metrics statements="34" coveredstatements="34" conditionals="8" coveredconditionals="8" methods="3" coveredmethods="3"/>
         <line num="1" count="1" type="stmt"/>
         <line num="2" count="1" type="stmt"/>
@@ -322,9 +372,9 @@
         <line num="34" count="1" type="stmt"/>
       </file>
     </package>
-    <package name="src.application.services.teamServices">
+    <package name="src.application.services.team-services">
       <metrics statements="40" coveredstatements="40" conditionals="8" coveredconditionals="8" methods="6" coveredmethods="6"/>
-      <file name="create-team-service.ts" path="/home/sobral/www/Doculler/server/src/application/services/teamServices/create-team-service.ts">
+      <file name="create-team-service.ts" path="/workspace/Doculler/server/src/application/services/team-services/create-team-service.ts">
         <metrics statements="26" coveredstatements="26" conditionals="4" coveredconditionals="4" methods="3" coveredmethods="3"/>
         <line num="1" count="1" type="stmt"/>
         <line num="2" count="1" type="stmt"/>
@@ -353,7 +403,7 @@
         <line num="25" count="1" type="stmt"/>
         <line num="26" count="1" type="stmt"/>
       </file>
-      <file name="delete-team-service.ts" path="/home/sobral/www/Doculler/server/src/application/services/teamServices/delete-team-service.ts">
+      <file name="delete-team-service.ts" path="/workspace/Doculler/server/src/application/services/team-services/delete-team-service.ts">
         <metrics statements="14" coveredstatements="14" conditionals="4" coveredconditionals="4" methods="3" coveredmethods="3"/>
         <line num="1" count="1" type="stmt"/>
         <line num="2" count="1" type="stmt"/>
@@ -371,9 +421,9 @@
         <line num="14" count="1" type="stmt"/>
       </file>
     </package>
-    <package name="src.application.services.userServices">
+    <package name="src.application.services.user-services">
       <metrics statements="99" coveredstatements="99" conditionals="18" coveredconditionals="18" methods="6" coveredmethods="6"/>
-      <file name="user-login-service.ts" path="/home/sobral/www/Doculler/server/src/application/services/userServices/user-login-service.ts">
+      <file name="user-login-service.ts" path="/workspace/Doculler/server/src/application/services/user-services/user-login-service.ts">
         <metrics statements="43" coveredstatements="43" conditionals="9" coveredconditionals="9" methods="3" coveredmethods="3"/>
         <line num="1" count="1" type="stmt"/>
         <line num="2" count="1" type="stmt"/>
@@ -419,7 +469,7 @@
         <line num="42" count="1" type="stmt"/>
         <line num="43" count="1" type="stmt"/>
       </file>
-      <file name="user-register-service.ts" path="/home/sobral/www/Doculler/server/src/application/services/userServices/user-register-service.ts">
+      <file name="user-register-service.ts" path="/workspace/Doculler/server/src/application/services/user-services/user-register-service.ts">
         <metrics statements="56" coveredstatements="56" conditionals="9" coveredconditionals="9" methods="3" coveredmethods="3"/>
         <line num="1" count="1" type="stmt"/>
         <line num="2" count="1" type="stmt"/>
@@ -481,7 +531,7 @@
     </package>
     <package name="src.domain.core">
       <metrics statements="15" coveredstatements="15" conditionals="2" coveredconditionals="2" methods="2" coveredmethods="2"/>
-      <file name="Entity.ts" path="/home/sobral/www/Doculler/server/src/domain/core/Entity.ts">
+      <file name="Entity.ts" path="/workspace/Doculler/server/src/domain/core/Entity.ts">
         <metrics statements="15" coveredstatements="15" conditionals="2" coveredconditionals="2" methods="2" coveredmethods="2"/>
         <line num="1" count="1" type="stmt"/>
         <line num="2" count="1" type="stmt"/>
@@ -492,18 +542,18 @@
         <line num="7" count="1" type="stmt"/>
         <line num="8" count="1" type="stmt"/>
         <line num="9" count="1" type="cond" truecount="1" falsecount="0"/>
-        <line num="10" count="68" type="stmt"/>
-        <line num="11" count="68" type="stmt"/>
-        <line num="12" count="68" type="stmt"/>
-        <line num="13" count="68" type="stmt"/>
-        <line num="14" count="68" type="stmt"/>
+        <line num="10" count="73" type="stmt"/>
+        <line num="11" count="73" type="stmt"/>
+        <line num="12" count="73" type="stmt"/>
+        <line num="13" count="73" type="stmt"/>
+        <line num="14" count="73" type="stmt"/>
         <line num="15" count="1" type="stmt"/>
       </file>
     </package>
     <package name="src.domain.entities">
-      <metrics statements="181" coveredstatements="159" conditionals="29" coveredconditionals="29" methods="40" coveredmethods="29"/>
-      <file name="Project.ts" path="/home/sobral/www/Doculler/server/src/domain/entities/Project.ts">
-        <metrics statements="41" coveredstatements="37" conditionals="7" coveredconditionals="7" methods="9" coveredmethods="7"/>
+      <metrics statements="217" coveredstatements="189" conditionals="35" coveredconditionals="35" methods="49" coveredmethods="35"/>
+      <file name="Project.ts" path="/workspace/Doculler/server/src/domain/entities/Project.ts">
+        <metrics statements="39" coveredstatements="35" conditionals="7" coveredconditionals="7" methods="9" coveredmethods="7"/>
         <line num="1" count="1" type="stmt"/>
         <line num="2" count="1" type="stmt"/>
         <line num="3" count="1" type="stmt"/>
@@ -512,81 +562,120 @@
         <line num="6" count="1" type="stmt"/>
         <line num="7" count="1" type="stmt"/>
         <line num="8" count="1" type="stmt"/>
-        <line num="9" count="1" type="stmt"/>
-        <line num="10" count="1" type="stmt"/>
-        <line num="11" count="1" type="cond" truecount="1" falsecount="0"/>
-        <line num="12" count="1" type="cond" truecount="1" falsecount="0"/>
-        <line num="13" count="15" type="stmt"/>
-        <line num="14" count="15" type="stmt"/>
-        <line num="15" count="15" type="stmt"/>
-        <line num="16" count="1" type="stmt"/>
-        <line num="17" count="1" type="cond" truecount="1" falsecount="0"/>
-        <line num="18" count="19" type="stmt"/>
-        <line num="19" count="19" type="stmt"/>
-        <line num="20" count="1" type="cond" truecount="1" falsecount="0"/>
-        <line num="21" count="6" type="stmt"/>
-        <line num="22" count="6" type="stmt"/>
-        <line num="23" count="1" type="cond" truecount="1" falsecount="0"/>
-        <line num="24" count="6" type="stmt"/>
-        <line num="25" count="6" type="stmt"/>
-        <line num="26" count="1" type="cond" truecount="1" falsecount="0"/>
-        <line num="27" count="19" type="stmt"/>
-        <line num="28" count="19" type="stmt"/>
-        <line num="29" count="1" type="stmt"/>
-        <line num="30" count="0" type="stmt"/>
-        <line num="31" count="0" type="stmt"/>
-        <line num="32" count="1" type="stmt"/>
-        <line num="33" count="0" type="stmt"/>
-        <line num="34" count="0" type="stmt"/>
-        <line num="35" count="1" type="stmt"/>
-        <line num="36" count="1" type="cond" truecount="1" falsecount="0"/>
-        <line num="37" count="15" type="stmt"/>
-        <line num="38" count="15" type="stmt"/>
-        <line num="39" count="15" type="stmt"/>
-        <line num="40" count="15" type="stmt"/>
-        <line num="41" count="1" type="stmt"/>
-      </file>
-      <file name="ProjectMember.ts" path="/home/sobral/www/Doculler/server/src/domain/entities/ProjectMember.ts">
-        <metrics statements="37" coveredstatements="33" conditionals="6" coveredconditionals="6" methods="8" coveredmethods="6"/>
-        <line num="1" count="1" type="stmt"/>
-        <line num="2" count="1" type="stmt"/>
-        <line num="3" count="1" type="stmt"/>
-        <line num="4" count="1" type="stmt"/>
-        <line num="5" count="1" type="stmt"/>
-        <line num="6" count="1" type="stmt"/>
-        <line num="7" count="1" type="stmt"/>
-        <line num="8" count="1" type="stmt"/>
-        <line num="9" count="1" type="stmt"/>
+        <line num="9" count="1" type="cond" truecount="1" falsecount="0"/>
         <line num="10" count="1" type="cond" truecount="1" falsecount="0"/>
-        <line num="11" count="1" type="cond" truecount="1" falsecount="0"/>
+        <line num="11" count="16" type="stmt"/>
+        <line num="12" count="16" type="stmt"/>
+        <line num="13" count="16" type="stmt"/>
+        <line num="14" count="1" type="stmt"/>
+        <line num="15" count="1" type="cond" truecount="1" falsecount="0"/>
+        <line num="16" count="21" type="stmt"/>
+        <line num="17" count="21" type="stmt"/>
+        <line num="18" count="1" type="cond" truecount="1" falsecount="0"/>
+        <line num="19" count="6" type="stmt"/>
+        <line num="20" count="6" type="stmt"/>
+        <line num="21" count="1" type="cond" truecount="1" falsecount="0"/>
+        <line num="22" count="6" type="stmt"/>
+        <line num="23" count="6" type="stmt"/>
+        <line num="24" count="1" type="cond" truecount="1" falsecount="0"/>
+        <line num="25" count="19" type="stmt"/>
+        <line num="26" count="19" type="stmt"/>
+        <line num="27" count="1" type="stmt"/>
+        <line num="28" count="0" type="stmt"/>
+        <line num="29" count="0" type="stmt"/>
+        <line num="30" count="1" type="stmt"/>
+        <line num="31" count="0" type="stmt"/>
+        <line num="32" count="0" type="stmt"/>
+        <line num="33" count="1" type="stmt"/>
+        <line num="34" count="1" type="cond" truecount="1" falsecount="0"/>
+        <line num="35" count="16" type="stmt"/>
+        <line num="36" count="16" type="stmt"/>
+        <line num="37" count="16" type="stmt"/>
+        <line num="38" count="16" type="stmt"/>
+        <line num="39" count="1" type="stmt"/>
+      </file>
+      <file name="ProjectMember.ts" path="/workspace/Doculler/server/src/domain/entities/ProjectMember.ts">
+        <metrics statements="36" coveredstatements="32" conditionals="6" coveredconditionals="6" methods="8" coveredmethods="6"/>
+        <line num="1" count="1" type="stmt"/>
+        <line num="2" count="1" type="stmt"/>
+        <line num="3" count="1" type="stmt"/>
+        <line num="4" count="1" type="stmt"/>
+        <line num="5" count="1" type="stmt"/>
+        <line num="6" count="1" type="stmt"/>
+        <line num="7" count="1" type="stmt"/>
+        <line num="8" count="1" type="stmt"/>
+        <line num="9" count="1" type="cond" truecount="1" falsecount="0"/>
+        <line num="10" count="1" type="cond" truecount="1" falsecount="0"/>
+        <line num="11" count="10" type="stmt"/>
         <line num="12" count="10" type="stmt"/>
         <line num="13" count="10" type="stmt"/>
-        <line num="14" count="10" type="stmt"/>
+        <line num="14" count="1" type="stmt"/>
         <line num="15" count="1" type="stmt"/>
-        <line num="16" count="1" type="stmt"/>
+        <line num="16" count="0" type="stmt"/>
         <line num="17" count="0" type="stmt"/>
-        <line num="18" count="0" type="stmt"/>
-        <line num="19" count="1" type="cond" truecount="1" falsecount="0"/>
+        <line num="18" count="1" type="cond" truecount="1" falsecount="0"/>
+        <line num="19" count="9" type="stmt"/>
         <line num="20" count="9" type="stmt"/>
-        <line num="21" count="9" type="stmt"/>
-        <line num="22" count="1" type="cond" truecount="1" falsecount="0"/>
+        <line num="21" count="1" type="cond" truecount="1" falsecount="0"/>
+        <line num="22" count="8" type="stmt"/>
         <line num="23" count="8" type="stmt"/>
-        <line num="24" count="8" type="stmt"/>
-        <line num="25" count="1" type="cond" truecount="1" falsecount="0"/>
+        <line num="24" count="1" type="cond" truecount="1" falsecount="0"/>
+        <line num="25" count="8" type="stmt"/>
         <line num="26" count="8" type="stmt"/>
-        <line num="27" count="8" type="stmt"/>
-        <line num="28" count="1" type="stmt"/>
+        <line num="27" count="1" type="stmt"/>
+        <line num="28" count="0" type="stmt"/>
         <line num="29" count="0" type="stmt"/>
-        <line num="30" count="0" type="stmt"/>
-        <line num="31" count="1" type="stmt"/>
-        <line num="32" count="1" type="cond" truecount="1" falsecount="0"/>
+        <line num="30" count="1" type="stmt"/>
+        <line num="31" count="1" type="cond" truecount="1" falsecount="0"/>
+        <line num="32" count="10" type="stmt"/>
         <line num="33" count="10" type="stmt"/>
         <line num="34" count="10" type="stmt"/>
         <line num="35" count="10" type="stmt"/>
-        <line num="36" count="10" type="stmt"/>
-        <line num="37" count="1" type="stmt"/>
+        <line num="36" count="1" type="stmt"/>
       </file>
-      <file name="Team.ts" path="/home/sobral/www/Doculler/server/src/domain/entities/Team.ts">
+      <file name="ProjectTag.ts" path="/workspace/Doculler/server/src/domain/entities/ProjectTag.ts">
+        <metrics statements="39" coveredstatements="33" conditionals="6" coveredconditionals="6" methods="9" coveredmethods="6"/>
+        <line num="1" count="1" type="stmt"/>
+        <line num="2" count="1" type="stmt"/>
+        <line num="3" count="1" type="stmt"/>
+        <line num="4" count="1" type="stmt"/>
+        <line num="5" count="1" type="stmt"/>
+        <line num="6" count="1" type="stmt"/>
+        <line num="7" count="1" type="stmt"/>
+        <line num="8" count="1" type="stmt"/>
+        <line num="9" count="1" type="cond" truecount="1" falsecount="0"/>
+        <line num="10" count="1" type="cond" truecount="1" falsecount="0"/>
+        <line num="11" count="3" type="stmt"/>
+        <line num="12" count="3" type="stmt"/>
+        <line num="13" count="3" type="stmt"/>
+        <line num="14" count="1" type="stmt"/>
+        <line num="15" count="1" type="stmt"/>
+        <line num="16" count="0" type="stmt"/>
+        <line num="17" count="0" type="stmt"/>
+        <line num="18" count="1" type="cond" truecount="1" falsecount="0"/>
+        <line num="19" count="1" type="stmt"/>
+        <line num="20" count="1" type="stmt"/>
+        <line num="21" count="1" type="cond" truecount="1" falsecount="0"/>
+        <line num="22" count="1" type="stmt"/>
+        <line num="23" count="1" type="stmt"/>
+        <line num="24" count="1" type="cond" truecount="1" falsecount="0"/>
+        <line num="25" count="1" type="stmt"/>
+        <line num="26" count="1" type="stmt"/>
+        <line num="27" count="1" type="stmt"/>
+        <line num="28" count="0" type="stmt"/>
+        <line num="29" count="0" type="stmt"/>
+        <line num="30" count="1" type="stmt"/>
+        <line num="31" count="0" type="stmt"/>
+        <line num="32" count="0" type="stmt"/>
+        <line num="33" count="1" type="stmt"/>
+        <line num="34" count="1" type="cond" truecount="1" falsecount="0"/>
+        <line num="35" count="3" type="stmt"/>
+        <line num="36" count="3" type="stmt"/>
+        <line num="37" count="3" type="stmt"/>
+        <line num="38" count="3" type="stmt"/>
+        <line num="39" count="1" type="stmt"/>
+      </file>
+      <file name="Team.ts" path="/workspace/Doculler/server/src/domain/entities/Team.ts">
         <metrics statements="35" coveredstatements="27" conditionals="4" coveredconditionals="4" methods="8" coveredmethods="4"/>
         <line num="1" count="1" type="stmt"/>
         <line num="2" count="1" type="stmt"/>
@@ -597,13 +686,13 @@
         <line num="7" count="1" type="stmt"/>
         <line num="8" count="1" type="cond" truecount="1" falsecount="0"/>
         <line num="9" count="1" type="cond" truecount="1" falsecount="0"/>
-        <line num="10" count="17" type="stmt"/>
-        <line num="11" count="17" type="stmt"/>
-        <line num="12" count="17" type="stmt"/>
+        <line num="10" count="18" type="stmt"/>
+        <line num="11" count="18" type="stmt"/>
+        <line num="12" count="18" type="stmt"/>
         <line num="13" count="1" type="stmt"/>
         <line num="14" count="1" type="cond" truecount="1" falsecount="0"/>
-        <line num="15" count="46" type="stmt"/>
-        <line num="16" count="46" type="stmt"/>
+        <line num="15" count="48" type="stmt"/>
+        <line num="16" count="48" type="stmt"/>
         <line num="17" count="1" type="stmt"/>
         <line num="18" count="0" type="stmt"/>
         <line num="19" count="0" type="stmt"/>
@@ -618,13 +707,13 @@
         <line num="28" count="0" type="stmt"/>
         <line num="29" count="1" type="stmt"/>
         <line num="30" count="1" type="cond" truecount="1" falsecount="0"/>
-        <line num="31" count="17" type="stmt"/>
-        <line num="32" count="17" type="stmt"/>
-        <line num="33" count="17" type="stmt"/>
-        <line num="34" count="17" type="stmt"/>
+        <line num="31" count="18" type="stmt"/>
+        <line num="32" count="18" type="stmt"/>
+        <line num="33" count="18" type="stmt"/>
+        <line num="34" count="18" type="stmt"/>
         <line num="35" count="1" type="stmt"/>
       </file>
-      <file name="TeamMember.ts" path="/home/sobral/www/Doculler/server/src/domain/entities/TeamMember.ts">
+      <file name="TeamMember.ts" path="/workspace/Doculler/server/src/domain/entities/TeamMember.ts">
         <metrics statements="29" coveredstatements="27" conditionals="5" coveredconditionals="5" methods="6" coveredmethods="5"/>
         <line num="1" count="1" type="stmt"/>
         <line num="2" count="1" type="stmt"/>
@@ -656,7 +745,7 @@
         <line num="28" count="10" type="stmt"/>
         <line num="29" count="1" type="stmt"/>
       </file>
-      <file name="User.ts" path="/home/sobral/www/Doculler/server/src/domain/entities/User.ts">
+      <file name="User.ts" path="/workspace/Doculler/server/src/domain/entities/User.ts">
         <metrics statements="39" coveredstatements="35" conditionals="7" coveredconditionals="7" methods="9" coveredmethods="7"/>
         <line num="1" count="1" type="stmt"/>
         <line num="2" count="1" type="stmt"/>
@@ -700,8 +789,8 @@
       </file>
     </package>
     <package name="tests.repositories">
-      <metrics statements="145" coveredstatements="145" conditionals="40" coveredconditionals="38" methods="19" coveredmethods="19"/>
-      <file name="in-memory-project-member-repository.ts" path="/home/sobral/www/Doculler/server/tests/repositories/in-memory-project-member-repository.ts">
+      <metrics statements="162" coveredstatements="160" conditionals="42" coveredconditionals="40" methods="22" coveredmethods="21"/>
+      <file name="in-memory-project-member-repository.ts" path="/workspace/Doculler/server/tests/repositories/in-memory-project-member-repository.ts">
         <metrics statements="20" coveredstatements="20" conditionals="6" coveredconditionals="4" methods="3" coveredmethods="3"/>
         <line num="1" count="1" type="stmt"/>
         <line num="2" count="1" type="stmt"/>
@@ -724,7 +813,7 @@
         <line num="19" count="1" type="stmt"/>
         <line num="20" count="1" type="stmt"/>
       </file>
-      <file name="in-memory-project-repository.ts" path="/home/sobral/www/Doculler/server/tests/repositories/in-memory-project-repository.ts">
+      <file name="in-memory-project-repository.ts" path="/workspace/Doculler/server/tests/repositories/in-memory-project-repository.ts">
         <metrics statements="29" coveredstatements="29" conditionals="6" coveredconditionals="6" methods="4" coveredmethods="4"/>
         <line num="1" count="1" type="stmt"/>
         <line num="2" count="1" type="stmt"/>
@@ -750,13 +839,33 @@
         <line num="22" count="2" type="stmt"/>
         <line num="23" count="1" type="stmt"/>
         <line num="24" count="1" type="cond" truecount="1" falsecount="0"/>
-        <line num="25" count="6" type="cond" truecount="1" falsecount="0"/>
-        <line num="26" count="6" type="stmt"/>
-        <line num="27" count="6" type="stmt"/>
-        <line num="28" count="6" type="stmt"/>
+        <line num="25" count="7" type="cond" truecount="1" falsecount="0"/>
+        <line num="26" count="7" type="stmt"/>
+        <line num="27" count="7" type="stmt"/>
+        <line num="28" count="7" type="stmt"/>
         <line num="29" count="1" type="stmt"/>
       </file>
-      <file name="in-memory-team-member-repository.ts" path="/home/sobral/www/Doculler/server/tests/repositories/in-memory-team-member-repository.ts">
+      <file name="in-memory-project-tag-repository.ts" path="/workspace/Doculler/server/tests/repositories/in-memory-project-tag-repository.ts">
+        <metrics statements="17" coveredstatements="15" conditionals="2" coveredconditionals="2" methods="3" coveredmethods="2"/>
+        <line num="1" count="1" type="stmt"/>
+        <line num="2" count="1" type="stmt"/>
+        <line num="3" count="1" type="stmt"/>
+        <line num="4" count="1" type="cond" truecount="1" falsecount="0"/>
+        <line num="5" count="1" type="stmt"/>
+        <line num="6" count="1" type="stmt"/>
+        <line num="7" count="1" type="cond" truecount="1" falsecount="0"/>
+        <line num="8" count="1" type="stmt"/>
+        <line num="9" count="1" type="stmt"/>
+        <line num="10" count="1" type="stmt"/>
+        <line num="11" count="1" type="stmt"/>
+        <line num="12" count="1" type="stmt"/>
+        <line num="13" count="1" type="stmt"/>
+        <line num="14" count="1" type="stmt"/>
+        <line num="15" count="0" type="stmt"/>
+        <line num="16" count="0" type="stmt"/>
+        <line num="17" count="1" type="stmt"/>
+      </file>
+      <file name="in-memory-team-member-repository.ts" path="/workspace/Doculler/server/tests/repositories/in-memory-team-member-repository.ts">
         <metrics statements="30" coveredstatements="30" conditionals="10" coveredconditionals="10" methods="4" coveredmethods="4"/>
         <line num="1" count="1" type="stmt"/>
         <line num="2" count="1" type="stmt"/>
@@ -789,7 +898,7 @@
         <line num="29" count="3" type="stmt"/>
         <line num="30" count="1" type="stmt"/>
       </file>
-      <file name="in-memory-team-repository.ts" path="/home/sobral/www/Doculler/server/tests/repositories/in-memory-team-repository.ts">
+      <file name="in-memory-team-repository.ts" path="/workspace/Doculler/server/tests/repositories/in-memory-team-repository.ts">
         <metrics statements="30" coveredstatements="30" conditionals="9" coveredconditionals="9" methods="4" coveredmethods="4"/>
         <line num="1" count="1" type="stmt"/>
         <line num="2" count="1" type="stmt"/>
@@ -822,7 +931,7 @@
         <line num="29" count="1" type="stmt"/>
         <line num="30" count="1" type="stmt"/>
       </file>
-      <file name="in-memory-user-repository.ts" path="/home/sobral/www/Doculler/server/tests/repositories/in-memory-user-repository.ts">
+      <file name="in-memory-user-repository.ts" path="/workspace/Doculler/server/tests/repositories/in-memory-user-repository.ts">
         <metrics statements="36" coveredstatements="36" conditionals="9" coveredconditionals="9" methods="4" coveredmethods="4"/>
         <line num="1" count="1" type="stmt"/>
         <line num="2" count="1" type="stmt"/>
