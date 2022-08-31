@@ -4,13 +4,12 @@ interface UserProps {
   name: string;
   email: string;
   password: string;
-  created_at?: Date;
-  updated_at?: Date;
 }
 
 export class User extends Entity<UserProps> {
   private constructor (props: UserProps, id?: string) {
-    super(props, id)
+    super(props, id);
+    Object.freeze(this);
   }
 
   get id() {
@@ -26,18 +25,14 @@ export class User extends Entity<UserProps> {
     return this.props.password 
   }
   get created_at() {
-    return this.props.created_at 
+    return this._created_at;
   }
   get updated_at() {
-    return this.props.updated_at 
+    return this._updated_at;
   }
 
   static create(props: UserProps, id?: string) {
-    const user = new User({
-      ...props,
-      created_at: props.created_at ?? new Date(),
-      updated_at: props.updated_at ?? new Date()
-    }, id);
+    const user = new User(props, id);
 
     return user;
   }

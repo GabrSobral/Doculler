@@ -10,7 +10,8 @@ interface DocumentProps {
 
 export class Document extends Entity<DocumentProps> {
   private constructor (props: DocumentProps, id?: string) {
-    super(props, id)
+    super(props, id);
+    Object.freeze(this);
   }
   
   get id() { 
@@ -25,19 +26,15 @@ export class Document extends Entity<DocumentProps> {
   get project_id() { 
     return this.props.project_id 
   }
-  get created_at() { 
-    return this.props.created_at 
+  get created_at() {
+    return this._created_at;
   }
-  get updated_at() { 
-    return this.props.updated_at 
+  get updated_at() {
+    return this._updated_at;
   }
 
   static create(props: DocumentProps, id?: string) {
-    const document = new Document({
-      ...props,
-      created_at: props.created_at ?? new Date(),
-      updated_at: props.updated_at ?? new Date(),
-    }, id);
+    const document = new Document(props, id);
 
     return document;
   }

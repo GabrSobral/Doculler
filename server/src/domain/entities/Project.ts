@@ -10,7 +10,8 @@ interface ProjectProps {
 
 export class Project extends Entity<ProjectProps> {
   private constructor (props: ProjectProps, id?: string) {
-    super(props, id)
+    super(props, id);
+    Object.freeze(this);
   }
   
   get id() { 
@@ -25,19 +26,15 @@ export class Project extends Entity<ProjectProps> {
   get team_id() { 
     return this.props.team_id 
   }
-  get created_at() { 
-    return this.props.created_at 
+  get created_at() {
+    return this._created_at;
   }
-  get updated_at() { 
-    return this.props.updated_at 
+  get updated_at() {
+    return this._updated_at;
   }
 
   static create(props: ProjectProps, id?: string) {
-    const project = new Project({
-      ...props,
-      created_at: props.created_at ?? new Date(),
-      updated_at: props.updated_at ?? new Date()
-    }, id);
+    const project = new Project(props, id);
 
     return project;
   }

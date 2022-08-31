@@ -3,12 +3,12 @@ import { Entity } from "../core/Entity";
 interface TeamMemberProps {
   team_id: string;
   user_id: string;
-  joined_at?: Date;
 }
 
 export class TeamMember extends Entity<TeamMemberProps> {
   private constructor (props: TeamMemberProps, id?: string) {
-    super(props, id)
+    super(props, id);
+    Object.freeze(this);
   }
 
   get team_id() {
@@ -18,14 +18,11 @@ export class TeamMember extends Entity<TeamMemberProps> {
     return this.props.user_id 
   }
   get joined_at() {
-    return this.props.joined_at 
+    return this._created_at 
   }
 
   static create(props: TeamMemberProps, id?: string) {
-    const teamMember = new TeamMember({
-      ...props,
-      joined_at: props.joined_at ?? new Date()
-    }, id);
+    const teamMember = new TeamMember(props, id);
 
     return teamMember;
   }
