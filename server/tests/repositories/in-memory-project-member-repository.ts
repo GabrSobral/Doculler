@@ -11,10 +11,6 @@ export class InMemoryProjectMemberRepository implements ProjectMemberRepository{
   async delete(data: ProjectMemberRemoveProps) {
     const { project_id, team_id, user_id } = data;
 
-    this.items = this.items.filter(item =>
-      item.project_id !== project_id &&
-      item.team_id !== team_id &&
-      item.user_id !== user_id  
-    )
+    this.items = this.items.filter(item => (item.project_id !== project_id && item.team_id !== team_id && item.user_id !== user_id))
   }
 }

@@ -45,10 +45,47 @@ describe("remove-project-member-service", () => {
     user_id: teamMember.user_id,
   });
 
+  //Second mock ====================================================================================
+
+  const teamTwo = Team.create({
+    name: "Team Test",
+    description: "Lorem Ipsum Dolor Sit Amet",
+  });
+
+  const projectTwo = Project.create({
+    name: "Project Test",
+    description: "Lorem Ipsum Dolor Sit Amet",
+    team_id: teamTwo.id,
+  });
+
+  const userTwo = User.create({
+    name: "User Test",
+    email: "Test@test.com",
+    password: "123Test"
+  });
+
+  const teamMemberTwo = TeamMember.create({
+    team_id: teamTwo.id,
+    user_id: userTwo.id
+  });
+
+  const projectMemberTwo = ProjectMember.create({
+    project_id: projectTwo.id,
+    team_id: teamTwo.id,
+    user_id: teamMemberTwo.user_id,
+  });
+
   inMemoryProjectRepository.items.push(project);
+  inMemoryProjectRepository.items.push(projectTwo);
+
   inMemoryTeamMemberRepository.items.push(teamMember);
+  inMemoryTeamMemberRepository.items.push(teamMemberTwo);
+
   inMemoryTeamRepository.items.push(team);
+  inMemoryTeamRepository.items.push(teamTwo);
+
   inMemoryProjectMemberRepository.items.push(projectMember);
+  inMemoryProjectMemberRepository.items.push(projectMemberTwo);
 
   const removeProjectMemberService = new RemoveProjectMemberService(
     inMemoryTeamRepository,
@@ -57,7 +94,7 @@ describe("remove-project-member-service", () => {
   );
   
   it("should be able to remove a project member", async () => {
-    expect(inMemoryProjectMemberRepository.items).toHaveLength(1);
+    expect(inMemoryProjectMemberRepository.items).toHaveLength(2);
 
     await removeProjectMemberService.execute({
       project_id: project.id,
@@ -65,7 +102,7 @@ describe("remove-project-member-service", () => {
       user_id: user.id
     });
 
-    expect(inMemoryProjectMemberRepository.items).toHaveLength(0);
+    expect(inMemoryProjectMemberRepository.items).toHaveLength(1);
   });
 
   it("should not be able to remove a project member without 'team_id'", async () => {
