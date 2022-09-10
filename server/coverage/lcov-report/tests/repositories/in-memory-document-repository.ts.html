@@ -3,7 +3,7 @@
 <html lang="en">
 
 <head>
-    <title>Code coverage report for tests/repositories/in-memory-project-member-repository.ts</title>
+    <title>Code coverage report for tests/repositories/in-memory-document-repository.ts</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="../../prettify.css" />
     <link rel="stylesheet" href="../../base.css" />
@@ -19,34 +19,34 @@
 <body>
 <div class='wrapper'>
     <div class='pad1'>
-        <h1><a href="../../index.html">All files</a> / <a href="index.html">tests/repositories</a> in-memory-project-member-repository.ts</h1>
+        <h1><a href="../../index.html">All files</a> / <a href="index.html">tests/repositories</a> in-memory-document-repository.ts</h1>
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">77.77% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>16/16</span>
+                <span class='fraction'>14/18</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>6/6</span>
+                <span class='fraction'>2/2</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">66.66% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>3/3</span>
+                <span class='fraction'>2/3</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">77.77% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>16/16</span>
+                <span class='fraction'>14/18</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line high'></div>
+    <div class='status-line medium'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -78,7 +78,9 @@
 <a name='L13'></a><a href='#L13'>13</a>
 <a name='L14'></a><a href='#L14'>14</a>
 <a name='L15'></a><a href='#L15'>15</a>
-<a name='L16'></a><a href='#L16'>16</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<a name='L16'></a><a href='#L16'>16</a>
+<a name='L17'></a><a href='#L17'>17</a>
+<a name='L18'></a><a href='#L18'>18</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -91,23 +93,27 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span></td><td class="text"><pre class="prettyprint lang-js">import { ProjectMemberRepository } from '../../src/application/repositories/project-member-repository';
-import { ProjectMember } from '../../src/domain/entities/ProjectMember/ProjectMember'
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span></td><td class="text"><pre class="prettyprint lang-js">import { DocumentRepository } from '../../src/application/repositories/document-repository';
+import { Document } from "../../src/domain/entities/Document/Document";
 &nbsp;
-export class InMemoryProjectMemberRepository implements ProjectMemberRepository{
-  public items: ProjectMember[] = []
+export class InMemoryDocumentRepository implements DocumentRepository {
+  public items: Document[] = [];
 &nbsp;
-  async add(projectMember: ProjectMember): Promise&lt;void&gt; {
-    this.items.push(projectMember);
+  async create(document: Document) {
+    this.items.push(document);
+&nbsp;
+    return document; 
   }
 &nbsp;
-  async delete(data: ProjectMember) {
-    const { project_id, team_id, user_id } = data;
-&nbsp;
-    this.items = this.items.filter(item =&gt; (item.project_id !== project_id &amp;&amp; item.team_id !== team_id &amp;&amp; item.user_id !== user_id))
-  }
+<span class="fstat-no" title="function not covered" >  async findById(document_id: string) {</span>
+<span class="cstat-no" title="statement not covered" >    const document = this.items.filter(item =&gt; item.id === document_id);</span>
+<span class="cstat-no" title="statement not covered" ></span>
+<span class="cstat-no" title="statement not covered" >    return document;</span>
+<span class="cstat-no" title="statement not covered" >  }</span>
 }</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
@@ -115,7 +121,7 @@ export class InMemoryProjectMemberRepository implements ProjectMemberRepository{
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2022-09-10T12:57:04.230Z
+                at 2022-09-10T17:05:14.554Z
             </div>
         <script src="../../prettify.js"></script>
         <script>
