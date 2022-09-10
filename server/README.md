@@ -12,8 +12,6 @@ The ORM used is **Prisma**, but you can change it if you want.
   <img alt="Code Coverage" src="https://app.codacy.com/project/badge/Grade/6a9ea149131b49eea12bde1bc4254ea4" />
   </a>
 </p>
-<br />
-
 
 ## Getting Started
 First, you must have **NodeJS** installed in v16 at least.
