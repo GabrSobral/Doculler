@@ -1,0 +1,2 @@
+# Doculler
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/1bdcd11b125a4bc0b0c2839a196d676b)](https://app.codacy.com/gh/GabrSobral/Doculler?utm_source=github.com&utm_medium=referral&utm_content=GabrSobral/Doculler&utm_campaign=Badge_Grade_Settings)
