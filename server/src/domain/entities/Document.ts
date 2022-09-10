@@ -4,6 +4,8 @@ interface DocumentProps {
   name: string;
   team_id: string;
   project_id: string;
+  updated_at?: Date;
+  readonly created_at?: Date;
 }
 
 export class Document extends Entity<DocumentProps> {
@@ -25,15 +27,31 @@ export class Document extends Entity<DocumentProps> {
     return this.props.project_id 
   }
   get created_at() {
-    return this._created_at;
+    return this.props.created_at;
   }
   get updated_at() {
-    return this._updated_at;
+    return this.props.updated_at;
   }
 
   static create(props: DocumentProps, id?: string) {
-    const document = new Document(props, id);
+    if(!this.validateName(props.name))
+      throw new Error("Invalid user name");
+
+    props.name = props.name.trim();
+
+    const document = new Document({
+      ...props,
+      created_at: props.created_at ?? new Date(),
+      updated_at: props.updated_at ?? new Date()
+    }, id);
 
     return document;
+  }
+
+  private static validateName(name: string): boolean {
+    if (!name || name.trim().length < 2 || name.trim().length > 255)
+      return false;
+    else
+      return true;
   }
 }
