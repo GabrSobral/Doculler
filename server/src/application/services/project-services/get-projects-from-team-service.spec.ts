@@ -1,7 +1,7 @@
-import { TeamMember } from "../../../domain/entities/TeamMember";
-import { Team } from "../../../domain/entities/Team";
-import { User } from "../../../domain/entities/User";
-import { Project } from "../../../domain/entities/Project";
+import { TeamMember } from "../../../domain/entities/TeamMember/TeamMember";
+import { Team } from "../../../domain/entities/Team/Team";
+import { User } from "../../../domain/entities/User/User";
+import { Project } from "../../../domain/entities/Project/Project";
 
 import { InMemoryProjectRepository } from "../../../../tests/repositories/in-memory-project-repository";
 import { InMemoryTeamMemberRepository } from "../../../../tests/repositories/in-memory-team-member-repository";
@@ -19,66 +19,105 @@ describe("get-projects-from-team-service", () => {
     password: "test123"
   });
 
+  if(user.isLeft())
+    return;
+
   // Team One ======================================================================================
   const teamOne = Team.create({
     name: "Team Test",
     description: "Lorem Ipsum Dolor Sit Amet"
   });
-  inMemoryTeamRepository.items.push(teamOne);
+
+  if(teamOne.isLeft())
+    return;
+
+  inMemoryTeamRepository.items.push(teamOne.value);
 
   const teamMemberOne = TeamMember.create({
-    team_id: teamOne.id,
-    user_id: user.id
+    team_id: teamOne.value.id,
+    user_id: user.value.id
   });
-  inMemoryTeamMemberRepository.items.push(teamMemberOne);
+
+  if(teamMemberOne.isLeft())
+    return;
+
+  inMemoryTeamMemberRepository.items.push(teamMemberOne.value);
 
   const projectOne_TeamOne = Project.create({
     name: "Project 1 - Team One",
     description: "Project test for Team One",
-    team_id: teamOne.id
+    team_id: teamOne.value.id
   });
-  inMemoryProjectRepository.items.push(projectOne_TeamOne);
+
+  if(projectOne_TeamOne.isLeft())
+    return;
+
+  inMemoryProjectRepository.items.push(projectOne_TeamOne.value);
 
   const projectTwo_TeamOne = Project.create({
     name: "Project 2 - Team One",
     description: "Project test for Team One",
-    team_id: teamOne.id
+    team_id: teamOne.value.id
   });
-  inMemoryProjectRepository.items.push(projectTwo_TeamOne);
+
+  if(projectTwo_TeamOne.isLeft())
+    return;
+
+  inMemoryProjectRepository.items.push(projectTwo_TeamOne.value);
   
   // Team Two ======================================================================================
   const teamTwo = Team.create({
     name: "Team Test",
     description: "Lorem Ipsum Dolor Sit Amet"
   });
-  inMemoryTeamRepository.items.push(teamTwo);
+
+  if(teamTwo.isLeft())
+    return;
+
+  inMemoryTeamRepository.items.push(teamTwo.value);
 
   const teamMemberTwo = TeamMember.create({
-    team_id: teamTwo.id,
-    user_id: user.id
+    team_id: teamTwo.value.id,
+    user_id: user.value.id
   });
-  inMemoryTeamMemberRepository.items.push(teamMemberTwo);
+
+  if(teamMemberTwo.isLeft())
+    return;
+
+  inMemoryTeamMemberRepository.items.push(teamMemberTwo.value);
 
   const projectOne_TeamTwo = Project.create({
     name: "Project 1 - Team Two",
     description: "Project test for Team Two",
-    team_id: teamTwo.id
+    team_id: teamTwo.value.id
   });
-  inMemoryProjectRepository.items.push(projectOne_TeamTwo);
+    
+    if(projectOne_TeamTwo.isLeft())
+      return;
+
+  inMemoryProjectRepository.items.push(projectOne_TeamTwo.value);
 
   const projectTwo_TeamTwo = Project.create({
     name: "Project 2 - Team Two",
     description: "Project test for Team Two",
-    team_id: teamTwo.id
+    team_id: teamTwo.value.id
   });
-  inMemoryProjectRepository.items.push(projectTwo_TeamTwo);
+
+  if(projectTwo_TeamTwo.isLeft())
+    return;
+
+  inMemoryProjectRepository.items.push(projectTwo_TeamTwo.value);
 
   const projectThree_TeamTwo = Project.create({
     name: "Project 3 - Team Two",
     description: "Project test for Team Two",
-    team_id: teamTwo.id
+    team_id: teamTwo.value.id
   });
-  inMemoryProjectRepository.items.push(projectThree_TeamTwo);
+
+  if(projectThree_TeamTwo.isLeft())
+    return;
+
+  inMemoryProjectRepository.items.push(projectThree_TeamTwo.value);
 
 
   it("should be able to get all projects from a specific team", async () => {
@@ -87,11 +126,11 @@ describe("get-projects-from-team-service", () => {
       inMemoryTeamMemberRepository
     );
 
-    const projectsFromTeamOne = await getProjectsFromTeam.execute(teamMemberOne);
-    const projectsFromTeamTwo = await getProjectsFromTeam.execute(teamMemberTwo);
+    const projectsFromTeamOne = await getProjectsFromTeam.execute(teamMemberOne.value);
+    const projectsFromTeamTwo = await getProjectsFromTeam.execute(teamMemberTwo.value);
     
-    expect(projectsFromTeamOne).toHaveLength(2);
-    expect(projectsFromTeamTwo).toHaveLength(3);
+    expect(projectsFromTeamOne.value).toHaveLength(2);
+    expect(projectsFromTeamTwo.value).toHaveLength(3);
   });
 
   it("should not be able to get all projects from a specific team without 'team_id'", async () => {
@@ -100,10 +139,12 @@ describe("get-projects-from-team-service", () => {
       inMemoryTeamMemberRepository
     );
 
-    await expect(getProjectsFromTeam.execute({
+    const projectsOrError = await getProjectsFromTeam.execute({
       team_id: "",
-      user_id: teamMemberOne.user_id
-    })).rejects.toThrow();
+      user_id: teamMemberOne.value.user_id
+    });
+
+    expect(projectsOrError.isLeft()).toBe(true);
   });
 
   it("should not be able to get all projects from a specific team without 'user_id'", async () => {
@@ -112,10 +153,12 @@ describe("get-projects-from-team-service", () => {
       inMemoryTeamMemberRepository
     );
 
-    await expect(getProjectsFromTeam.execute({
-      team_id: teamMemberOne.team_id,
+    const projectsOrError = await getProjectsFromTeam.execute({
+      team_id: teamMemberOne.value.team_id,
       user_id: ""
-    })).rejects.toThrow();
+    });
+
+    expect(projectsOrError.isLeft()).toBe(true);
   });
 
   it("should not be able to get all projects from a specific team without a valid 'team_member'", async () => {
@@ -124,9 +167,11 @@ describe("get-projects-from-team-service", () => {
       inMemoryTeamMemberRepository
     );
 
-    await expect(getProjectsFromTeam.execute({
-      team_id: teamMemberOne.team_id,
-      user_id: teamMemberOne.user_id + "123Test"
-    })).rejects.toThrow();
+    const projectsOrError = await getProjectsFromTeam.execute({
+      team_id: teamMemberOne.value.team_id,
+      user_id: teamMemberOne.value.user_id + "123Test"
+    });
+
+    expect(projectsOrError.isLeft()).toBe(true);
   });
 })

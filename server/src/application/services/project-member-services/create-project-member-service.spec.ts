@@ -1,8 +1,8 @@
-import { ProjectMember } from "../../../domain/entities/ProjectMember";
-import { Project } from "../../../domain/entities/Project";
-import { Team } from "../../../domain/entities/Team";
-import { TeamMember } from "../../../domain/entities/TeamMember";
-import { User } from "../../../domain/entities/User";
+import { ProjectMember } from "../../../domain/entities/ProjectMember/ProjectMember";
+import { Project } from "../../../domain/entities/Project/Project";
+import { Team } from "../../../domain/entities/Team/Team";
+import { TeamMember } from "../../../domain/entities/TeamMember/TeamMember";
+import { User } from "../../../domain/entities/User/User";
 
 import { InMemoryProjectRepository } from "../../../../tests/repositories/in-memory-project-repository";
 import { InMemoryProjectMemberRepository } from "../../../../tests/repositories/in-memory-project-member-repository";
@@ -19,11 +19,17 @@ describe("create-project-member-service", () => {
     description: "Lorem Ipsum Dolor Sit Amet",
   });
 
+  if(team.isLeft())
+    return;
+
   const project = Project.create({
     name: "Project Test",
     description: "Lorem Ipsum Dolor Sit Amet",
-    team_id: team.id,
+    team_id: team.value.id,
   });
+
+  if(project.isLeft())
+    return;
 
   const user = User.create({
     name: "User Test",
@@ -31,24 +37,33 @@ describe("create-project-member-service", () => {
     password: "123Test"
   });
 
+  if(user.isLeft())
+    return;
+
   const teamMember = TeamMember.create({
-    team_id: team.id,
-    user_id: user.id
+    team_id: team.value.id,
+    user_id: user.value.id
   });
 
-  inMemoryProjectRepository.items.push(project);
-  inMemoryTeamMemberRepository.items.push(teamMember);
+  if(teamMember.isLeft())
+    return;
+
+  inMemoryProjectRepository.items.push(project.value);
+  inMemoryTeamMemberRepository.items.push(teamMember.value);
 
   it("should be able to create a new project member", async () => {
     const inMemoryProjectMemberRepository = new InMemoryProjectMemberRepository();
 
     const projectMember = ProjectMember.create({
-      project_id: project.id,
-      team_id: team.id,
-      user_id: teamMember.user_id,
+      project_id: project.value.id,
+      team_id: team.value.id,
+      user_id: teamMember.value.user_id,
     });
 
-    inMemoryProjectMemberRepository.items.push(projectMember);
+    if(projectMember.isLeft())
+      return;
+
+    inMemoryProjectMemberRepository.items.push(projectMember.value);
 
     const createProjectMemberService = new CreateProjectMemberService(
       inMemoryProjectRepository,
@@ -56,7 +71,7 @@ describe("create-project-member-service", () => {
       inMemoryTeamMemberRepository,
     );
 
-    await expect(createProjectMemberService.execute(projectMember))
+    await expect(createProjectMemberService.execute(projectMember.value))
       .resolves.not.toThrow();
   });
 
@@ -65,145 +80,173 @@ describe("create-project-member-service", () => {
 
     const projectMember = ProjectMember.create({
       project_id: "",
-      team_id: team.id,
-      user_id: teamMember.user_id,
+      team_id: team.value.id,
+      user_id: teamMember.value.user_id,
     });
 
-    inMemoryProjectMemberRepository.items.push(projectMember);
+    if(projectMember.isLeft())
+      return;
+
+    inMemoryProjectMemberRepository.items.push(projectMember.value);
 
     const createProjectMemberService = new CreateProjectMemberService(
       inMemoryProjectRepository,
       inMemoryProjectMemberRepository,
       inMemoryTeamMemberRepository,
     );
+    
+    const projectMemberOrError = await createProjectMemberService.execute(projectMember.value);
 
-    await expect(createProjectMemberService.execute(projectMember))
-      .rejects.toThrow();
+    expect(projectMemberOrError.isLeft()).toBe(true);
   });
 
   it("should not be able to create a new project member without 'team_id'", async () => {
     const inMemoryProjectMemberRepository = new InMemoryProjectMemberRepository();
 
     const projectMember = ProjectMember.create({
-      project_id: project.id,
+      project_id: project.value.id,
       team_id: "",
-      user_id: teamMember.user_id,
+      user_id: teamMember.value.user_id,
     });
 
-    inMemoryProjectMemberRepository.items.push(projectMember);
+    if(projectMember.isLeft())
+      return;
+
+    inMemoryProjectMemberRepository.items.push(projectMember.value);
 
     const createProjectMemberService = new CreateProjectMemberService(
       inMemoryProjectRepository,
       inMemoryProjectMemberRepository,
       inMemoryTeamMemberRepository,
     );
+    
+    const projectMemberOrError = await createProjectMemberService.execute(projectMember.value);
 
-    await expect(createProjectMemberService.execute(projectMember))
-      .rejects.toThrow();
+    expect(projectMemberOrError.isLeft()).toBe(true);
   });
 
   it("should not be able to create a new project member without 'team_member_id'", async () => {
     const inMemoryProjectMemberRepository = new InMemoryProjectMemberRepository();
 
     const projectMember = ProjectMember.create({
-      project_id: project.id,
-      team_id: team.id,
+      project_id: project.value.id,
+      team_id: team.value.id,
       user_id: "",
     });
 
-    inMemoryProjectMemberRepository.items.push(projectMember);
+    if(projectMember.isLeft())
+      return;
+
+    inMemoryProjectMemberRepository.items.push(projectMember.value);
 
     const createProjectMemberService = new CreateProjectMemberService(
       inMemoryProjectRepository,
       inMemoryProjectMemberRepository,
       inMemoryTeamMemberRepository,
     );
+    
+    const projectMemberOrError = await createProjectMemberService.execute(projectMember.value);
 
-    await expect(createProjectMemberService.execute(projectMember))
-      .rejects.toThrow();
+    expect(projectMemberOrError.isLeft()).toBe(true);
   });
 
   it("should not be able to create a new project member without 'team_member_id'", async () => {
     const inMemoryProjectMemberRepository = new InMemoryProjectMemberRepository();
 
     const projectMember = ProjectMember.create({
-      project_id: project.id,
-      team_id: team.id,
+      project_id: project.value.id,
+      team_id: team.value.id,
       user_id: "",
     });
 
-    inMemoryProjectMemberRepository.items.push(projectMember);
+    if(projectMember.isLeft())
+      return;
+
+    inMemoryProjectMemberRepository.items.push(projectMember.value);
 
     const createProjectMemberService = new CreateProjectMemberService(
       inMemoryProjectRepository,
       inMemoryProjectMemberRepository,
       inMemoryTeamMemberRepository,
     );
+    
+    const projectMemberOrError = await createProjectMemberService.execute(projectMember.value);
 
-    await expect(createProjectMemberService.execute(projectMember))
-      .rejects.toThrow();
+    expect(projectMemberOrError.isLeft()).toBe(true);
   });
 
   it("should not be able to create a new project member without a valid 'project_id'", async () => {
     const inMemoryProjectMemberRepository = new InMemoryProjectMemberRepository();
 
     const projectMember = ProjectMember.create({
-      project_id: project.id + "123Test",
-      team_id: team.id,
-      user_id: teamMember.user_id,
+      project_id: project.value.id + "123Test",
+      team_id: team.value.id,
+      user_id: teamMember.value.user_id,
     });
 
-    inMemoryProjectMemberRepository.items.push(projectMember);
+    if(projectMember.isLeft())
+      return;
+
+    inMemoryProjectMemberRepository.items.push(projectMember.value);
 
     const createProjectMemberService = new CreateProjectMemberService(
       inMemoryProjectRepository,
       inMemoryProjectMemberRepository,
       inMemoryTeamMemberRepository,
     );
+    
+    const projectMemberOrError = await createProjectMemberService.execute(projectMember.value);
 
-    await expect(createProjectMemberService.execute(projectMember))
-      .rejects.toThrow();
+    expect(projectMemberOrError.isLeft()).toBe(true);
   });
 
   it("should not be able to create a new project member without a valid 'team_id'", async () => {
     const inMemoryProjectMemberRepository = new InMemoryProjectMemberRepository();
 
     const projectMember = ProjectMember.create({
-      project_id: project.id,
-      team_id: team.id + "123Test",
-      user_id: teamMember.user_id,
+      project_id: project.value.id,
+      team_id: team.value.id + "123Test",
+      user_id: teamMember.value.user_id,
     });
 
-    inMemoryProjectMemberRepository.items.push(projectMember);
+    if(projectMember.isLeft())
+      return;
+
+    inMemoryProjectMemberRepository.items.push(projectMember.value);
 
     const createProjectMemberService = new CreateProjectMemberService(
       inMemoryProjectRepository,
       inMemoryProjectMemberRepository,
       inMemoryTeamMemberRepository,
     );
+    
+    const projectMemberOrError = await createProjectMemberService.execute(projectMember.value);
 
-    await expect(createProjectMemberService.execute(projectMember))
-      .rejects.toThrow();
+    expect(projectMemberOrError.isLeft()).toBe(true);
   });
 
   it("should not be able to create a new project member without a valid Team Member", async () => {
     const inMemoryProjectMemberRepository = new InMemoryProjectMemberRepository();
 
     const projectMember = ProjectMember.create({
-      project_id: project.id,
-      team_id: team.id,
-      user_id: teamMember.user_id + "123Test",
+      project_id: project.value.id,
+      team_id: team.value.id,
+      user_id: teamMember.value.user_id + "123Test",
     });
 
-    inMemoryProjectMemberRepository.items.push(projectMember);
+    if(projectMember.isLeft())
+      return;
+
+    inMemoryProjectMemberRepository.items.push(projectMember.value);
 
     const createProjectMemberService = new CreateProjectMemberService(
       inMemoryProjectRepository,
       inMemoryProjectMemberRepository,
       inMemoryTeamMemberRepository,
     );
+    
+    const projectMemberOrError = await createProjectMemberService.execute(projectMember.value);
 
-    await expect(createProjectMemberService.execute(projectMember))
-      .rejects.toThrow();
+    expect(projectMemberOrError.isLeft()).toBe(true);
   });
 })

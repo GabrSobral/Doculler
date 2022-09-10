@@ -1,19 +1,13 @@
-import { ProjectCreateData, ProjectRepository } from '../../src/application/repositories/project-repository';
-import { Project } from '../../src/domain/entities/Project'
+import { ProjectRepository } from '../../src/application/repositories/project-repository';
+import { Project } from '../../src/domain/entities/Project/Project'
 
 export class InMemoryProjectRepository implements ProjectRepository {
   public items: Project[] = []
 
-  async create(data: ProjectCreateData): Promise<Project> {
-    const { description, name, team_id } = data;
-
-    const project = Project.create({
-      name,
-      description,
-      team_id
-    });
-
-    return project;
+  async create(data: Project): Promise<Project> {
+    this.items.push(data);
+    
+    return data;
   }
   async getProjectsFromTeam(team_id: string): Promise<Project[]> {
     const projects = this.items.filter(item => item.team_id === team_id);

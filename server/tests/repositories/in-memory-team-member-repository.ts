@@ -1,5 +1,5 @@
 import { TeamMemberIndentifierProps, TeamMemberRepository } from '../../src/application/repositories/team-member-repository';
-import { TeamMember } from "../../src/domain/entities/TeamMember";
+import { TeamMember } from "../../src/domain/entities/TeamMember/TeamMember";
 
 export class InMemoryTeamMemberRepository implements TeamMemberRepository {
   public items: TeamMember[] = []

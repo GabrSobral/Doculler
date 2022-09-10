@@ -1,5 +1,5 @@
-import { Team } from '../../../domain/entities/Team';
-import { User } from '../../../domain/entities/User';
+import { Team } from '../../../domain/entities/Team/Team';
+import { User } from '../../../domain/entities/User/User';
 
 import { InMemoryTeamRepository } from '../../../../tests/repositories/in-memory-team-repository';
 import { InMemoryTeamMemberRepository } from '../../../../tests/repositories/in-memory-team-member-repository';
@@ -24,8 +24,11 @@ describe("create-team-member", () => {
       description: "Lorem Ipsum Dolor Sit Amet"
     });
 
-    inMemoryTeamRepository.items.push(team);
-    inMemoryUserRepository.items.push(user);
+    if(team.isLeft() || user.isLeft())
+      return;
+
+    inMemoryTeamRepository.items.push(team.value);
+    inMemoryUserRepository.items.push(user.value);
 
     const createTeamMember = new CreateTeamMember(
       inMemoryTeamMemberRepository,
@@ -34,8 +37,8 @@ describe("create-team-member", () => {
     );
 
     const newTeamMember = await createTeamMember.execute({
-      user_id: user.id,
-      team_id: team.id,
+      user_id: user.value.id,
+      team_id: team.value.id,
     });
 
     expect(newTeamMember).toBeTruthy();
@@ -58,10 +61,15 @@ describe("create-team-member", () => {
       password: "test123",
     });
 
-    await expect(createTeamMember.execute({
-      user_id: user.id,
+    if(user.isLeft())
+      return;
+
+    const teamMemberOrError = await createTeamMember.execute({
+      user_id: user.value.id,
       team_id: "",
-    })).rejects.toThrow();
+    });
+
+    expect(teamMemberOrError.isLeft()).toBe(true);
   });
 
   it("should not be able to create a new Team Member without user_id", async () => {
@@ -80,10 +88,15 @@ describe("create-team-member", () => {
       description: "Lorem Ipsum Dolor Sit Amet"
     });
 
-    await expect(createTeamMember.execute({
+    if(team.isLeft())
+      return;
+
+    const teamMemberOrError = await createTeamMember.execute({
       user_id: "",
-      team_id: team.id,
-    })).rejects.toThrow();
+      team_id: team.value.id,
+    });
+
+    expect(teamMemberOrError.isLeft()).toBe(true);
   });
 
   it("should not be able to create a new Team Member with an invalid team_id", async () => {
@@ -97,7 +110,10 @@ describe("create-team-member", () => {
       password: "test123",
     });
 
-    inMemoryUserRepository.items.push(user);
+    if(user.isLeft())
+      return;
+
+    inMemoryUserRepository.items.push(user.value);
 
     const createTeamMember = new CreateTeamMember(
       inMemoryTeamMemberRepository,
@@ -105,10 +121,12 @@ describe("create-team-member", () => {
       inMemoryUserRepository
     );
 
-    await expect(createTeamMember.execute({
-      user_id: user.id,
+    const teamMemberOrError = await createTeamMember.execute({
+      user_id: user.value.id,
       team_id: "testId",
-    })).rejects.toThrow();
+    });
+
+    expect(teamMemberOrError.isLeft()).toBe(true);
   });
 
   it("should not be able to create a new Team Member with an invalid user_id", async () => {
@@ -121,7 +139,10 @@ describe("create-team-member", () => {
       description: "Lorem Ipsum Dolor Sit Amet"
     });
 
-    inMemoryTeamRepository.items.push(team);
+    if(team.isLeft())
+      return;
+
+    inMemoryTeamRepository.items.push(team.value);
 
     const createTeamMember = new CreateTeamMember(
       inMemoryTeamMemberRepository,
@@ -129,9 +150,11 @@ describe("create-team-member", () => {
       inMemoryUserRepository
     );
 
-    await expect(createTeamMember.execute({
+    const teamMemberOrError = await createTeamMember.execute({
       user_id: "testId",
-      team_id: team.id,
-    })).rejects.toThrow();
+      team_id: team.value.id,
+    });
+
+    expect(teamMemberOrError.isLeft()).toBe(true);
   });
 })

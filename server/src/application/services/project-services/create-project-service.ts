@@ -1,8 +1,9 @@
-import { Project } from "../../../domain/entities/Project";
+import { Either, left, right } from "../../../shared/either";
+import { Project } from "../../../domain/entities/Project/Project";
 import { ProjectRepository } from "../../repositories/project-repository";
 import { TeamRepository } from "../../repositories/team-repository";
 
-export interface CreateProjectRequest {
+interface CreateProjectRequest {
   name: string;
   description?: string;
   team_id: string;
@@ -14,19 +15,16 @@ export class CreateProjectService {
     private readonly teamRepository: TeamRepository
   ) {}
 
-  async execute(request: CreateProjectRequest): Promise<Project> {
+  async execute(request: CreateProjectRequest): Promise<Either<Error, Project>> {
     const { name, description, team_id } = request;
 
-    if(!name)
-      throw new Error("No name provided.");
-
     if(!team_id)
-      throw new Error("No team ID provided.");
+      return left(new Error("No team ID provided."));
 
     const team = await this.teamRepository.findById(team_id);
 
     if(!team)
-      throw new Error("No team was found with this ID");
+      return left(new Error("No team was found with this ID"));
 
     const project = Project.create({
       name,
@@ -34,8 +32,11 @@ export class CreateProjectService {
       team_id
     });
 
-    await this.projectRepository.create(project);
+    if(project.isLeft())
+      return left(new Error("Error on try to create the project instance"));
 
-    return project;
+    await this.projectRepository.create(project.value);
+
+    return right(project.value);
   }
 }

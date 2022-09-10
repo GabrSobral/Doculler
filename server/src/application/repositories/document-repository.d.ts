@@ -1,11 +1,11 @@
 import { Document } from "src/domain/entities/Document";
 
-export interface DocumentCreateData {
+interface DocumentCreateData {
   name: string;
   project_id: string;
   content: string;
 }
 
-export interface DocumentRepository {
+interface DocumentRepository {
   create: ( data: DocumentCreateData ) => Promise<Document>;
 }

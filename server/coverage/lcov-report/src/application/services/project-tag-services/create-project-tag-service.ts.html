@@ -25,14 +25,14 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>44/44</span>
+                <span class='fraction'>48/48</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">81.81% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>10/10</span>
+                <span class='fraction'>9/11</span>
             </div>
         
             
@@ -46,7 +46,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>44/44</span>
+                <span class='fraction'>48/48</span>
             </div>
         
             
@@ -106,7 +106,11 @@
 <a name='L41'></a><a href='#L41'>41</a>
 <a name='L42'></a><a href='#L42'>42</a>
 <a name='L43'></a><a href='#L43'>43</a>
-<a name='L44'></a><a href='#L44'>44</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<a name='L44'></a><a href='#L44'>44</a>
+<a name='L45'></a><a href='#L45'>45</a>
+<a name='L46'></a><a href='#L46'>46</a>
+<a name='L47'></a><a href='#L47'>47</a>
+<a name='L48'></a><a href='#L48'>48</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -118,26 +122,27 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">5x</span>
-<span class="cline-any cline-yes">5x</span>
-<span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">5x</span>
-<span class="cline-any cline-yes">5x</span>
-<span class="cline-any cline-yes">5x</span>
-<span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -146,14 +151,18 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span></td><td class="text"><pre class="prettyprint lang-js">import { ProjectRepository } from "../../../../src/application/repositories/project-repository";
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span></td><td class="text"><pre class="prettyprint lang-js">import { Either, left, right } from "../../../shared/either";
+import { ProjectRepository } from "../../../../src/application/repositories/project-repository";
 import { ProjectTagRepository } from "../../../../src/application/repositories/project-tag-repository";
-import { ProjectTag } from "../../../../src/domain/entities/ProjectTag";
+import { ProjectTag } from "../../../../src/domain/entities/ProjectTag/ProjectTag";
 &nbsp;
-export interface CreateProjectTagProps {
+interface CreateProjectTagProps {
   name: string;
   team_id: string;
   project_id: string;
@@ -165,22 +174,22 @@ export class CreateProjectTagService {
     private readonly projectRepository: ProjectRepository
   ) {}
   
-  async execute(request: CreateProjectTagProps): Promise&lt;ProjectTag&gt; {
+  async execute(request: CreateProjectTagProps): Promise&lt;Either&lt;Error,  ProjectTag&gt;&gt; {
     const { name, team_id, project_id } = request;
 &nbsp;
     if(!name)
-      throw new Error("No 'name' was provided");
+<span class="branch-0 cbranch-no" title="branch not covered" >      return left(new Error("No 'name' was provided"));</span>
 &nbsp;
     if(!team_id)
-      throw new Error("No 'team_id' was provided");
+      return left(new Error("No 'team_id' was provided"));
 &nbsp;
     if(!project_id)
-      throw new Error("No 'project_id' was provided");
+      return left(new Error("No 'project_id' was provided"));
 &nbsp;
     const projectAlreadyExists = await this.projectRepository.getById(project_id);
 &nbsp;
     if(!projectAlreadyExists)
-      throw new Error("Project not exist");
+      return left(new Error("Project not exist"));
 &nbsp;
     const newTag = ProjectTag.create({
       name,
@@ -188,9 +197,12 @@ export class CreateProjectTagService {
       team_id
     });
 &nbsp;
-    await this.projectTagRepository.add(newTag);
+    if(newTag.isLeft())
+<span class="branch-0 cbranch-no" title="branch not covered" >      return left(new Error("Error on try to create a new project tag"));</span>
 &nbsp;
-    return newTag;
+    await this.projectTagRepository.add(newTag.value);
+&nbsp;
+    return right(newTag.value);
   }
 }</pre></td></tr></table></pre>
 
@@ -199,7 +211,7 @@ export class CreateProjectTagService {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2022-09-01T00:49:35.347Z
+                at 2022-09-10T02:44:27.601Z
             </div>
         <script src="../../../../prettify.js"></script>
         <script>

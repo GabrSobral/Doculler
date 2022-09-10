@@ -1,9 +1,10 @@
-import { Project } from "../../../domain/entities/Project";
+import { Either, left, right } from "../../../shared/either";
+import { Project } from "../../../domain/entities/Project/Project";
 
 import { ProjectRepository } from "../../repositories/project-repository";
 import { TeamMemberRepository } from "../../repositories/team-member-repository";
 
-export interface GetProjectsFromTeamRequest {
+interface GetProjectsFromTeamRequest {
   team_id: string;
   user_id: string;
 }
@@ -14,14 +15,14 @@ export class GetProjectsFromTeam {
     private readonly teamMemberRepository: TeamMemberRepository
   ) {}
 
-  async execute(request: GetProjectsFromTeamRequest): Promise<Project[]> {
+  async execute(request: GetProjectsFromTeamRequest): Promise<Either<Error, Project[]>> {
     const { user_id, team_id } = request;
 
     if(!team_id)
-      throw new Error("No team ID was provided.");
+      return left(new Error("No team ID was provided."));
 
     if(!user_id)
-      throw new Error("No team member ID was provided.");
+      return left(new Error("No team member ID was provided."));
 
     const teamMember = await this.teamMemberRepository.getById({
       team_id,
@@ -29,10 +30,10 @@ export class GetProjectsFromTeam {
     });
 
     if(!teamMember)
-      throw new Error("You do not belong to this team or this team does not exist.");
+      return left(new Error("You do not belong to this team or this team does not exist."));
 
     const projectsFromTeam = await this.projectRepository.getProjectsFromTeam(team_id);
 
-    return projectsFromTeam;
+    return right(projectsFromTeam);
   }
 }

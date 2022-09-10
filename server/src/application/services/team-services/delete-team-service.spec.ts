@@ -1,4 +1,4 @@
-import { Team } from "../../../domain/entities/Team";
+import { Team } from "../../../domain/entities/Team/Team";
 import { InMemoryTeamRepository } from "../../../../tests/repositories/in-memory-team-repository"
 import { DeleteTeamService } from "./delete-team-service";
 
@@ -9,15 +9,18 @@ describe("delete-team-service", () => {
     const team = Team.create({
       name: "Test Team",
       description: "Lorem Ipsum Dolot Sit Amet",
-    })
+    });
 
-    inMemoryTeamRepository.items.push(team);
+    if(team.isLeft())
+      return;
+
+    inMemoryTeamRepository.items.push(team.value);
 
     expect(inMemoryTeamRepository.items.length).toBeGreaterThan(0);
 
     const deleteTeamService = new DeleteTeamService(inMemoryTeamRepository);
 
-    await deleteTeamService.execute(team.id);
+    await deleteTeamService.execute(team.value.id);
 
     expect(inMemoryTeamRepository.items.length).toEqual(0);
   })
@@ -28,16 +31,20 @@ describe("delete-team-service", () => {
     const team = Team.create({
       name: "Test Team",
       description: "Lorem Ipsum Dolot Sit Amet",
-    })
+    });
 
-    inMemoryTeamRepository.items.push(team);
+    if(team.isLeft())
+      return;
+
+    inMemoryTeamRepository.items.push(team.value);
 
     expect(inMemoryTeamRepository.items.length).toBeGreaterThan(0);
 
     const deleteTeamService = new DeleteTeamService(inMemoryTeamRepository);
+
+    const resultOrError = await deleteTeamService.execute("");
     
-    await expect(deleteTeamService.execute(""))
-      .rejects
-      .toThrow();
+    expect(resultOrError.isLeft()).toBe(true);
   })
+  
 })

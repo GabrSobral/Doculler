@@ -14,21 +14,18 @@ describe("user-register-service", () => {
 
     const newUser = await userRegisterService.execute({
       name: "User test",
-      email: "UserTest@test.com",
+      email: "gsobral@test.com",
       password: "791$X5zfYI!y"
     });
 
-    await inMemoryUserRepository.register({
-      name: newUser.name,
-      email: newUser.email,
-      password: newUser.password
-    });
-    
-    const userInMemory = await inMemoryUserRepository.findByEmail(newUser.email);
+    if(newUser.isLeft())
+      return;
 
-    expect(newUser.token).toBeTruthy();
+    const userInMemory = await inMemoryUserRepository.findByEmail(newUser.value.email.value);
+
+    expect(newUser.value.token).toBeTruthy();
     expect(userInMemory).toBeTruthy();
-    expect(newUser.password).toEqual(userInMemory?.password);
+    expect(newUser.value.password).toEqual(userInMemory?.password);
   });
 
   it("should not be able to register an already existing user", async () => {
@@ -44,11 +41,13 @@ describe("user-register-service", () => {
       password: "791$X5zfYI!y"
     });
 
-    await expect(userRegisterService.execute({
+    const userOrError = await userRegisterService.execute({
       name: "User test",
       email: "UserTest@test.com",
       password: "791$X5zfYI!y"
-    })).rejects.toThrow();
+    });
+
+    expect(userOrError.isLeft()).toBe(true);
   });
 
   it("should not be able to register an user without name", async () => {
@@ -58,11 +57,13 @@ describe("user-register-service", () => {
       jsonWebTokenHandler
     );
 
-    await expect(userRegisterService.execute({
+    const userOrError = await userRegisterService.execute({
       name: "",
       email: "UserTest@test.com",
       password: "791$X5zfYI!y"
-    })).rejects.toThrow();
+    });
+
+    expect(userOrError.isLeft()).toBe(true);
   });
 
   it("should not be able to register an user without password", async () => {
@@ -71,11 +72,29 @@ describe("user-register-service", () => {
       inMemoryUserRepository,
       jsonWebTokenHandler
     );
-
-    await expect(userRegisterService.execute({
+    
+    const userOrError = await userRegisterService.execute({
       name: "User test",
       email: "UserTest@test.com",
       password: ""
-    })).rejects.toThrow();
+    });
+
+    expect(userOrError.isLeft()).toBe(true);
+  });
+
+  it("should not be able to register an invalid user", async () => {
+    const inMemoryUserRepository = new InMemoryUserRepository();
+    const userRegisterService = new UserRegisterService(
+      inMemoryUserRepository,
+      jsonWebTokenHandler
+    );
+    
+    const userOrError = await userRegisterService.execute({
+      name: "User test",
+      email: "#$% UserTest@test.com",
+      password: "791$X5zfYI!y"
+    });
+
+    expect(userOrError.isLeft()).toBe(true);
   });
 })

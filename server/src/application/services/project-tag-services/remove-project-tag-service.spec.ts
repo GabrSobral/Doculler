@@ -1,6 +1,6 @@
-import { Project } from "../../../../src/domain/entities/Project";
-import { ProjectTag } from "../../../../src/domain/entities/ProjectTag";
-import { Team } from "../../../../src/domain/entities/Team";
+import { Project } from "../../../../src/domain/entities/Project/Project";
+import { ProjectTag } from "../../../../src/domain/entities/ProjectTag/ProjectTag";
+import { Team } from "../../../../src/domain/entities/Team/Team";
 
 import { InMemoryProjectRepository } from "../../../../tests/repositories/in-memory-project-repository";
 import { InMemoryProjectTagRepository } from "../../../../tests/repositories/in-memory-project-tag-repository";
@@ -15,24 +15,33 @@ describe("remove-project-tag-service", () => {
     description: "Lorem Ipsum Dolor Sit Amet"
   });
 
+  if (team.isLeft())
+    return;
+
   const project = Project.create({
     name: "Project Test",
     description: "Lorem Ipsum Dolor Sit Amet",
-    team_id: team.id
+    team_id: team.value.id
   });
 
-  inMemoryProjectRepository.items.push(project);
+  if(project.isLeft())
+    return;
+
+  inMemoryProjectRepository.items.push(project.value);
 
   it("should be able to successfully remove project tag", async () => {
     const inMemoryProjectTagRepository = new InMemoryProjectTagRepository();
 
     const project_tag = ProjectTag.create({
        name: "Project Tag Test",
-       project_id: project.id,
-       team_id: team.id
+       project_id: project.value.id,
+       team_id: team.value.id
     });
+
+    if(project_tag.isLeft())
+      return;
     
-    inMemoryProjectTagRepository.items.push(project_tag);
+    inMemoryProjectTagRepository.items.push(project_tag.value);
 
     const removeProjectTagService = new RemoveProjectTagService(
       inMemoryProjectTagRepository,
@@ -42,8 +51,8 @@ describe("remove-project-tag-service", () => {
     expect(inMemoryProjectTagRepository.items).toHaveLength(1);
 
     await expect(removeProjectTagService.execute({
-      project_id: project.id,
-      project_tag_id: project_tag.id
+      project_id: project.value.id,
+      project_tag_id: project_tag.value.id
     })).resolves.not.toThrow();
 
     expect(inMemoryProjectTagRepository.items).toHaveLength(0);
@@ -54,11 +63,14 @@ describe("remove-project-tag-service", () => {
 
     const project_tag = ProjectTag.create({
        name: "Project Tag Test",
-       project_id: project.id,
-       team_id: team.id
+       project_id: project.value.id,
+       team_id: team.value.id
     });
+
+    if(project_tag.isLeft())
+      return;
     
-    inMemoryProjectTagRepository.items.push(project_tag);
+    inMemoryProjectTagRepository.items.push(project_tag.value);
 
     const removeProjectTagService = new RemoveProjectTagService(
       inMemoryProjectTagRepository,
@@ -67,7 +79,7 @@ describe("remove-project-tag-service", () => {
 
     await expect(removeProjectTagService.execute({
       project_id: "",
-      project_tag_id: project_tag.id
+      project_tag_id: project_tag.value.id
     })).rejects.toThrow();
   });
 
@@ -76,11 +88,14 @@ describe("remove-project-tag-service", () => {
 
     const project_tag = ProjectTag.create({
        name: "Project Tag Test",
-       project_id: project.id,
-       team_id: team.id
+       project_id: project.value.id,
+       team_id: team.value.id
     });
+
+    if(project_tag.isLeft())
+      return;
     
-    inMemoryProjectTagRepository.items.push(project_tag);
+    inMemoryProjectTagRepository.items.push(project_tag.value);
 
     const removeProjectTagService = new RemoveProjectTagService(
       inMemoryProjectTagRepository,
@@ -88,7 +103,7 @@ describe("remove-project-tag-service", () => {
     );
 
     await expect(removeProjectTagService.execute({
-      project_id: project.id,
+      project_id: project.value.id,
       project_tag_id: ""
     })).rejects.toThrow();
   });
@@ -98,11 +113,14 @@ describe("remove-project-tag-service", () => {
 
     const project_tag = ProjectTag.create({
        name: "Project Tag Test",
-       project_id: project.id,
-       team_id: team.id
+       project_id: project.value.id,
+       team_id: team.value.id
     });
+
+    if(project_tag.isLeft())
+      return;
     
-    inMemoryProjectTagRepository.items.push(project_tag);
+    inMemoryProjectTagRepository.items.push(project_tag.value);
 
     const removeProjectTagService = new RemoveProjectTagService(
       inMemoryProjectTagRepository,
@@ -110,8 +128,8 @@ describe("remove-project-tag-service", () => {
     );
 
     await expect(removeProjectTagService.execute({
-      project_id: project.id + "123Test",
-      project_tag_id: project_tag.id
+      project_id: project.value.id + "123Test",
+      project_tag_id: project_tag.value.id
     })).rejects.toThrow();
   });
 })

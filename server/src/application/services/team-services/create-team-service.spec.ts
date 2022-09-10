@@ -11,16 +11,18 @@ describe("create-team-service", () => {
       description: "Lorem Ipsum Dolor Sit Amet"
     });
 
-    expect(newTeam).toBeTruthy();
+    expect(newTeam.isRight()).toBe(true);
   });
 
   it("should not be able to create a new team without name", async () => {
     const inMemoryTeamRepository = new InMemoryTeamRepository();
     const createTeamService = new CreateTeamService(inMemoryTeamRepository);
 
-    await expect(createTeamService.execute({
+    const teamOrError = await createTeamService.execute({
       name: "",
       description: "Lorem Ipsum Dolor Sit Amet"
-    })).rejects.toThrow();
+    });
+
+    expect(teamOrError.isLeft()).toBe(true);
   });
 })

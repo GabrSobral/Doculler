@@ -1,18 +1,13 @@
-import { TeamCreateData, TeamRepository } from '../../src/application/repositories/team-repository';
-import { Team } from "../../src/domain/entities/Team";
+import { TeamRepository } from '../../src/application/repositories/team-repository';
+import { Team } from "../../src/domain/entities/Team/Team";
 
 export class InMemoryTeamRepository implements TeamRepository {
   public items: Team[] = []
 
-  async create( data: TeamCreateData ): Promise<Team> {
-    const newTeam = Team.create({
-      name: data.name,
-      description: data.description
-    });
+  async create( data: Team ): Promise<Team> {
+    this.items.push(data);
 
-    this.items.push(newTeam);
-
-    return newTeam;
+    return data;
   }
 
   async findById(team_id: string): Promise<Team | null> {

@@ -1,14 +1,12 @@
-import { ProjectTagAddData, ProjectTagRepository } from '../../src/application/repositories/project-tag-repository';
-import { ProjectTag } from '../../src/domain/entities/ProjectTag'
+import { ProjectTagRepository } from '../../src/application/repositories/project-tag-repository';
+import { ProjectTag } from '../../src/domain/entities/ProjectTag/ProjectTag'
 
 export class InMemoryProjectTagRepository implements ProjectTagRepository{
   public items: ProjectTag[] = []
 
-  async add (data: ProjectTagAddData): Promise<ProjectTag> {
-    const newTag = ProjectTag.create(data);
-
-    this.items.push(newTag);
-    return newTag;
+  async add (data: ProjectTag): Promise<ProjectTag> {
+    this.items.push(data);
+    return data;
   }
 
   async remove(tag_id: string): Promise<void> {

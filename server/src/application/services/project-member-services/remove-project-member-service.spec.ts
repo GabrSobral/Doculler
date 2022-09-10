@@ -1,8 +1,8 @@
-import { User } from "../../../domain/entities/User";
-import { Team } from "../../../domain/entities/Team";
-import { Project } from "../../../domain/entities/Project";
-import { TeamMember } from "../../../domain/entities/TeamMember";
-import { ProjectMember } from "../../../domain/entities/ProjectMember";
+import { User } from "../../../domain/entities/User/User";
+import { Team } from "../../../domain/entities/Team/Team";
+import { Project } from "../../../domain/entities/Project/Project";
+import { TeamMember } from "../../../domain/entities/TeamMember/TeamMember";
+import { ProjectMember } from "../../../domain/entities/ProjectMember/ProjectMember";
 
 import { InMemoryProjectRepository } from "../../../../tests/repositories/in-memory-project-repository";
 import { InMemoryTeamMemberRepository } from "../../../../tests/repositories/in-memory-team-member-repository";
@@ -22,11 +22,17 @@ describe("remove-project-member-service", () => {
     description: "Lorem Ipsum Dolor Sit Amet",
   });
 
+  if(team.isLeft())
+    return;
+
   const project = Project.create({
     name: "Project Test",
     description: "Lorem Ipsum Dolor Sit Amet",
-    team_id: team.id,
+    team_id: team.value.id,
   });
+
+  if(project.isLeft())
+    return;
 
   const user = User.create({
     name: "User Test",
@@ -34,16 +40,25 @@ describe("remove-project-member-service", () => {
     password: "123Test"
   });
 
+  if(user.isLeft())
+    return;
+
   const teamMember = TeamMember.create({
-    team_id: team.id,
-    user_id: user.id
+    team_id: team.value.id,
+    user_id: user.value.id
   });
 
+  if(teamMember.isLeft())
+    return;
+
   const projectMember = ProjectMember.create({
-    project_id: project.id,
-    team_id: team.id,
-    user_id: teamMember.user_id,
+    project_id: project.value.id,
+    team_id: team.value.id,
+    user_id: teamMember.value.user_id,
   });
+
+  if(projectMember.isLeft())
+    return;
 
   //Second mock ====================================================================================
 
@@ -52,11 +67,17 @@ describe("remove-project-member-service", () => {
     description: "Lorem Ipsum Dolor Sit Amet",
   });
 
+  if(teamTwo.isLeft())
+    return;
+
   const projectTwo = Project.create({
     name: "Project Test",
     description: "Lorem Ipsum Dolor Sit Amet",
-    team_id: teamTwo.id,
+    team_id: teamTwo.value.id,
   });
+
+  if(projectTwo.isLeft())
+    return;
 
   const userTwo = User.create({
     name: "User Test",
@@ -64,28 +85,37 @@ describe("remove-project-member-service", () => {
     password: "123Test"
   });
 
+  if(userTwo.isLeft())
+    return;
+
   const teamMemberTwo = TeamMember.create({
-    team_id: teamTwo.id,
-    user_id: userTwo.id
+    team_id: teamTwo.value.id,
+    user_id: userTwo.value.id
   });
+
+  if(teamMemberTwo.isLeft())
+    return;
 
   const projectMemberTwo = ProjectMember.create({
-    project_id: projectTwo.id,
-    team_id: teamTwo.id,
-    user_id: teamMemberTwo.user_id,
+    project_id: projectTwo.value.id,
+    team_id: teamTwo.value.id,
+    user_id: teamMemberTwo.value.user_id,
   });
 
-  inMemoryProjectRepository.items.push(project);
-  inMemoryProjectRepository.items.push(projectTwo);
+  if(projectMemberTwo.isLeft())
+    return;
 
-  inMemoryTeamMemberRepository.items.push(teamMember);
-  inMemoryTeamMemberRepository.items.push(teamMemberTwo);
+  inMemoryProjectRepository.items.push(project.value);
+  inMemoryProjectRepository.items.push(projectTwo.value);
 
-  inMemoryTeamRepository.items.push(team);
-  inMemoryTeamRepository.items.push(teamTwo);
+  inMemoryTeamMemberRepository.items.push(teamMember.value);
+  inMemoryTeamMemberRepository.items.push(teamMemberTwo.value);
 
-  inMemoryProjectMemberRepository.items.push(projectMember);
-  inMemoryProjectMemberRepository.items.push(projectMemberTwo);
+  inMemoryTeamRepository.items.push(team.value);
+  inMemoryTeamRepository.items.push(teamTwo.value);
+
+  inMemoryProjectMemberRepository.items.push(projectMember.value);
+  inMemoryProjectMemberRepository.items.push(projectMemberTwo.value);
 
   const removeProjectMemberService = new RemoveProjectMemberService(
     inMemoryTeamRepository,
@@ -97,51 +127,61 @@ describe("remove-project-member-service", () => {
     expect(inMemoryProjectMemberRepository.items).toHaveLength(2);
 
     await removeProjectMemberService.execute({
-      project_id: project.id,
-      team_id: team.id,
-      user_id: user.id
+      project_id: project.value.id,
+      team_id: team.value.id,
+      user_id: user.value.id
     });
 
     expect(inMemoryProjectMemberRepository.items).toHaveLength(1);
   });
 
   it("should not be able to remove a project member without 'team_id'", async () => {
-    await expect(removeProjectMemberService.execute({
-      project_id: project.id,
+    const resultOrError = await removeProjectMemberService.execute({
+      project_id: project.value.id,
       team_id: "",
-      user_id: user.id
-    })).rejects.toThrow();
+      user_id: user.value.id
+    });
+
+    expect(resultOrError.isLeft()).toBe(true);
   });
 
   it("should not be able to remove a project member without 'project_id'", async () => {
-    await expect(removeProjectMemberService.execute({
+    const resultOrError = await removeProjectMemberService.execute({
       project_id: "",
-      team_id: team.id,
-      user_id: user.id
-    })).rejects.toThrow();
+      team_id: team.value.id,
+      user_id: user.value.id
+    });
+
+    expect(resultOrError.isLeft()).toBe(true);
   });
 
   it("should not be able to remove a project member without 'user_id'", async () => {
-    await expect(removeProjectMemberService.execute({
-      project_id: project.id,
-      team_id: team.id,
+    const resultOrError = await removeProjectMemberService.execute({
+      project_id: project.value.id,
+      team_id: team.value.id,
       user_id: ""
-    })).rejects.toThrow();
+    });
+
+    expect(resultOrError.isLeft()).toBe(true);
   });
 
   it("should not be able to remove a project member without a valid 'team_id'", async () => {
-    await expect(removeProjectMemberService.execute({
-      project_id: project.id,
-      team_id: team.id + "123Test",
-      user_id: user.id
-    })).rejects.toThrow();
+    const resultOrError = await removeProjectMemberService.execute({
+      project_id: project.value.id,
+      team_id: team.value.id + "123Test",
+      user_id: user.value.id
+    });
+
+    expect(resultOrError.isLeft()).toBe(true);
   });
 
   it("should not be able to remove a project member without a valid 'project_id'", async () => {
-    await expect(removeProjectMemberService.execute({
-      project_id: project.id + "123Test",
-      team_id: team.id,
-      user_id: user.id
-    })).rejects.toThrow();
+    const resultOrError = await removeProjectMemberService.execute({
+      project_id: project.value.id + "123Test",
+      team_id: team.value.id,
+      user_id: user.value.id
+    });
+
+    expect(resultOrError.isLeft()).toBe(true);
   });
 })

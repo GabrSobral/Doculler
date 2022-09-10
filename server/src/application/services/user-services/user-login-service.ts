@@ -1,15 +1,14 @@
 import bcrypt from 'bcrypt';
-import { JsonWebToken } from 'src/adapters/json-web-token/json-web-token-jwt-adapter';
+import { JsonWebToken } from '../../../adapters/json-web-token/json-web-token-jwt-adapter';
 
-import { UserRepository } from "src/application/repositories/user-repository";
-import { User } from 'src/domain/entities/User';
+import { UserRepository } from "../../../application/repositories/user-repository";
+import { Either, left, right } from '../../../shared/either';
+import { UserLoginResult } from './user-register-service';
 
 interface UserLoginRequest {
   email: string;
   password: string;
 }
-
-type Result = User & { token: string }
 
 export class UserLoginService {
   constructor(
@@ -17,27 +16,35 @@ export class UserLoginService {
     private readonly jsonWebTokenHandler: JsonWebToken,
   ) {}
 
-  async execute(request: UserLoginRequest ): Promise<Result> {
+  async execute(request: UserLoginRequest ): Promise<Either<Error, UserLoginResult>> {
     const { email, password } = request;
 
     if(!email || !password)
-      throw new Error("Email/Password invalid.");
+      return left(new Error("Email/Password invalid."));
     
     const user = await this.userRepository.findByEmail(email);
 
     if (!user)
-      throw new Error("User not exists");
+      return left(new Error("User not exists"));
 
     const isCorrectPassword = await bcrypt.compare(password, user.password);
 
     if(!isCorrectPassword)
-      throw new Error("Email/Password invalid.");
+      return left(new Error("Email/Password invalid."));
 
     const token = this.jsonWebTokenHandler.sign({ 
       email: user.email 
     }, 60 * 60 // 1 hour
-  )
+    );
 
-    return { ...user, token } as Result;
+    return right({
+      id: user.id,
+      name: user.name,
+      email: user.email,
+      password: user.password,
+      created_at: user.created_at,
+      updated_at: user.updated_at,
+      token: token
+    } as UserLoginResult);
   }
 }

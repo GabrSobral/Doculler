@@ -1,8 +1,9 @@
+import { Either, left, right } from "../../../shared/either";
 import { ProjectRepository } from "../../../../src/application/repositories/project-repository";
 import { ProjectTagRepository } from "../../../../src/application/repositories/project-tag-repository";
-import { ProjectTag } from "../../../../src/domain/entities/ProjectTag";
+import { ProjectTag } from "../../../../src/domain/entities/ProjectTag/ProjectTag";
 
-export interface CreateProjectTagProps {
+interface CreateProjectTagProps {
   name: string;
   team_id: string;
   project_id: string;
@@ -14,22 +15,22 @@ export class CreateProjectTagService {
     private readonly projectRepository: ProjectRepository
   ) {}
   
-  async execute(request: CreateProjectTagProps): Promise<ProjectTag> {
+  async execute(request: CreateProjectTagProps): Promise<Either<Error,  ProjectTag>> {
     const { name, team_id, project_id } = request;
 
     if(!name)
-      throw new Error("No 'name' was provided");
+      return left(new Error("No 'name' was provided"));
 
     if(!team_id)
-      throw new Error("No 'team_id' was provided");
+      return left(new Error("No 'team_id' was provided"));
 
     if(!project_id)
-      throw new Error("No 'project_id' was provided");
+      return left(new Error("No 'project_id' was provided"));
 
     const projectAlreadyExists = await this.projectRepository.getById(project_id);
 
     if(!projectAlreadyExists)
-      throw new Error("Project not exist");
+      return left(new Error("Project not exist"));
 
     const newTag = ProjectTag.create({
       name,
@@ -37,8 +38,11 @@ export class CreateProjectTagService {
       team_id
     });
 
-    await this.projectTagRepository.add(newTag);
+    if(newTag.isLeft())
+      return left(new Error("Error on try to create a new project tag"));
 
-    return newTag;
+    await this.projectTagRepository.add(newTag.value);
+
+    return right(newTag.value);
   }
 }

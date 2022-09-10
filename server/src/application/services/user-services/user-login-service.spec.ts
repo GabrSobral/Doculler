@@ -1,7 +1,9 @@
 import { UserLoginService } from "./user-login-service"
-import { InMemoryUserRepository } from '../../../../tests/repositories/in-memory-user-repository';
 import { UserRegisterService } from "./user-register-service";
+
 import { JsonWebToken } from "../../../adapters/json-web-token/json-web-token-jwt-adapter";
+
+import { InMemoryUserRepository } from '../../../../tests/repositories/in-memory-user-repository';
 
 describe("user-login-service", () => {
   const inMemoryUserRepository = new InMemoryUserRepository();
@@ -31,39 +33,49 @@ describe("user-login-service", () => {
       password: "791$X5zfYI!y"
     });
 
-    expect(loggedUser).toBeTruthy();
-    expect(loggedUser.token).toBeTruthy();
+    if(loggedUser.isLeft())
+      return;
 
-    const userInMemory = await inMemoryUserRepository.findByEmail(loggedUser.email);
+    expect(loggedUser.value.token).toBeTruthy();
+    
+    const userInMemory = await inMemoryUserRepository.findByEmail(loggedUser.value.email.value);
 
-    expect(loggedUser.password).toEqual(userInMemory?.password);
+    expect(loggedUser.value.password).toEqual(userInMemory?.password);
   });
 
   it("should not be able to authenticate the user without email", async () => {
-    await expect(userLoginService.execute({
+    const user = await userLoginService.execute({
       email: "",
       password: "791$X5zfYI!y"
-    })).rejects.toThrow();
+    });
+    
+    expect(user.isLeft()).toBe(true);
   });
 
   it("should not be able to authenticate the user without password", async () => {
-    await expect(userLoginService.execute({
+    const user = await userLoginService.execute({
       email: "UserTest@test.com",
       password: ""
-    })).rejects.toThrow();
+    });
+
+    expect(user.isLeft()).toBe(true);
   });
 
   it("should not be able to authenticate an invalid user", async () => {
-    await expect(userLoginService.execute({
+    const user = await userLoginService.execute({
       email: "UserTestTest@test.com",
       password: "791$X5zfYI!y"
-    })).rejects.toThrow();
+    });
+
+    expect(user.isLeft()).toBe(true);
   });
 
   it("should not be able to authenticate an valid user but invalid password", async () => {
-    await expect(userLoginService.execute({
+    const user = await userLoginService.execute({
       email: "UserTest@test.com",
       password: "791$X5zfYI!yTest"
-    })).rejects.toThrow();
+    });
+
+    expect(user.isLeft()).toBe(true);
   });
 })

@@ -1,9 +1,9 @@
 import { InMemoryTeamRepository } from "../../../../tests/repositories/in-memory-team-repository";
 import { InMemoryTeamMemberRepository } from "../../../../tests/repositories/in-memory-team-member-repository";
 
-import { User } from "../../../domain/entities/User";
-import { Team } from "../../../domain/entities/Team";
-import { TeamMember } from "../../../domain/entities/TeamMember";
+import { User } from "../../../domain/entities/User/User";
+import { Team } from "../../../domain/entities/Team/Team";
+import { TeamMember } from "../../../domain/entities/TeamMember/TeamMember";
 
 import { RemoveTeamMemberService } from "./remove-team-member-service";
 
@@ -23,13 +23,19 @@ describe("remove-team-member", () => {
       description: "Lorem Ipsum Dolor Sit Amet"
     });
 
+    if(user.isLeft() || team.isLeft())
+      return;
+
     const teamMember = TeamMember.create({
-      team_id: team.id,
-      user_id: user.id
+      team_id: team.value.id,
+      user_id: user.value.id
     });
 
-    inMemoryTeamMemberRepository.items.push(teamMember);
-    inMemoryTeamRepository.items.push(team);
+    if(teamMember.isLeft())
+      return;
+
+    inMemoryTeamMemberRepository.items.push(teamMember.value);
+    inMemoryTeamRepository.items.push(team.value);
 
     const removeTeamMemberService = new RemoveTeamMemberService (
       inMemoryTeamMemberRepository,
@@ -37,8 +43,8 @@ describe("remove-team-member", () => {
     );
 
     await expect(removeTeamMemberService.execute({ 
-      team_id: teamMember.team_id, 
-      user_id: teamMember.user_id 
+      team_id: teamMember.value.team_id, 
+      user_id: teamMember.value.user_id 
     })).resolves.not.toThrow();
   });
 
@@ -52,12 +58,18 @@ describe("remove-team-member", () => {
       password: "a123"
     });
 
+    if(user.isLeft())
+      return;
+
     const teamMember = TeamMember.create({
       team_id: "",
-      user_id: user.id
+      user_id: user.value.id
     });
 
-    inMemoryTeamMemberRepository.items.push(teamMember);
+    if(teamMember.isLeft())
+      return;
+
+    inMemoryTeamMemberRepository.items.push(teamMember.value);
 
     const removeTeamMemberService = new RemoveTeamMemberService (
       inMemoryTeamMemberRepository,
@@ -65,8 +77,8 @@ describe("remove-team-member", () => {
     );
 
     await expect(removeTeamMemberService.execute({ 
-      team_id: teamMember.team_id,
-      user_id: teamMember.user_id
+      team_id: teamMember.value.team_id,
+      user_id: teamMember.value.user_id
     })).rejects.toThrow();
   });
 
@@ -79,13 +91,19 @@ describe("remove-team-member", () => {
       description: "Lorem Ipsum Dolor Sit Amet"
     });
 
+    if(team.isLeft())
+      return;
+
     const teamMember = TeamMember.create({
-      team_id: team.id,
+      team_id: team.value.id,
       user_id: ""
     });
 
-    inMemoryTeamMemberRepository.items.push(teamMember);
-    inMemoryTeamRepository.items.push(team);
+    if(teamMember.isLeft())
+      return;
+
+    inMemoryTeamMemberRepository.items.push(teamMember.value);
+    inMemoryTeamRepository.items.push(team.value);
 
     const removeTeamMemberService = new RemoveTeamMemberService (
       inMemoryTeamMemberRepository,
@@ -93,8 +111,8 @@ describe("remove-team-member", () => {
     );
 
     await expect(removeTeamMemberService.execute ({ 
-      team_id: teamMember.team_id,
-      user_id: teamMember.user_id
+      team_id: teamMember.value.team_id,
+      user_id: teamMember.value.user_id
     })).rejects.toThrow();
   });
 
@@ -113,22 +131,30 @@ describe("remove-team-member", () => {
       description: "Lorem Ipsum Dolor Sit Amet"
     });
 
+    if(user.isLeft() || team.isLeft())
+      return;
+
     const teamMember = TeamMember.create({
-      team_id: team.id,
-      user_id: user.id
+      team_id: team.value.id,
+      user_id: user.value.id
     });
 
-    inMemoryTeamMemberRepository.items.push(teamMember);
-    inMemoryTeamRepository.items.push(team);
+    if(teamMember.isLeft())
+      return;
+
+    inMemoryTeamMemberRepository.items.push(teamMember.value);
+    inMemoryTeamRepository.items.push(team.value);
 
     const removeTeamMemberService = new RemoveTeamMemberService (
       inMemoryTeamMemberRepository,
       inMemoryTeamRepository
     );
 
-    await expect(removeTeamMemberService.execute ({ 
-      team_id: teamMember.team_id + '123Test',
-      user_id: teamMember.user_id
-    })).rejects.toThrow();
+    const teamMemberOrError = await removeTeamMemberService.execute ({ 
+      team_id: teamMember.value + '123Test',
+      user_id: teamMember.value.user_id
+    });
+
+    expect(teamMemberOrError?.isLeft()).toBe(true);
   });
 })

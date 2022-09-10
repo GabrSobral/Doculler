@@ -1,3 +1,4 @@
+import { Either, left, right } from "../../../shared/either";
 import { TeamRepository } from "../../repositories/team-repository";
 
 export class DeleteTeamService {
@@ -5,10 +6,10 @@ export class DeleteTeamService {
     private teamRespository: TeamRepository
   ) {}
 
-  async execute(team_id: string): Promise<void> {
+  async execute(team_id: string): Promise<Either<Error, void>> {
     if(!team_id)
-      throw new Error("No team id provided");
+      return left(new Error("No team id provided"));
 
-    await this.teamRespository.deleteById(team_id);
+    return right(await this.teamRespository.deleteById(team_id));
   }
 }
