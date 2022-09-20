@@ -1,7 +1,7 @@
 import { Either, left, right } from "../../../shared/either";
-import { ProjectRepository } from "../../../../src/application/repositories/project-repository";
-import { ProjectTagRepository } from "../../../../src/application/repositories/project-tag-repository";
-import { ProjectTag } from "../../../../src/domain/entities/ProjectTag/ProjectTag";
+import { ProjectRepository } from "../../repositories/project-repository";
+import { ProjectTagRepository } from "../../repositories/project-tag-repository";
+import { ProjectTag } from "../../../domain/entities/ProjectTag/ProjectTag";
 
 interface CreateProjectTagProps {
   name: string;
@@ -39,7 +39,7 @@ export class CreateProjectTagService {
     });
 
     if(newTag.isLeft())
-      return left(new Error("Error on try to create a new project tag"));
+      return left(newTag.value);
 
     await this.projectTagRepository.add(newTag.value);
 

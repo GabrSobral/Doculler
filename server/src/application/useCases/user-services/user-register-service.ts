@@ -2,9 +2,9 @@ import bcrypt from "bcrypt";
 
 import { User } from "../../../domain/entities/User/User";
 import { UserRepository } from "../../repositories/user-repository";
-import { JsonWebToken } from "../../../../src/adapters/json-web-token/json-web-token-jwt-adapter";
+import { JsonWebToken } from "../../../adapters/json-web-token/json-web-token-jwt-adapter";
 
-import { Either, Left, right } from "../../../../src/shared/either";
+import { Either, Left, right } from "../../../shared/either";
 
 interface UserRegisterRequest {
   name: string;

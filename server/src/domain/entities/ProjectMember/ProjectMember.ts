@@ -30,18 +30,12 @@ export class ProjectMember extends Entity<ProjectMemberProps> {
     return this.props.joined_at
   }
 
-  static create(props: ProjectMemberProps, id?: string): Either<Error, ProjectMember> {
-    if(!props.project_id)
-      return left(new Error("No project id was provided"));
-
-    if(!props.team_id)
-      return left(new Error("No team id was provided"));
-
+  static create(props: ProjectMemberProps, id?: string): ProjectMember {
     const projectMember = new ProjectMember({
       ...props,
       joined_at: props.joined_at ?? new Date()
     }, id);
 
-    return right(projectMember);
+    return projectMember;
   }
 }

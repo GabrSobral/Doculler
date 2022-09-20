@@ -1,6 +1,6 @@
-import { Project } from "../../../../src/domain/entities/Project/Project";
-import { ProjectTag } from "../../../../src/domain/entities/ProjectTag/ProjectTag";
-import { Team } from "../../../../src/domain/entities/Team/Team";
+import { Project } from "../../../domain/entities/Project/Project";
+import { ProjectTag } from "../../../domain/entities/ProjectTag/ProjectTag";
+import { Team } from "../../../domain/entities/Team/Team";
 
 import { InMemoryProjectRepository } from "../../../../tests/repositories/in-memory-project-repository";
 import { InMemoryProjectTagRepository } from "../../../../tests/repositories/in-memory-project-tag-repository";
@@ -39,8 +39,6 @@ describe("create-project-tag-service", () => {
 
     if(project_tag.isLeft())
       return;
-    
-    inMemoryProjectTagRepository.items.push(project_tag.value);
 
     const createProjectTagService = new CreateProjectTagService(
       inMemoryProjectTagRepository,
@@ -60,15 +58,13 @@ describe("create-project-tag-service", () => {
     const inMemoryProjectTagRepository = new InMemoryProjectTagRepository();
 
     const project_tag = ProjectTag.create({
-      name: "",
+      name: "Project Tag Test",
       project_id: project.value.id,
       team_id: team.value.id
     });
 
     if(project_tag.isLeft())
       return
-    
-    inMemoryProjectTagRepository.items.push(project_tag.value);
 
     const createProjectTagService = new CreateProjectTagService(
       inMemoryProjectTagRepository,
@@ -76,7 +72,7 @@ describe("create-project-tag-service", () => {
     );
 
     const projectTagOrError = await createProjectTagService.execute({
-      name: project_tag.value.name.value,
+      name: "",
       project_id: project_tag.value.project_id,
       team_id: project_tag.value.team_id
     });
@@ -94,8 +90,6 @@ describe("create-project-tag-service", () => {
 
     if(project_tag.isLeft())
       return
-    
-    inMemoryProjectTagRepository.items.push(project_tag.value);
 
     const createProjectTagService = new CreateProjectTagService(
       inMemoryProjectTagRepository,
@@ -121,8 +115,6 @@ describe("create-project-tag-service", () => {
 
     if(project_tag.isLeft())
       return
-    
-    inMemoryProjectTagRepository.items.push(project_tag.value);
 
     const createProjectTagService = new CreateProjectTagService(
       inMemoryProjectTagRepository,
@@ -148,8 +140,6 @@ describe("create-project-tag-service", () => {
 
     if(project_tag.isLeft())
       return
-    
-    inMemoryProjectTagRepository.items.push(project_tag.value);
 
     const createProjectTagService = new CreateProjectTagService(
       inMemoryProjectTagRepository,
@@ -161,6 +151,23 @@ describe("create-project-tag-service", () => {
       project_id: project_tag.value.project_id,
       team_id: project_tag.value.team_id
     });
+    expect(projectTagOrError.isLeft()).toBe(true);
+  });
+
+  it("should not be able to create a invalid new tag instance", async () => {
+    const inMemoryProjectTagRepository = new InMemoryProjectTagRepository();
+    
+    const createProjectTagService = new CreateProjectTagService(
+      inMemoryProjectTagRepository,
+      inMemoryProjectRepository
+    );
+
+    const projectTagOrError = await createProjectTagService.execute({
+      name: "a",
+      project_id: project.value.id,
+      team_id: team.value.id,
+    });
+
     expect(projectTagOrError.isLeft()).toBe(true);
   });
 });

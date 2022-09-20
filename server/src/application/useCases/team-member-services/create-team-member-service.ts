@@ -40,11 +40,8 @@ export class CreateTeamMember {
       user_id
     });
 
-    if(newTeamMember.isLeft())
-      return left(newTeamMember.value);
+    await this.teamMemberRepository.add(newTeamMember);
 
-    await this.teamMemberRepository.add(newTeamMember.value);
-
-    return right(newTeamMember.value);
+    return right(newTeamMember);
   }
 }

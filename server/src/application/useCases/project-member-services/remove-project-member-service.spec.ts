@@ -48,17 +48,11 @@ describe("remove-project-member-service", () => {
     user_id: user.value.id
   });
 
-  if(teamMember.isLeft())
-    return;
-
   const projectMember = ProjectMember.create({
     project_id: project.value.id,
     team_id: team.value.id,
-    user_id: teamMember.value.user_id,
+    user_id: teamMember.user_id,
   });
-
-  if(projectMember.isLeft())
-    return;
 
   //Second mock ====================================================================================
 
@@ -93,29 +87,23 @@ describe("remove-project-member-service", () => {
     user_id: userTwo.value.id
   });
 
-  if(teamMemberTwo.isLeft())
-    return;
-
   const projectMemberTwo = ProjectMember.create({
     project_id: projectTwo.value.id,
     team_id: teamTwo.value.id,
-    user_id: teamMemberTwo.value.user_id,
+    user_id: teamMemberTwo.user_id,
   });
-
-  if(projectMemberTwo.isLeft())
-    return;
 
   inMemoryProjectRepository.items.push(project.value);
   inMemoryProjectRepository.items.push(projectTwo.value);
 
-  inMemoryTeamMemberRepository.items.push(teamMember.value);
-  inMemoryTeamMemberRepository.items.push(teamMemberTwo.value);
+  inMemoryTeamMemberRepository.items.push(teamMember);
+  inMemoryTeamMemberRepository.items.push(teamMemberTwo);
 
   inMemoryTeamRepository.items.push(team.value);
   inMemoryTeamRepository.items.push(teamTwo.value);
 
-  inMemoryProjectMemberRepository.items.push(projectMember.value);
-  inMemoryProjectMemberRepository.items.push(projectMemberTwo.value);
+  inMemoryProjectMemberRepository.items.push(projectMember);
+  inMemoryProjectMemberRepository.items.push(projectMemberTwo);
 
   const removeProjectMemberService = new RemoveProjectMemberService(
     inMemoryTeamRepository,

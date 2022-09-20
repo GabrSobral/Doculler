@@ -1,7 +1,7 @@
 import bcrypt from 'bcrypt';
 import { JsonWebToken } from '../../../adapters/json-web-token/json-web-token-jwt-adapter';
 
-import { UserRepository } from "../../../application/repositories/user-repository";
+import { UserRepository } from "../../repositories/user-repository";
 import { Either, left, right } from '../../../shared/either';
 import { UserLoginResult } from './user-register-service';
 

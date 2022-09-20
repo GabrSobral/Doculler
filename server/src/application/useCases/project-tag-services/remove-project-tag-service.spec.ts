@@ -1,6 +1,6 @@
-import { Project } from "../../../../src/domain/entities/Project/Project";
-import { ProjectTag } from "../../../../src/domain/entities/ProjectTag/ProjectTag";
-import { Team } from "../../../../src/domain/entities/Team/Team";
+import { Project } from "../../../domain/entities/Project/Project";
+import { ProjectTag } from "../../../domain/entities/ProjectTag/ProjectTag";
+import { Team } from "../../../domain/entities/Team/Team";
 
 import { InMemoryProjectRepository } from "../../../../tests/repositories/in-memory-project-repository";
 import { InMemoryProjectTagRepository } from "../../../../tests/repositories/in-memory-project-tag-repository";

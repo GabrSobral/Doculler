@@ -1,5 +1,5 @@
 import { ProjectRepository } from "../../repositories/project-repository";
-import { ProjectTagRepository } from "../../../../src/application/repositories/project-tag-repository";
+import { ProjectTagRepository } from "../../repositories/project-tag-repository";
 
 interface RemoveProjectTagSericeProps {
   project_tag_id: string;

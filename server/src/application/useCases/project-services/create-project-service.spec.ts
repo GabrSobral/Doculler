@@ -181,4 +181,41 @@ describe("create-project-service", () => {
 
     expect(projectResult.isLeft()).toBe(true);
   });
+
+  it("should not be able to create a project with an invalid Project instance", async () => {
+    const inMemoryProjectRepository = new InMemoryProjectRepository();
+    const inMemoryTeamRepository = new InMemoryTeamRepository();
+    
+    const team = Team.create({
+      name: "Team Test",
+      description: "Lorem Ipsum Dolor Sit Amet"
+    });
+
+    if(team.isLeft())
+      return;
+
+    const project = Project.create({
+      name: "Project Test",
+      description: "Lorem Ipsum Dolor Sit Amet",
+      team_id: team.value.id,
+    });
+
+    if(project.isLeft())
+      return;
+
+    inMemoryTeamRepository.items.push(team.value);
+
+    const createProjectService = new CreateProjectService(
+      inMemoryProjectRepository,
+      inMemoryTeamRepository
+    );
+
+    const projectResult = await createProjectService.execute({
+      name: "a",
+      team_id: project.value.team_id,
+      description: project.value.description
+    });
+
+    expect(projectResult.isLeft()).toBe(true);
+  });
 })

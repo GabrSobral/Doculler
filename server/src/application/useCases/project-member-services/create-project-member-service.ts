@@ -51,11 +51,8 @@ export class CreateProjectMemberService {
       user_id
     });
 
-    if(projectMember.isLeft())
-      return left(new Error("Error on try to create a new project member"));
+    await this.projectMemberRepository.add(projectMember);
 
-    await this.projectMemberRepository.add(projectMember.value);
-
-    return right(projectMember.value);
+    return right(projectMember);
   }
 }

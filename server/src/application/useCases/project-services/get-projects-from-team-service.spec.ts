@@ -38,10 +38,7 @@ describe("get-projects-from-team-service", () => {
     user_id: user.value.id
   });
 
-  if(teamMemberOne.isLeft())
-    return;
-
-  inMemoryTeamMemberRepository.items.push(teamMemberOne.value);
+  inMemoryTeamMemberRepository.items.push(teamMemberOne);
 
   const projectOne_TeamOne = Project.create({
     name: "Project 1 - Team One",
@@ -81,10 +78,7 @@ describe("get-projects-from-team-service", () => {
     user_id: user.value.id
   });
 
-  if(teamMemberTwo.isLeft())
-    return;
-
-  inMemoryTeamMemberRepository.items.push(teamMemberTwo.value);
+  inMemoryTeamMemberRepository.items.push(teamMemberTwo);
 
   const projectOne_TeamTwo = Project.create({
     name: "Project 1 - Team Two",
@@ -126,8 +120,8 @@ describe("get-projects-from-team-service", () => {
       inMemoryTeamMemberRepository
     );
 
-    const projectsFromTeamOne = await getProjectsFromTeam.execute(teamMemberOne.value);
-    const projectsFromTeamTwo = await getProjectsFromTeam.execute(teamMemberTwo.value);
+    const projectsFromTeamOne = await getProjectsFromTeam.execute(teamMemberOne);
+    const projectsFromTeamTwo = await getProjectsFromTeam.execute(teamMemberTwo);
     
     expect(projectsFromTeamOne.value).toHaveLength(2);
     expect(projectsFromTeamTwo.value).toHaveLength(3);
@@ -141,7 +135,7 @@ describe("get-projects-from-team-service", () => {
 
     const projectsOrError = await getProjectsFromTeam.execute({
       team_id: "",
-      user_id: teamMemberOne.value.user_id
+      user_id: teamMemberOne.user_id
     });
 
     expect(projectsOrError.isLeft()).toBe(true);
@@ -154,7 +148,7 @@ describe("get-projects-from-team-service", () => {
     );
 
     const projectsOrError = await getProjectsFromTeam.execute({
-      team_id: teamMemberOne.value.team_id,
+      team_id: teamMemberOne.team_id,
       user_id: ""
     });
 
@@ -168,8 +162,8 @@ describe("get-projects-from-team-service", () => {
     );
 
     const projectsOrError = await getProjectsFromTeam.execute({
-      team_id: teamMemberOne.value.team_id,
-      user_id: teamMemberOne.value.user_id + "123Test"
+      team_id: teamMemberOne.team_id,
+      user_id: teamMemberOne.user_id + "123Test"
     });
 
     expect(projectsOrError.isLeft()).toBe(true);

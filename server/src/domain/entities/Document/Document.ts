@@ -30,14 +30,23 @@ export class Document extends Entity<DocumentProps> {
   get project_id() { 
     return this.props.project_id 
   }
-  get content() { 
-    return this.props.content 
+  // Document Content ==============================================================================
+  get content() {              // Getter
+    return this.props.content;
   }
+  set content(value: string) { // Setter
+    this.props.content = value;
+  }
+  // ===============================================================================================
+
   get created_at() {
     return this.props.created_at;
   }
   get updated_at() {
-    return this.props.updated_at;
+    return this.props.updated_at!;
+  }
+  set updated_at(value: Date) { // Setter
+    this.props.updated_at = value;
   }
 
   static create(props: DocumentData, id?: string): Either<InvalidNameError | Error, Document> {

@@ -23,18 +23,12 @@ export class TeamMember extends Entity<TeamMemberProps> {
     return this.props.created_at 
   }
 
-  static create(props: TeamMemberProps, id?: string): Either<Error, TeamMember> {
-    if(!props.team_id)
-      return left(new Error("team_id was not passed"));
-
-    if(!props.user_id)
-      return left(new Error("user_id was not passed"));
-    
+  static create(props: TeamMemberProps, id?: string): TeamMember {
     const teamMember = new TeamMember({
       ...props,
       created_at: props.created_at ?? new Date()
     }, id);
 
-    return right(teamMember);
+    return teamMember;
   }
 }

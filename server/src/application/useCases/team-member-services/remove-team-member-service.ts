@@ -1,6 +1,6 @@
 import { TeamRepository } from "../../repositories/team-repository";
 import { TeamMemberRepository } from "../../repositories/team-member-repository";
-import { left } from "../../../shared/either";
+import { Either, left, right } from "../../../shared/either";
 
 interface RemoveTeamMemberRequest {
   user_id: string;
@@ -13,7 +13,7 @@ export class RemoveTeamMemberService {
     private readonly teamRepository: TeamRepository,
   ) {}
   
-  async execute(request: RemoveTeamMemberRequest) {
+  async execute(request: RemoveTeamMemberRequest): Promise<Either<Error, void>> {
     const { user_id, team_id } = request;
 
     if(!team_id)
@@ -27,9 +27,9 @@ export class RemoveTeamMemberService {
     if(!team)
       return left(new Error("No team was found."));
 
-    await this.teamMemberRepository.deleteById({
+    return right(await this.teamMemberRepository.deleteById({
       team_id,
       user_id
-    });
+    }))
   }
 }

@@ -1,7 +1,9 @@
 import { Document } from "../../../domain/entities/Document/Document";
 import { Project } from "../../../domain/entities/Project/Project";
 import { Team } from "../../../domain/entities/Team/Team";
-import { InMemoryDocumentRepository } from "../../../../tests/repositories/in-memory-document-repository"
+
+import { InMemoryDocumentRepository } from "../../../../tests/repositories/in-memory-document-repository";
+
 import { RemoveDocumentService } from "./remove-document-service";
 
 describe("remve-document-service", () => {

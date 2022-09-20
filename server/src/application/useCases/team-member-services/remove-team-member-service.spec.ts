@@ -31,10 +31,7 @@ describe("remove-team-member", () => {
       user_id: user.value.id
     });
 
-    if(teamMember.isLeft())
-      return;
-
-    inMemoryTeamMemberRepository.items.push(teamMember.value);
+    inMemoryTeamMemberRepository.items.push(teamMember);
     inMemoryTeamRepository.items.push(team.value);
 
     const removeTeamMemberService = new RemoveTeamMemberService (
@@ -43,8 +40,8 @@ describe("remove-team-member", () => {
     );
 
     await expect(removeTeamMemberService.execute({ 
-      team_id: teamMember.value.team_id, 
-      user_id: teamMember.value.user_id 
+      team_id: teamMember.team_id, 
+      user_id: teamMember.user_id 
     })).resolves.not.toThrow();
   });
 
@@ -66,20 +63,19 @@ describe("remove-team-member", () => {
       user_id: user.value.id
     });
 
-    if(teamMember.isLeft())
-      return;
-
-    inMemoryTeamMemberRepository.items.push(teamMember.value);
+    inMemoryTeamMemberRepository.items.push(teamMember);
 
     const removeTeamMemberService = new RemoveTeamMemberService (
       inMemoryTeamMemberRepository,
       inMemoryTeamRepository
     );
 
-    await expect(removeTeamMemberService.execute({ 
-      team_id: teamMember.value.team_id,
-      user_id: teamMember.value.user_id
-    })).rejects.toThrow();
+    const resultOrError = await removeTeamMemberService.execute({ 
+      team_id: teamMember.team_id,
+      user_id: teamMember.user_id
+    });
+
+    expect(resultOrError.isLeft()).toBe(true)
   });
 
   it("should not be able to remove a team member without user_id", async () => {
@@ -99,10 +95,7 @@ describe("remove-team-member", () => {
       user_id: ""
     });
 
-    if(teamMember.isLeft())
-      return;
-
-    inMemoryTeamMemberRepository.items.push(teamMember.value);
+    inMemoryTeamMemberRepository.items.push(teamMember);
     inMemoryTeamRepository.items.push(team.value);
 
     const removeTeamMemberService = new RemoveTeamMemberService (
@@ -110,10 +103,12 @@ describe("remove-team-member", () => {
       inMemoryTeamRepository
     );
 
-    await expect(removeTeamMemberService.execute ({ 
-      team_id: teamMember.value.team_id,
-      user_id: teamMember.value.user_id
-    })).rejects.toThrow();
+    const resultOrError = await removeTeamMemberService.execute ({ 
+      team_id: teamMember.team_id,
+      user_id: teamMember.user_id
+    });
+
+    expect(resultOrError.isLeft()).toBe(true);
   });
 
   it("should not be able to remove a team member without user_id", async () => {
@@ -139,10 +134,7 @@ describe("remove-team-member", () => {
       user_id: user.value.id
     });
 
-    if(teamMember.isLeft())
-      return;
-
-    inMemoryTeamMemberRepository.items.push(teamMember.value);
+    inMemoryTeamMemberRepository.items.push(teamMember);
     inMemoryTeamRepository.items.push(team.value);
 
     const removeTeamMemberService = new RemoveTeamMemberService (
@@ -151,8 +143,8 @@ describe("remove-team-member", () => {
     );
 
     const teamMemberOrError = await removeTeamMemberService.execute ({ 
-      team_id: teamMember.value + '123Test',
-      user_id: teamMember.value.user_id
+      team_id: teamMember.team_id + '123Test',
+      user_id: teamMember.user_id
     });
 
     expect(teamMemberOrError?.isLeft()).toBe(true);
